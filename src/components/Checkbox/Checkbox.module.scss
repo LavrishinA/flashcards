@@ -42,7 +42,7 @@ button {
     }
   }
 
-  &[data-state='unchecked']:hover {
+  &:not([data-disabled])[data-state='unchecked']:hover {
     background-color: var(--color-dark-500);
   }
 
@@ -62,8 +62,8 @@ button {
     }
   }
 
-  &[data-state='unchecked']:active,
-  &[data-state='unchecked']:focus-visible {
+  &:not([data-disabled])[data-state='unchecked']:active,
+  &:not([data-disabled])[data-state='unchecked']:focus-visible {
     background-color: var(--color-dark-100);
   }
 
