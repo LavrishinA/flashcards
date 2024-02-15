@@ -1,0 +1,135 @@
+.input {
+  all: unset;
+
+  box-sizing: border-box;
+  width: 284px;
+  height: 36px;
+  padding: 6px 12px;
+
+  font-family: inherit;
+  font-size: var(--font-size-m);
+  font-weight: 400;
+  line-height: 24px;
+  color: inherit;
+  text-align: left;
+  letter-spacing: 0;
+
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+
+  &:disabled {
+    border: 1px solid var(--color-dark-300);
+  }
+
+  &:focus {
+    border: 1px solid var(--color-info-700);
+  }
+
+  &:hover:not(&:disabled) {
+    color: var(--color-dark-100);
+    background: var(--color-dark-700);
+    border: 1px solid var(--color-dark-100);
+  }
+
+  &:active:not(&:disabled) {
+    color: var(--color-light-100);
+    border: 1px solid var(--color-light-100);
+  }
+}
+
+.inputWithIconContainer {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 284px;
+  height: 36px;
+}
+
+.search {
+  position: relative;
+  left: 0;
+  padding: 6px 12px 6px 41px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  font-size: var(--font-size-s);
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-dark-100);
+  text-align: left;
+  letter-spacing: 0;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 12px;
+
+  width: 20px;
+  height: 20px;
+
+  background-image: url('@/components/icons/eye.svg');
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+
+  width: 20px;
+  height: 20px;
+
+  background-image: url('@/components/icons/search.svg');
+  border: none;
+}
+
+.searchActiveIcon {
+  position: absolute;
+  left: 12px;
+
+  width: 20px;
+  height: 20px;
+
+  background-image: url('@/components/icons/searchActive.svg');
+  border: none;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 10px;
+
+  width: 16px;
+  height: 16px;
+
+  background-image: url('@/components/icons/close.svg');
+}
+
+.disabledIcon {
+  position: absolute;
+  right: 12px;
+
+  width: 20px;
+  height: 20px;
+
+  background-image: url('@/components/icons/eyeDark.svg');
+}
+
+.error {
+  color: var(--color-danger-300);
+  border: 1px solid var(--color-danger-300);
+}
+
+.errorMessage {
+  position: absolute;
+
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-danger-300);
+  text-align: left;
+  letter-spacing: 0;
+}
