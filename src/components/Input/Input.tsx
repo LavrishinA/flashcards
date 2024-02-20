@@ -1,52 +1,72 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, useState } from 'react'
+
+import { Typography } from '@/components/Typography'
+import { InputCloseIcon } from '@/components/icons/InputCloseIcon'
+import { InputEyeClosedIcon } from '@/components/icons/InputEyeClosedIcon'
+import { InputEyeIcon } from '@/components/icons/InputEyeIcon'
+import { InputSearchIcon } from '@/components/icons/InputSearchIcon'
 
 import s from './input.module.scss'
 
 export type InputProps = {
   errorMessage?: string
-  fullWidth?: boolean
-  icon?: 'closeIcon' | 'disabledIcon' | 'eyeIcon' | 'none' | 'searchActiveIcon' | 'searchIcon'
-  label?: ReactNode
-  variant?: 'primary' | 'search' | 'withIcon'
+  label?: string
+  search?: boolean
+  value?: string
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = ({
-  className,
-  errorMessage,
-  fullWidth,
-  icon,
-  label,
-  variant = 'primary',
-  ...rest
-}: InputProps) => {
+export const Input = ({ className, errorMessage, label, search, type, ...rest }: InputProps) => {
+  const isPassword = type === 'password'
+  const [hidePassword, setHidePassword] = useState(true)
+  const setType = getType(isPassword, hidePassword)
+  const valueLength = rest?.value?.length! > 0
+
   return (
     <div>
-      <label className={s.label}>{label}</label>
-      <div className={`${s.inputWithIconContainer} ${fullWidth ? s.fullWidth : ''}`}>
-        {icon === 'searchIcon' ? <span className={s.searchIcon} /> : ''}
-        {icon === 'searchActiveIcon' ? (
-          <>
-            <span className={s.searchActiveIcon} />
-            <span className={s.closeIcon} />
-          </>
-        ) : (
-          ''
-        )}
+      {label && (
+        <Typography as={'label'} className={s.label} variant={'body2'}>
+          {label}
+        </Typography>
+      )}
+      <div className={s.inputContainer}>
+        {search && <InputSearchIcon className={s.searchIcon} />}
         <input
-          className={` 
-                        ${s.input} 
-                        ${s[variant]} 
-                        ${fullWidth ? s.fullWidth : ''} 
+          className={`  ${s.input} 
                         ${errorMessage ? s.error : ''} 
-                        ${className}
+                        ${search ? s.search : ''}
+                        ${className}         
                         `}
+          type={setType}
           {...rest}
         />
-        {icon === 'eyeIcon' ? <span className={s.eyeIcon} /> : ''}
-        {icon === 'disabledIcon' ? <span className={s.disabledIcon} /> : ''}
-        {icon === 'closeIcon' ? <span className={s.closeIcon} /> : ''}
+        {valueLength && (
+          <button className={s.closeButton} onClick={() => {}} type={'button'}>
+            <InputCloseIcon />
+          </button>
+        )}
+        {isPassword && (
+          <button
+            className={s.eyeButton}
+            onClick={() => setHidePassword(prevState => !prevState)}
+            type={'button'}
+          >
+            {hidePassword ? <InputEyeIcon /> : <InputEyeClosedIcon />}
+          </button>
+        )}
       </div>
-      {errorMessage && <span className={s.errorMessage}>{errorMessage}</span>}
+      {errorMessage && (
+        <Typography as={'span'} className={s.errorMessage} variant={'body2'}>
+          {errorMessage}
+        </Typography>
+      )}
     </div>
   )
+}
+
+const getType = (isPassword: boolean, hidePassword: boolean) => {
+  if (isPassword && hidePassword) {
+    return 'password'
+  }
+
+  return 'text'
 }

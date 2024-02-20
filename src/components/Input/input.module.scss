@@ -2,7 +2,7 @@
   all: unset;
 
   box-sizing: border-box;
-  width: 284px;
+  width: 100%;
   height: 36px;
   padding: 6px 12px;
 
@@ -18,6 +18,7 @@
   border-radius: 2px;
 
   &:disabled {
+    color: var(--color-dark-300);
     border: 1px solid var(--color-dark-300);
   }
 
@@ -27,7 +28,6 @@
 
   &:hover:not(&:disabled) {
     color: var(--color-dark-100);
-    background: var(--color-dark-700);
     border: 1px solid var(--color-dark-100);
   }
 
@@ -37,7 +37,7 @@
   }
 }
 
-.inputWithIconContainer {
+.inputContainer {
   position: relative;
 
   display: flex;
@@ -66,56 +66,44 @@
   letter-spacing: 0;
 }
 
-.eyeIcon {
+.eyeButton {
+  all: unset;
+
+  cursor: pointer;
+
   position: absolute;
   right: 12px;
 
   width: 20px;
   height: 20px;
-
-  background-image: url('@/components/icons/eye.svg');
 }
 
 .searchIcon {
+  cursor: pointer;
+
   position: absolute;
   left: 12px;
 
   width: 20px;
   height: 20px;
 
-  background-image: url('@/components/icons/search.svg');
+  color: var(--color-dark-100);
+
   border: none;
 }
 
-.searchActiveIcon {
-  position: absolute;
-  left: 12px;
+.closeButton {
+  all: unset;
 
-  width: 20px;
-  height: 20px;
+  cursor: pointer;
 
-  background-image: url('@/components/icons/searchActive.svg');
-  border: none;
-}
-
-.closeIcon {
   position: absolute;
   right: 10px;
 
   width: 16px;
   height: 16px;
 
-  background-image: url('@/components/icons/close.svg');
-}
-
-.disabledIcon {
-  position: absolute;
-  right: 12px;
-
-  width: 20px;
-  height: 20px;
-
-  background-image: url('@/components/icons/eyeDark.svg');
+  color: var(--color-light-100);
 }
 
 .error {
