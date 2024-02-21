@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CheckedIconIndicator } from '@/components/icons/CheckedIconIndicator'
+import { LogoutIcon } from '@/components/icons/LogoutIcon'
 
 import { Button } from './'
 
@@ -20,7 +20,7 @@ const meta: Meta<typeof Button> = {
     },
     icon: {
       control: { type: 'boolean' },
-      mapping: { false: '', true: <CheckedIconIndicator height={16} width={16} /> },
+      mapping: { false: '', true: <LogoutIcon height={16} width={16} /> },
     },
     label: {
       control: 'text',
