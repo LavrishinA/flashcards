@@ -18,7 +18,6 @@ const meta = {
   },
   component: Checkbox,
   tags: ['autodocs'],
-  title: 'Checkbox',
 } satisfies Meta<typeof Checkbox>
 
 export default meta
