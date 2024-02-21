@@ -11,7 +11,7 @@ type CheckboxProps = {
   disabled?: boolean
   id?: string
   label?: ReactNode
-  name: string
+  name?: string
   onCheckedChange: (checked: boolean) => void
   required?: boolean
 }

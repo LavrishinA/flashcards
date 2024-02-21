@@ -1,7 +1,3 @@
-button {
-  all: unset;
-}
-
 .container {
   cursor: pointer;
   display: flex;
@@ -15,6 +11,8 @@ button {
 }
 
 .checkbox {
+  all: unset;
+
   position: relative;
 
   display: flex;

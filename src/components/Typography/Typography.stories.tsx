@@ -22,13 +22,12 @@ const meta = {
   },
   component: Typography,
   tags: ['autodocs'],
-  title: 'Typography',
 } satisfies Meta<typeof Typography>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const TypographyWithControls: Story = {
+export const Default: Story = {
   args: {
     children: 'Carosserie Test Zürich Stauffacherstrasse 31 8004 Zürich, ZH, CH ',
     variant: 'h1',
