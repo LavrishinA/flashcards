@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useState } from 'react'
+import React, { ComponentPropsWithoutRef, useState } from 'react'
 
 import { Typography } from '@/components/Typography'
 import { InputCloseIcon } from '@/components/icons/InputCloseIcon'
@@ -12,14 +12,25 @@ export type InputProps = {
   errorMessage?: string
   label?: string
   search?: boolean
-  value?: string
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = ({ className, errorMessage, label, search, type, ...rest }: InputProps) => {
-  const isPassword = type === 'password'
+export const Input = ({
+  className,
+  disabled,
+  errorMessage,
+  label,
+  search,
+  type,
+  ...rest
+}: InputProps) => {
   const [hidePassword, setHidePassword] = useState(true)
+  const [value, setValue] = useState('')
+  const isPassword = type === 'password'
   const setType = getType(isPassword, hidePassword)
-  const valueLength = rest?.value?.length! > 0
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+  }
+  const showDeleteIcon = value.length > 0 && search
 
   return (
     <div>
@@ -36,17 +47,27 @@ export const Input = ({ className, errorMessage, label, search, type, ...rest }:
                         ${search ? s.search : ''}
                         ${className}         
                         `}
+          disabled={disabled}
+          onChange={onChangeHandler}
           type={setType}
+          value={value}
           {...rest}
         />
-        {valueLength && (
-          <button className={s.closeButton} onClick={() => {}} type={'button'}>
+        {showDeleteIcon && (
+          <button
+            className={s.closeButton}
+            onClick={() => {
+              setValue('')
+            }}
+            type={'button'}
+          >
             <InputCloseIcon />
           </button>
         )}
         {isPassword && (
           <button
             className={s.eyeButton}
+            disabled={disabled}
             onClick={() => setHidePassword(prevState => !prevState)}
             type={'button'}
           >

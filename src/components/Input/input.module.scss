@@ -50,7 +50,7 @@
 .search {
   position: relative;
   left: 0;
-  padding: 6px 12px 6px 41px;
+  padding: 6px 27px 6px 41px;
 }
 
 .fullWidth {
@@ -76,6 +76,11 @@
 
   width: 20px;
   height: 20px;
+
+  &:disabled {
+    cursor: unset;
+    color: var(--color-dark-300);
+  }
 }
 
 .searchIcon {
