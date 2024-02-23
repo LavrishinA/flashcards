@@ -1,0 +1,71 @@
+button,
+fieldset,
+input {
+  all: unset;
+}
+
+.container {
+  width: max-content;
+
+  &:focus {
+    border: 3px solid lightgreen;
+  }
+}
+
+.tabList {
+  cursor: pointer;
+}
+
+.tabItem {
+  border-collapse: collapse;
+  padding: 6px 24px;
+  border-top: 1px solid var(--color-dark-300);
+  border-bottom: 1px solid var(--color-dark-300);
+
+  &:first-child {
+    border-left: 1px solid var(--color-dark-300);
+    border-radius: 2px 0 0 2px;
+  }
+
+  &:last-child {
+    border-right: 1px solid var(--color-dark-300);
+    border-radius: 0 2px 2px 0;
+  }
+
+  &:not(:last-child) {
+    border-right: 1px solid var(--color-dark-300);
+  }
+
+  &:hover {
+    background-color: var(--color-dark-100);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--color-dark-300);
+    background-color: var(--color-dark-700);
+  }
+
+  &[data-state='active'] {
+    background-color: var(--color-accent-500);
+    border-top: 1px solid var(--color-accent-500);
+    border-bottom: 1px solid var(--color-accent-500);
+    border-left: 1px solid var(--color-accent-500);
+
+    &:first-child {
+      border-left: 1px solid var(--color-accent-500);
+    }
+
+    &:last-child {
+      border-right: 1px solid var(--color-accent-500);
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid var(--color-accent-500);
+    }
+  }
+
+  &[data-state='inactive']:has(+ &[data-state='active']) {
+    border-right: unset;
+  }
+}
