@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+// import { useState } from 'react'
+
+import { useState } from 'react'
+
 import { Input } from './'
 
 const meta = {
@@ -41,6 +45,20 @@ export const Search: Story = {
     disabled: false,
     placeholder: 'Input search',
     search: true,
+  },
+  render: args => {
+    const [value, setValue] = useState('')
+
+    return (
+      <>
+        <Input
+          onChange={e => setValue(e.currentTarget.value)}
+          onInputClear={() => setValue('')}
+          search={args.search}
+          value={value}
+        />
+      </>
+    )
   },
 }
 
