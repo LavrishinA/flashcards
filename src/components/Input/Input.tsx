@@ -5,12 +5,14 @@ import { InputCloseIcon } from '@/components/icons/InputCloseIcon'
 import { InputEyeClosedIcon } from '@/components/icons/InputEyeClosedIcon'
 import { InputEyeIcon } from '@/components/icons/InputEyeIcon'
 import { InputSearchIcon } from '@/components/icons/InputSearchIcon'
+import { clsx } from 'clsx'
 
 import s from './input.module.scss'
 
 export type InputProps = {
   errorMessage?: string
   label?: string
+  onInputClear?: (value: string) => void
   search?: boolean
 } & ComponentPropsWithoutRef<'input'>
 
@@ -19,18 +21,24 @@ export const Input = ({
   disabled,
   errorMessage,
   label,
+  onChange,
+  onInputClear,
   search,
   type,
+  value,
   ...rest
 }: InputProps) => {
   const [hidePassword, setHidePassword] = useState(true)
-  const [value, setValue] = useState('')
   const isPassword = type === 'password'
   const setType = getType(isPassword, hidePassword)
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
+    onChange?.(e)
   }
-  const showDeleteIcon = value.length > 0 && search
+
+  const onClearClickHandler = () => {
+    onInputClear?.('')
+  }
 
   return (
     <div>
@@ -42,25 +50,15 @@ export const Input = ({
       <div className={s.inputContainer}>
         {search && <InputSearchIcon className={s.searchIcon} />}
         <input
-          className={`  ${s.input} 
-                        ${errorMessage ? s.error : ''} 
-                        ${search ? s.search : ''}
-                        ${className}         
-                        `}
+          className={clsx(s.input, errorMessage && s.error, search && s.search, className)}
           disabled={disabled}
           onChange={onChangeHandler}
           type={setType}
           value={value}
           {...rest}
         />
-        {showDeleteIcon && (
-          <button
-            className={s.closeButton}
-            onClick={() => {
-              setValue('')
-            }}
-            type={'button'}
-          >
+        {value && (
+          <button className={s.closeButton} onClick={onClearClickHandler} type={'button'}>
             <InputCloseIcon />
           </button>
         )}
