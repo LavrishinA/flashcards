@@ -30,7 +30,7 @@ export const Default: Story = {
     label: 'Accept',
   },
   render: ({ checked, disabled, label }) => {
-    const [status, setStatus] = useState<boolean>(checked)
+    const [status, setStatus] = useState(checked)
     const statusHandler = () => setStatus(prevState => !prevState)
 
     return (
