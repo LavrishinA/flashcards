@@ -1,33 +1,62 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
-const Table = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<'table'>>((props, ref) => {
-  return <table {...props} ref={ref}></table>
+import { Typography } from '@/components/Typography'
+import clsx from 'clsx'
+
+import s from './Table.module.scss'
+
+const Root = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<'table'>>((props, ref) => {
+  const { className, ...rest } = props
+
+  return <table className={clsx(className, s.root)} {...rest} ref={ref}></table>
 })
 
 const TableBody = forwardRef<HTMLTableSectionElement, ComponentPropsWithoutRef<'tbody'>>(
   (props, ref) => {
-    return <tbody {...props} ref={ref} />
+    const { className, ...rest } = props
+
+    return <tbody className={clsx(className)} {...rest} ref={ref} />
   }
 )
 
 const TableHeader = forwardRef<HTMLTableSectionElement, ComponentPropsWithoutRef<'thead'>>(
   (props, ref) => {
-    return <thead {...props} ref={ref}></thead>
+    const { className, ...rest } = props
+
+    return <thead className={clsx(className)} {...rest} ref={ref}></thead>
   }
 )
 
 const TableRow = forwardRef<HTMLTableRowElement, ComponentPropsWithoutRef<'tr'>>((props, ref) => {
-  return <tr {...props} ref={ref} />
+  const { className, ...rest } = props
+
+  return <tr className={clsx(className, s.row)} {...rest} ref={ref} />
 })
 
 const TableCellHead = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'th'>>(
   (props, ref) => {
-    return <th {...props} ref={ref} />
+    const { children, className, ...rest } = props
+
+    return (
+      <th className={clsx(className, s.cellHead)} {...rest} ref={ref}>
+        <Typography as={'span'} variant={'subtitle2'}>
+          {children}
+        </Typography>
+      </th>
+    )
   }
 )
 
 const TableCell = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'td'>>((props, ref) => {
-  return <td {...props} ref={ref} />
+  const { children, className, ...rest } = props
+
+  return (
+    <td className={clsx(className, s.cellRow)} {...rest} ref={ref}>
+      <Typography as={'span'} variant={'body2'}>
+        {children}
+      </Typography>
+    </td>
+  )
 })
 
-export { Table, TableBody, TableCell, TableCellHead, TableHeader, TableRow }
+export const Table = { Root, TableBody, TableCell, TableCellHead, TableHeader, TableRow }
