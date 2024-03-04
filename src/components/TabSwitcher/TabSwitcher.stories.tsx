@@ -25,7 +25,7 @@ const meta: Meta<typeof TabSwitcher> = {
 } satisfies Meta<typeof TabSwitcher>
 
 export default meta
-type Story = StoryObj<typeof TabSwitcher>
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {

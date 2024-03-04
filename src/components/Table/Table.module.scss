@@ -1,0 +1,18 @@
+.root {
+  border-collapse: collapse;
+}
+
+.row {
+  border-bottom: 1px solid var(--color-dark-500);
+}
+
+.cellHead {
+  padding: 6px 24px;
+  background-color: var(--color-dark-500);
+}
+
+.cellRow,
+.cellHead {
+  padding: 6px 24px;
+  text-align: start;
+}
