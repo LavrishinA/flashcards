@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Rating } from '@/components/Rating'
 import { Table } from '@/components/Table/Table'
 
 const meta: Meta<typeof Table.Root> = {
@@ -31,7 +32,9 @@ export const TableDefault: Story = {
             <Table.TableCell>Christmas@gmail.com</Table.TableCell>
             <Table.TableCell>Minsk</Table.TableCell>
             <Table.TableCell>BLR</Table.TableCell>
-            <Table.TableCell>5</Table.TableCell>
+            <Table.TableCell>
+              <Rating maxStar={5} onClick={() => {}} rating={3} size={16} />
+            </Table.TableCell>
             <Table.TableCell>x</Table.TableCell>
           </Table.TableRow>
         </Table.TableBody>

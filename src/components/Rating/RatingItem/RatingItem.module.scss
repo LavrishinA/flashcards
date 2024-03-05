@@ -1,0 +1,14 @@
+.star {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:not(:last-child) {
+    padding-right: 5px;
+  }
+
+  &:not(:first-child) {
+    padding-left: 5px;
+  }
+}
