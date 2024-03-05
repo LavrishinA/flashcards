@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
-import { Checkbox } from './'
+import { Checkbox } from '@/components/Checkbox/Checkbox'
 
 const meta = {
   argTypes: {

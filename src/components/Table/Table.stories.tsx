@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Table } from './Table'
+import { Table } from '@/components/Table/Table'
 
 const meta: Meta<typeof Table.Root> = {
   component: Table.Root,

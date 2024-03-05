@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
+import { TabSwitcher } from '@/components/TabSwitcher/TabSwitcher'
 import { Meta, StoryObj } from '@storybook/react'
-
-import { TabSwitcher } from './TabSwitcher'
 
 const meta: Meta<typeof TabSwitcher> = {
   argTypes: {

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Button } from '@/components/Button/Button'
 import { LogoutIcon } from '@/components/icons/LogoutIcon'
-
-import { Button } from './'
 
 const meta: Meta<typeof Button> = {
   argTypes: {

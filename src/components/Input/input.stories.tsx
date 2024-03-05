@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
-import { Input } from './'
+import { Input } from '@/components/Input/Input'
 
 const meta = {
   argTypes: {
