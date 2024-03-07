@@ -1,0 +1,29 @@
+.item {
+  cursor: pointer;
+
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  padding: 12px 0;
+
+  outline: none;
+
+  &:not(:nth-last-child(2)) {
+    border-bottom: 1px solid var(--color-dark-500);
+  }
+
+  &:first-child {
+    padding-top: 0;
+    padding-bottom: 12px;
+  }
+
+  &:nth-last-child(2) {
+    padding-top: 12px;
+    padding-bottom: 0;
+  }
+
+  &[data-highlighted] {
+    color: var(--color-accent-500);
+  }
+}

@@ -6,10 +6,6 @@ input {
 
 .container {
   width: max-content;
-
-  &:focus {
-    border: 3px solid lightgreen;
-  }
 }
 
 .tabList {

@@ -1,10 +1,12 @@
 import React, { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react'
 
 import { Typography } from '@/components/Typography'
-import { InputCloseIcon } from '@/components/icons/InputCloseIcon'
-import { InputEyeClosedIcon } from '@/components/icons/InputEyeClosedIcon'
-import { InputEyeIcon } from '@/components/icons/InputEyeIcon'
-import { InputSearchIcon } from '@/components/icons/InputSearchIcon'
+import {
+  InputCloseIcon,
+  InputEyeClosedIcon,
+  InputEyeIcon,
+  InputSearchIcon,
+} from '@/components/icons'
 import { clsx } from 'clsx'
 
 import s from './input.module.scss'
