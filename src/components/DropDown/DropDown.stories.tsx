@@ -5,6 +5,7 @@ import { DropDownContent, DropdownMenu, DropdownTrigger } from '@/components/Dro
 import { DropdownItem } from '@/components/DropDown/Item'
 import { UserSeparator } from '@/components/DropDown/UserSeparator/UserSeparator'
 import { DeleteIcon, DropDownTriggerIcon, EditIcon, LogoutIcon, PlayIcon } from '@/components/icons'
+import { ProfileIcon } from '@/components/icons/ProfileIcon'
 
 const meta: Meta<typeof DropdownMenu> = {
   component: DropdownMenu,
@@ -46,6 +47,7 @@ export const DropDownWithUser: Story = {
           <UserSeparator email={'happyhack@gmail.com'} username={'Alex'}>
             <Avatar username={'Alex'} />
           </UserSeparator>
+          <DropdownItem icon={<ProfileIcon height={16} width={16} />} label={'My profile'} />
           <DropdownItem icon={<LogoutIcon height={16} width={16} />} label={'Sign out'} />
         </DropDownContent>
       </DropdownMenu>
