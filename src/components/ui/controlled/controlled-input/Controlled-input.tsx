@@ -19,6 +19,7 @@ export const ControlledInput = <T extends FieldValues>({
     control,
     disabled: rest.disabled,
     name: rest.name,
+    shouldUnregister,
   })
 
   return <Input {...rest} onChange={onChange} value={value} />
