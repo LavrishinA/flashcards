@@ -1,0 +1,20 @@
+.avatar {
+  width: 36px;
+  height: 36px;
+
+  object-fit: cover;
+  object-position: center;
+  border-radius: 100%;
+}
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+
+  text-transform: capitalize;
+
+  background-color: var(--color-accent-500);
+}
