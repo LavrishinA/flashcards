@@ -1,12 +1,5 @@
-import { Input } from '@/components/Input'
-
 function App() {
-  // return <div>Hello</div>
-  return (
-    <div>
-      <Input search />
-    </div>
-  )
+  return <div>Hello!</div>
 }
 
 export default App
