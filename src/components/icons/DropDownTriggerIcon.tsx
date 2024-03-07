@@ -1,0 +1,29 @@
+import { SVGProps } from 'react'
+
+export const DropDownTriggerIcon = (props: SVGProps<SVGSVGElement>) => {
+  return (
+    <svg {...props} fill={'none'} viewBox={'0 0 18 18'} xmlns={'http://www.w3.org/2000/svg'}>
+      <circle cx={'9'} cy={'9'} r={'8.5'} stroke={'currentColor'} />
+      <g clipPath={'url(#clip0_62458_151)'}>
+        <path
+          d={
+            'M9 10C9.55228 10 10 9.55228 10 9C10 8.44772 9.55228 8 9 8C8.44772 8 8 8.44772 8 9C8 9.55228 8.44772 10 9 10Z'
+          }
+          fill={'currentColor'}
+        />
+        <path
+          d={
+            'M9 6.5C9.55228 6.5 10 6.05228 10 5.5C10 4.94772 9.55228 4.5 9 4.5C8.44772 4.5 8 4.94772 8 5.5C8 6.05228 8.44772 6.5 9 6.5Z'
+          }
+          fill={'currentColor'}
+        />
+        <path
+          d={
+            'M9 13.5C9.55228 13.5 10 13.0523 10 12.5C10 11.9477 9.55228 11.5 9 11.5C8.44772 11.5 8 11.9477 8 12.5C8 13.0523 8.44772 13.5 9 13.5Z'
+          }
+          fill={'currentColor'}
+        />
+      </g>
+    </svg>
+  )
+}
