@@ -1,7 +1,6 @@
 import { ComponentProps } from 'react'
 
-import { FullStar } from '@/components/icons/FullStar'
-import { Star } from '@/components/icons/Star'
+import { FullStar, Star } from '@/components/icons'
 
 import s from './RatingItem.module.scss'
 
