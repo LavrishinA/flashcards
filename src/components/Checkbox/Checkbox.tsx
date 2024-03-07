@@ -6,7 +6,7 @@ import * as CheckboxRadix from '@radix-ui/react-checkbox'
 
 import s from './Checkbox.module.scss'
 
-type CheckboxProps = {
+export type CheckboxProps = {
   label?: ReactNode
 } & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
 
