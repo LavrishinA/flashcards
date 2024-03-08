@@ -63,6 +63,10 @@
   }
 }
 
+/**
+added box-sizing: border-box; to fit the element into the container
+ */
 .fullWidth {
+  box-sizing: border-box;
   width: 100%;
 }

@@ -45,7 +45,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>(
     }
 
     return (
-      <div>
+      <div className={s.box}>
         {label && (
           <Typography as={'label'} className={s.label} variant={'body2'}>
             {label}

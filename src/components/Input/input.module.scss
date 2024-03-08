@@ -1,3 +1,7 @@
+.box {
+  width: 100%;
+}
+
 .input {
   all: unset;
 
@@ -39,22 +43,14 @@
 
 .inputContainer {
   position: relative;
-
   display: flex;
   align-items: center;
-
-  width: 284px;
-  height: 36px;
 }
 
 .search {
   position: relative;
   left: 0;
   padding: 6px 27px 6px 41px;
-}
-
-.fullWidth {
-  width: 100%;
 }
 
 .label {
