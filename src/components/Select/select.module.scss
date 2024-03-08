@@ -1,0 +1,106 @@
+button {
+  all: unset;
+}
+
+.SelectTrigger {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 200px;
+  height: 35px;
+  padding: 5px 15px;
+
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-100);
+  border-radius: 4px;
+
+  &[data-state='open'] .Arrow {
+    transform: rotate(-180deg);
+  }
+}
+
+.SelectTrigger:hover {
+  background-color: var(--color-dark-100);
+}
+
+.SelectTrigger:focus {
+  border: 2px solid var(--color-info-700);
+}
+
+.SelectTrigger[data-placeholder] {
+  color: var(--color-accent-900);
+}
+
+.SelectContent {
+  overflow: hidden;
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-100);
+  border-radius: 6px;
+}
+
+.SelectItem {
+  user-select: none;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 229px;
+  height: 25px;
+  padding: 6px 12px;
+
+  font-size: 13px;
+  line-height: 1;
+  color: var(--color-light-100);
+
+  border-radius: 3px;
+}
+
+.SelectItem[data-disabled] {
+  pointer-events: none;
+  color: var(--color-dark-300);
+}
+
+.SelectItem[data-highlighted] {
+  color: var(--color-accent-300);
+  background-color: var(--color-accent-900);
+  outline: none;
+}
+
+.SelectLabel {
+  font-size: 12px;
+  line-height: 25px;
+  color: var(--color-dark-100);
+}
+
+.Arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.disabled {
+  cursor: initial;
+  color: var(--color-dark-300);
+  background-color: var(--color-dark-900);
+  border-color: var(--color-dark-300);
+}
+
+.selectLabel {
+  font-size: var(--font-size-s);
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-dark-100);
+  text-align: left;
+  letter-spacing: 0;
+}
+
+.labelDisabled {
+  color: var(--color-dark-300);
+}
