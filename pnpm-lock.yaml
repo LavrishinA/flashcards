@@ -46,6 +46,9 @@ devDependencies:
   '@it-incubator/stylelint-config':
     specifier: ^1.0.3
     version: 1.0.3(stylelint-config-clean-order@5.2.0)(stylelint-config-standard-scss@12.0.0)(stylelint@16.2.1)
+  '@storybook/addon-console':
+    specifier: ^3.0.0
+    version: 3.0.0(@storybook/addon-actions@7.6.14)(react@18.2.0)
   '@storybook/addon-essentials':
     specifier: ^7.6.14
     version: 7.6.14(@types/react-dom@18.2.19)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -3015,6 +3018,17 @@ packages:
       '@storybook/global': 5.0.0
       memoizerific: 1.11.3
       ts-dedent: 2.2.0
+    dev: true
+
+  /@storybook/addon-console@3.0.0(@storybook/addon-actions@7.6.14)(react@18.2.0):
+    resolution: {integrity: sha512-2pD2c9KNWuPIWlprqmWoZYrNQnG2qoDg7fAAXXNK6YDc5x/ZpK0cfOyfz/Gpdeje4QUmttZKAVjH0nOZDuxfvw==}
+    peerDependencies:
+      '@storybook/addon-actions': '*'
+      react: '*'
+    dependencies:
+      '@storybook/addon-actions': 7.6.14
+      '@storybook/global': 5.0.0
+      react: 18.2.0
     dev: true
 
   /@storybook/addon-controls@7.6.14(@types/react-dom@18.2.19)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):

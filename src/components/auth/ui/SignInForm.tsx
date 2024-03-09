@@ -8,6 +8,11 @@ import { ControlledInput } from '@/components/ui/controlled/controlled-input/Con
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+/**
+ * to show the data in the storybook console(Actions), add
+ * import '@storybook/addon-console'
+ */
+
 import s from './signIn.module.scss'
 
 type FormValues = {
@@ -22,7 +27,11 @@ const loginSchema = z.object({
   rememberMe: z.boolean().default(false),
 })
 
-export const SignInForm = () => {
+type Props = {
+  onSubmit: (data: FormValues) => void
+}
+
+export const SignInForm = (props: Props) => {
   const {
     control,
     formState: { errors },
@@ -31,16 +40,12 @@ export const SignInForm = () => {
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data)
-  }
-
   return (
     <Card className={s.card}>
       <Typography className={s.title} variant={'h1'}>
         Sign In
       </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(props.onSubmit)}>
         <div className={s.formsContainer}>
           <ControlledInput
             className={s.input}
@@ -62,7 +67,8 @@ export const SignInForm = () => {
         <div className={s.checkboxContainer}>
           <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
         </div>
-        <div className={s.typographyContainer}>
+        {/*todo: add Link*/}
+        <div className={s.recoverPasswordContainer}>
           <Typography variant={'caption'}>Forgot Password?</Typography>
         </div>
         <div className={s.buttonContainer}>
@@ -73,7 +79,8 @@ export const SignInForm = () => {
         <Typography className={s.createAccount} variant={'caption'}>
           Don`t have an account?
         </Typography>
-        <Typography className={s.signUp} variant={'subtitle2'}>
+        {/*todo: add Link*/}
+        <Typography className={s.signUp} variant={'link1'}>
           Sign Up
         </Typography>
       </div>

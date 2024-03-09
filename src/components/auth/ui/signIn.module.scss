@@ -25,7 +25,7 @@
   padding-left: 9px;
 }
 
-.typographyContainer {
+.recoverPasswordContainer {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -58,5 +58,6 @@
 
 .signUp {
   margin: 0 auto;
+  font-weight: var(--font-weight-bold);
   color: var(--color-accent-500);
 }
