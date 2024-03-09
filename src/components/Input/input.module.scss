@@ -1,3 +1,8 @@
+.box {
+  width: 100%;
+  margin-top: 20px;
+}
+
 .input {
   all: unset;
 
@@ -39,22 +44,15 @@
 
 .inputContainer {
   position: relative;
-
   display: flex;
-  align-items: center;
-
-  width: 284px;
-  height: 36px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .search {
   position: relative;
   left: 0;
   padding: 6px 27px 6px 41px;
-}
-
-.fullWidth {
-  width: 100%;
 }
 
 .label {
@@ -117,8 +115,6 @@
 }
 
 .errorMessage {
-  position: absolute;
-
   font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 24px;
