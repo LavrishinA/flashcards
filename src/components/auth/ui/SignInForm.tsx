@@ -5,6 +5,8 @@ import { Card } from '@/components/Card'
 import { Typography } from '@/components/Typography'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/Controlled-checkbox'
 import { ControlledInput } from '@/components/ui/controlled/controlled-input/Controlled-input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 import s from './signIn.module.scss'
 
@@ -14,8 +16,20 @@ type FormValues = {
   rememberMe: boolean
 }
 
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(3),
+  rememberMe: z.boolean().default(false),
+})
+
 export const SignInForm = () => {
-  const { control, handleSubmit } = useForm<FormValues>()
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormValues>({
+    resolver: zodResolver(loginSchema),
+  })
 
   const onSubmit = (data: FormValues) => {
     console.log(data)
@@ -28,9 +42,18 @@ export const SignInForm = () => {
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={s.formsContainer}>
-          <ControlledInput control={control} label={'Email'} name={'email'} type={'email'} />
           <ControlledInput
+            className={s.input}
             control={control}
+            errorMessage={errors.email?.message}
+            label={'Email'}
+            name={'email'}
+            type={'email'}
+          />
+          <ControlledInput
+            className={s.input}
+            control={control}
+            errorMessage={errors.password?.message}
             label={'Password'}
             name={'password'}
             type={'password'}
