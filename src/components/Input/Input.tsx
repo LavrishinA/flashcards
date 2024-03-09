@@ -35,6 +35,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>(
     const [hidePassword, setHidePassword] = useState(true)
     const isPassword = type === 'password'
     const setType = getType(isPassword, hidePassword)
+    const showClearIcon = search && value
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange?.(e)
@@ -62,7 +63,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>(
             value={value}
             {...rest}
           />
-          {value && (
+          {showClearIcon && (
             <button className={s.closeButton} onClick={onClearClickHandler} type={'button'}>
               <InputCloseIcon />
             </button>
