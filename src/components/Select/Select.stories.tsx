@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Select } from '@/components/Select/Select'
 import { SelectItem } from '@/components/Select/SelectItem'
 
 import s from './select.module.scss'
-
-import { Select } from './Select'
 
 const meta: Meta<typeof Select> = {
   argTypes: {
@@ -25,18 +24,16 @@ const meta: Meta<typeof Select> = {
     },
   },
   tags: ['autodocs'],
-  title: 'Components/Select',
 } satisfies Meta<typeof Select>
 
 export default meta
-type Story = StoryObj<typeof Select>
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {},
   render: () => {
     return (
       <Select defaultValue={'1'}>
-        <SelectItem value={'1'}>Select-box</SelectItem>
+        <SelectItem value={'1'}>1</SelectItem>
         <SelectItem value={'2'}>2</SelectItem>
         <SelectItem value={'3'}>3</SelectItem>
       </Select>
@@ -45,7 +42,6 @@ export const Default: Story = {
 }
 
 export const Active: Story = {
-  args: {},
   render: () => {
     return (
       <Select defaultValue={'1'} open>
@@ -58,7 +54,6 @@ export const Active: Story = {
 }
 
 export const Hover: Story = {
-  args: {},
   render: () => {
     return (
       <Select className={s.hover} defaultValue={'1'} open>
@@ -71,7 +66,6 @@ export const Hover: Story = {
 }
 
 export const Focus: Story = {
-  args: {},
   render: () => {
     return (
       <Select className={s.focus} defaultValue={'1'}>

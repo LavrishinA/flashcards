@@ -2,21 +2,32 @@ button {
   all: unset;
 }
 
+.l {
+  width: 200px;
+  padding: 6px 12px;
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-l);
+}
+
+.sm {
+  width: 50px;
+  padding: 0 6px;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+}
+
+.Arrow {
+  width: 16px;
+  height: 16px;
+}
+
 .SelectTrigger {
   display: inline-flex;
-  gap: 2px;
   align-items: center;
   justify-content: space-between;
 
-  width: 200px;
-  height: 35px;
-  padding: 5px 15px;
-
-  font-size: 16px;
-  line-height: 1;
   color: var(--color-light-100);
 
-  background-color: var(--color-dark-900);
   border-radius: 4px;
   outline: 1px solid var(--color-dark-100);
 
@@ -30,7 +41,7 @@ button {
 }
 
 .SelectTrigger:focus {
-  outline: 2px solid var(--color-info-700);
+  outline: 1px solid var(--color-info-700);
 }
 
 .SelectTrigger[data-placeholder] {
@@ -39,28 +50,22 @@ button {
 
 .SelectContent {
   overflow: hidden;
-  background-color: var(--color-dark-900);
   border: 1px solid var(--color-dark-100);
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .SelectItem {
   user-select: none;
 
-  position: relative;
-
   display: flex;
   align-items: center;
 
-  width: 229px;
-  height: 25px;
-  padding: 6px 12px;
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
 
-  font-size: 13px;
-  line-height: 1;
   color: var(--color-light-100);
 
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .SelectItem[data-disabled] {
@@ -80,11 +85,6 @@ button {
   color: var(--color-dark-100);
 }
 
-.Arrow {
-  width: 16px;
-  height: 16px;
-}
-
 .disabled {
   cursor: initial;
   color: var(--color-dark-300);
@@ -98,7 +98,6 @@ button {
   line-height: 24px;
   color: var(--color-dark-100);
   text-align: left;
-  letter-spacing: 0;
 }
 
 .labelDisabled {
