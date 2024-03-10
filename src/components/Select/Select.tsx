@@ -11,11 +11,11 @@ type SelectProps = ComponentPropsWithoutRef<typeof SelectBox.Root> & {
   className?: string
   label?: string
   placeholder?: string
-  variant?: 'l' | 'sm'
+  variant: 'l' | 'sm'
 }
 
 export const Select = forwardRef<ElementRef<typeof SelectBox.Root>, SelectProps>(
-  ({ children, className, disabled, label, variant = 'l', ...props }: SelectProps, ref) => {
+  ({ children, className, disabled, label, variant, ...props }: SelectProps, ref) => {
     return (
       <div className={s.selectWrapper}>
         <Typography
