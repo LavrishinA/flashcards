@@ -17,8 +17,8 @@ button {
   color: var(--color-light-100);
 
   background-color: var(--color-dark-900);
-  border: 1px solid var(--color-dark-100);
   border-radius: 4px;
+  outline: 1px solid var(--color-dark-100);
 
   &[data-state='open'] .Arrow {
     transform: rotate(-180deg);
@@ -30,7 +30,7 @@ button {
 }
 
 .SelectTrigger:focus {
-  border: 2px solid var(--color-info-700);
+  outline: 2px solid var(--color-info-700);
 }
 
 .SelectTrigger[data-placeholder] {
