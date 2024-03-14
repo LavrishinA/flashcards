@@ -11,6 +11,8 @@ import { z } from 'zod'
  * import '@storybook/addon-console'
  */
 
+import { Link } from 'react-router-dom'
+
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
 
@@ -86,9 +88,9 @@ export const SignInForm = (props: Props) => {
           Don`t have an account?
         </Typography>
         {/*todo: add Link*/}
-        <Typography className={s.signUp} variant={'link1'}>
+        <Button as={Link} className={s.signUp} to={'/signup'} type={'text'}>
           Sign Up
-        </Typography>
+        </Button>
       </div>
     </Card>
   )
