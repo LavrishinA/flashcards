@@ -17,6 +17,7 @@ type ButtonProps<T extends ElementType> = {
 export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
   const {
     as: Component = 'button',
+    children,
     className,
     fullWidth,
     icon,
@@ -33,6 +34,7 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
           {label}
         </Typography>
       }
+      {children}
     </Component>
   )
 }
