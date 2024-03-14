@@ -3,6 +3,9 @@ import { themes } from '@storybook/theming'
 import '../src/shared/index.scss'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/700.css'
+import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom'
+import { store } from '../src/app/app-store'
 
 const preview: Preview = {
   parameters: {
@@ -17,6 +20,18 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    Story => (
+      <Provider store={store}>
+        <Story />
+      </Provider>
+    ),
+    Story => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 }
 
 export default preview
