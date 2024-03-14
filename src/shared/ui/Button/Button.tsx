@@ -15,10 +15,18 @@ type ButtonProps<T extends ElementType> = {
 } & ComponentPropsWithoutRef<T>
 
 export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
-  const { as: Component = 'button', className, fullWidth, icon, label, type = 'primary' } = props
+  const {
+    as: Component = 'button',
+    className,
+    fullWidth,
+    icon,
+    label,
+    type = 'primary',
+    ...rest
+  } = props
 
   return (
-    <Component className={clsx(s.btn, className, s[type], fullWidth && s.fullWidth)} {...props}>
+    <Component className={clsx(s.btn, className, s[type], fullWidth && s.fullWidth)} {...rest}>
       {icon}
       {
         <Typography as={'span'} variant={type === 'text' ? 'caption' : 'subtitle2'}>

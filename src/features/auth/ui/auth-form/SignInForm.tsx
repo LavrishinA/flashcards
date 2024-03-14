@@ -38,6 +38,11 @@ export const SignInForm = (props: Props) => {
     formState: { errors },
     handleSubmit,
   } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
     resolver: zodResolver(loginSchema),
   })
 
