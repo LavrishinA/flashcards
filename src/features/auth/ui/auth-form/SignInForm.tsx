@@ -91,7 +91,7 @@ export const SignInForm = (props: Props) => {
         </div>
       </form>
       <div className={s.footerContainer}>
-        <Typography className={s.createAccount} variant={'caption'}>
+        <Typography as={'span'} className={s.createAccount} variant={'caption'}>
           Don`t have an account?
         </Typography>
         <Button as={Link} className={s.signUp} to={'/signup'} type={'text'}>
