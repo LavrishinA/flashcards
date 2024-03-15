@@ -1,6 +1,6 @@
 .card {
-  width: 420px;
-  padding: 33px 36px 25px 27px;
+  max-width: 420px;
+  padding: 36px;
 }
 
 .title {
@@ -12,24 +12,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  padding-left: 9px;
 }
 
 .checkboxContainer {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-
   padding-top: 21px;
-  padding-left: 9px;
 }
 
 .recoverPasswordContainer {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-right: 12px;
 }
 
 .buttonContainer {
@@ -40,7 +35,6 @@
 
   padding-top: 60px;
   padding-bottom: 20px;
-  padding-left: 9px;
 }
 
 .footerContainer {
@@ -54,6 +48,11 @@
   margin: 0 auto;
   padding-bottom: 11px;
   color: var(--color-light-900);
+}
+
+.forgotPassLink {
+  color: inherit;
+  text-decoration: none;
 }
 
 .signUp {

@@ -37,7 +37,7 @@ type Props = {
 export const SignInForm = (props: Props) => {
   const {
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm<FormValues>({
     defaultValues: {
@@ -77,17 +77,23 @@ export const SignInForm = (props: Props) => {
         </div>
         {/*todo: add Link*/}
         <div className={s.recoverPasswordContainer}>
-          <Typography variant={'caption'}>Forgot Password?</Typography>
+          <Typography
+            as={Link}
+            className={s.forgotPassLink}
+            to={'/forgot-password'}
+            variant={'caption'}
+          >
+            Forgot Password?
+          </Typography>
         </div>
         <div className={s.buttonContainer}>
-          <Button fullWidth label={'Sign In'} />
+          <Button disabled={isSubmitting} fullWidth label={'Sign In'} />
         </div>
       </form>
       <div className={s.footerContainer}>
         <Typography className={s.createAccount} variant={'caption'}>
           Don`t have an account?
         </Typography>
-        {/*todo: add Link*/}
         <Button as={Link} className={s.signUp} to={'/signup'} type={'text'}>
           Sign Up
         </Button>
