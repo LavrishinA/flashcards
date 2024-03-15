@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  max-width: 420px;
+  padding: 36px;
+}
+
+.title {
+  text-align: center;
+}
+
+.formsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.formSubmit {
+  margin-top: 36px;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+}
+
+.signIn {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-500);
+  text-decoration: underline;
+}
