@@ -1,40 +1,15 @@
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
+import { signupZodSchema } from '@/features/signup/model/signup-zod-schema'
+import { FormValues, Props } from '@/features/signup/model/types'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
 import { Typography } from '@/shared/ui/Typography'
 import { ControlledInput } from '@/shared/ui/controlled/controlled-input/Controlled-input'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 
 import s from './signUp.module.scss'
-
-type FormValues = {
-  confirm: string
-  email: string
-  password: string
-}
-
-const loginSchema = z
-  .object({
-    confirm: z.string().min(3),
-    email: z.string().email(),
-    password: z.string().min(3),
-  })
-  .refine(
-    values => {
-      return values.password === values.confirm
-    },
-    {
-      message: 'Passwords must match!',
-      path: ['confirm'],
-    }
-  )
-
-type Props = {
-  onSubmit: (data: FormValues) => void
-}
 
 export const SignUpForm = (props: Props) => {
   const {
@@ -47,7 +22,7 @@ export const SignUpForm = (props: Props) => {
       email: '',
       password: '',
     },
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(signupZodSchema),
   })
 
   return (

@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react'
 const meta: Meta<typeof SignInForm> = {
   component: SignInForm,
   tags: ['autodocs'],
-  title: 'features/auth/Sign in form',
+  title: 'features/signin/Sign in form',
 } satisfies Meta<typeof SignInForm>
 
 export default meta

@@ -1,38 +1,20 @@
 import { useForm } from 'react-hook-form'
-
-import { Typography } from '@/shared/ui/Typography'
-import { ControlledCheckbox } from '@/shared/ui/controlled/controlled-checkbox/Controlled-checkbox'
-import { ControlledInput } from '@/shared/ui/controlled/controlled-input/Controlled-input'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-
 /**
  * to show the data in the storybook console(Actions), add
  * import '@storybook/addon-console'
  */
-
 import { Link } from 'react-router-dom'
 
+import { signinZodSchema } from '@/features/signin/model/signin-zod-schema'
+import { FormValues, Props } from '@/features/signin/model/types'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
+import { Typography } from '@/shared/ui/Typography'
+import { ControlledCheckbox } from '@/shared/ui/controlled/controlled-checkbox/Controlled-checkbox'
+import { ControlledInput } from '@/shared/ui/controlled/controlled-input/Controlled-input'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './signIn.module.scss'
-
-type FormValues = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
-
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(3),
-  rememberMe: z.boolean().default(false),
-})
-
-type Props = {
-  onSubmit: (data: FormValues) => void
-}
 
 export const SignInForm = (props: Props) => {
   const {
@@ -45,7 +27,7 @@ export const SignInForm = (props: Props) => {
       password: '',
       rememberMe: false,
     },
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(signinZodSchema),
   })
 
   return (
