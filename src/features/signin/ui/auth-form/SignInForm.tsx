@@ -35,7 +35,7 @@ export const SignInForm = (props: Props) => {
       <Typography className={s.title} variant={'h1'}>
         Sign In
       </Typography>
-      <form onSubmit={handleSubmit(props.onSubmit)}>
+      <form onSubmit={handleSubmit(async data => props.onSubmit(data))}>
         <div className={s.formsContainer}>
           <ControlledInput
             className={s.input}

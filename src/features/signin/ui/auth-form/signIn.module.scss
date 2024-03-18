@@ -1,4 +1,5 @@
 .card {
+  width: 100%;
   max-width: 420px;
   padding: 36px;
 }
@@ -61,4 +62,8 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-accent-500);
   text-decoration: underline;
+}
+
+.signUp:visited {
+  color: var(--color-accent-500);
 }
