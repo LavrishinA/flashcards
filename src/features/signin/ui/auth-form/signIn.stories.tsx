@@ -1,4 +1,4 @@
-import { SignInForm } from '@/features/auth/ui/auth-form/SignInForm'
+import { SignInForm } from '@/features/signin'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof SignInForm> = {

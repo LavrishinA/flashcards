@@ -1,4 +1,4 @@
-import { SignUpForm } from '@/features/auth/ui/signup-form/SignUpForm'
+import { SignUpForm } from '@/features/signup'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta: Meta<typeof SignUpForm> = {
