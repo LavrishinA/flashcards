@@ -76,7 +76,7 @@ export const SignInForm = (props: Props) => {
         <Typography as={'span'} className={s.createAccount} variant={'caption'}>
           Don`t have an account?
         </Typography>
-        <Button as={Link} className={s.signUp} to={'/signup'} type={'text'}>
+        <Button as={Link} className={s.signUp} to={'/sign-up'} type={'text'}>
           Sign Up
         </Button>
       </div>
