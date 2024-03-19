@@ -4,7 +4,12 @@ export type DecksResponse = {
   pagination: Pagination
 }
 
-type DeckItem = {
+export type DecksPayload = {
+  currentPage?: string
+  itemsPerPage?: string
+}
+
+export type DeckItem = {
   author: Author
   cardsCount: number
   cover?: string
@@ -21,7 +26,7 @@ type Author = {
   name: string
 }
 
-type Pagination = {
+export type Pagination = {
   currentPage: number
   itemsPerPage: number
   totalItems: number

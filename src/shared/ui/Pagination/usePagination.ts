@@ -10,7 +10,7 @@ type PaginationData = {
 export const usePagination = ({
   currentPage,
   pageSize,
-  siblingCount,
+  siblingCount = 1,
   totalCount,
 }: PaginationData) => {
   return useMemo(() => {

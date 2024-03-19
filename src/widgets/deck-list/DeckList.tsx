@@ -1,12 +1,14 @@
-import { useGetDecksQuery } from '@/entities/decks/api/decksApi'
+import { DeckItem } from '@/entities/decks'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Table } from '@/shared/ui/Table'
 import { Typography } from '@/shared/ui/Typography'
 
-export const DeckList = () => {
-  const { decks } = useGetDecksQuery(undefined, {
-    selectFromResult: ({ data }) => ({ decks: data?.items }),
-  })
+type Props = {
+  decks: DeckItem[]
+}
+
+export const DeckList = (props: Props) => {
+  const { decks } = props
 
   return (
     <div>
@@ -22,15 +24,16 @@ export const DeckList = () => {
           </Table.TableRow>
         </Table.TableHeader>
         <Table.TableBody>
-          {decks?.map(d => (
-            <Table.TableRow key={d.id}>
-              <Table.TableCell>{d.name}</Table.TableCell>
-              <Table.TableCell>{d.cardsCount}</Table.TableCell>
-              <Table.TableCell>{dateFormater(d.updated)}</Table.TableCell>
-              <Table.TableCell>{dateFormater(d.created)}</Table.TableCell>
-              <Table.TableCell>Deck actions slot</Table.TableCell>
-            </Table.TableRow>
-          ))}
+          {decks &&
+            decks.map(d => (
+              <Table.TableRow key={d.id}>
+                <Table.TableCell>{d.name}</Table.TableCell>
+                <Table.TableCell>{d.cardsCount}</Table.TableCell>
+                <Table.TableCell>{dateFormater(d.updated)}</Table.TableCell>
+                <Table.TableCell>{dateFormater(d.created)}</Table.TableCell>
+                <Table.TableCell>Deck actions slot</Table.TableCell>
+              </Table.TableRow>
+            ))}
         </Table.TableBody>
       </Table.Root>
     </div>
