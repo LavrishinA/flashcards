@@ -17,6 +17,7 @@ export const PaginationList = ({ pagination }: Props) => {
 
   const itemsPerPageHandler = (value: string) => {
     searchParams.set('itemsPerPage', `${value}`)
+    searchParams.set('currentPage', `1`)
     setSearchParams(searchParams)
   }
 
