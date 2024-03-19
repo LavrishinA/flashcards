@@ -48,10 +48,10 @@ export const Pagination = (props: PaginationProps) => {
       >
         <div className={clsx(s.arrow, s.left)} />
       </button>
-      {paginationRange?.map(pageNumber => {
+      {paginationRange?.map((pageNumber, index) => {
         if (pageNumber === 0) {
           return (
-            <span className={clsx(s.paginationItem, s.dots)} key={`${id}${pageNumber}`}>
+            <span className={clsx(s.paginationItem, s.dots)} key={`${id}${index}`}>
               &#8230;
             </span>
           )
@@ -62,7 +62,7 @@ export const Pagination = (props: PaginationProps) => {
             className={clsx(s.paginationItem, {
               [s.selected]: pageNumber === currentPage,
             })}
-            key={`${id}${pageNumber}`}
+            key={`${id}${index}`}
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}
