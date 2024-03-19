@@ -1,3 +1,9 @@
+import { DeckList } from '@/widgets/deck-list/DeckList'
+
 export const MainPage = () => {
-  return <div>Main Page</div>
+  return (
+    <div>
+      <DeckList />
+    </div>
+  )
 }
