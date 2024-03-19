@@ -1,1 +1,1 @@
-export * from './ui/auth-form/SignInForm'
+export * from './ui/SignInForm'

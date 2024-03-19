@@ -1,1 +1,1 @@
-export * from './ui/auth-form/ForgotPasswordForm'
+export * from './ui/ForgotPasswordForm'

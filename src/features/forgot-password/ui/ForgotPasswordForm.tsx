@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
  */
 import { Link } from 'react-router-dom'
 
-import { loginSchema } from '@/features/forgot-password/model/forgotPassword-zod-schema.ts'
+import { loginSchema } from '@/features/forgot-password/model/forgotpass-zod-schema'
 import { FormValues, Props } from '@/features/forgot-password/model/types'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
