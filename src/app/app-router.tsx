@@ -14,6 +14,7 @@ import { SigninPage } from '@/pages/signin-page'
 const publicRoutes: RouteObject[] = [
   { element: <SigninPage />, path: '/sign-in' },
   { element: <div>Signup form</div>, path: '/sign-up' },
+  { element: <div>Forgot password form</div>, path: '/forgot-password' },
 ]
 
 const privateRoutes: RouteObject[] = [
