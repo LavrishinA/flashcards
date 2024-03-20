@@ -1,7 +1,6 @@
 import { DeckItem } from '@/entities/decks'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Table } from '@/shared/ui/Table'
-import { Typography } from '@/shared/ui/Typography'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './DeckList.module.scss'
@@ -15,7 +14,6 @@ export const DeckList = (props: Props) => {
 
   return (
     <div>
-      <Typography variant={'h1'}>Deck list</Typography>
       <Table.Root>
         <Table.TableHeader>
           <Table.TableRow>
@@ -34,7 +32,7 @@ export const DeckList = (props: Props) => {
                   {d.cover && (
                     <div className={s.ratioContainer}>
                       <AspectRatio ratio={21 / 9}>
-                        <img alt={''} className={s.image} src={d?.cover} />
+                        <img alt={''} className={s.image} loading={'lazy'} src={d?.cover} />
                       </AspectRatio>
                     </div>
                   )}
