@@ -51,8 +51,8 @@ const TableCell = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'td'
   const { children, className, ...rest } = props
 
   return (
-    <td className={clsx(className, s.cellRow)} {...rest} ref={ref}>
-      <Typography as={'span'} variant={'body2'}>
+    <td className={clsx(s.cellRow)} {...rest} ref={ref}>
+      <Typography as={'span'} className={className} variant={'body2'}>
         {children}
       </Typography>
     </td>
