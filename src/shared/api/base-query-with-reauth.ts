@@ -1,5 +1,3 @@
-import { redirect } from 'react-router-dom'
-
 import {
   BaseQueryFn,
   FetchArgs,
@@ -48,6 +46,5 @@ export const baseQueryWithReauth: BaseQueryFn<
     result = await baseQuery(args, api, extraOptions)
   }
 
-  //todo mutex, test redirect
   return result
 }
