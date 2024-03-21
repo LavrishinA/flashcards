@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react'
 const meta: Meta<typeof CreateNewPassword> = {
   component: CreateNewPassword,
   tags: ['autodocs'],
-  title: 'features/create-password/Create new password form',
+  title: 'features/Create new password form',
 } satisfies Meta<typeof CreateNewPassword>
 
 export default meta
