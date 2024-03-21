@@ -9,7 +9,8 @@ import {
 import { Mutex } from 'async-mutex'
 
 const mutex = new Mutex()
-const baseQuery = fetchBaseQuery({
+
+export const baseQuery = fetchBaseQuery({
   baseUrl: 'https://api.flashcards.andrii.es/',
   credentials: 'include',
 })
@@ -37,7 +38,7 @@ export const baseQueryWithReauth: BaseQueryFn<
       if (refreshResult.meta?.response?.status === 204) {
         result = await baseQuery(args, api, extraOptions)
       } else {
-        redirect('/login') //?
+        redirect('/sign-in') //?
       }
     }
 
