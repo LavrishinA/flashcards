@@ -18,7 +18,11 @@ const publicRoutes: RouteObject[] = [
 ]
 
 const privateRoutes: RouteObject[] = [
-  { element: <MainPage />, path: '/' },
+  {
+    element: <MainPage />,
+
+    path: '/',
+  },
   { element: <div>Deck Cards</div>, path: '/:deckId/cards' },
   { element: <div>Profile</div>, path: '/profile' },
   { element: <div>Learn</div>, path: '/:deckId/learn/:deckName' },
@@ -26,7 +30,13 @@ const privateRoutes: RouteObject[] = [
 
 const router = createBrowserRouter([
   {
-    children: [{ children: privateRoutes, element: <PrivateRoutes /> }, ...publicRoutes],
+    children: [
+      {
+        children: privateRoutes,
+        element: <PrivateRoutes />,
+      },
+      ...publicRoutes,
+    ],
     element: baseLayout,
     path: '/',
   },
