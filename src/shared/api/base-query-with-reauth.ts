@@ -1,3 +1,5 @@
+import { redirect } from 'react-router-dom'
+
 import {
   BaseQueryFn,
   FetchArgs,
@@ -7,8 +9,7 @@ import {
 import { Mutex } from 'async-mutex'
 
 const mutex = new Mutex()
-
-export const baseQuery = fetchBaseQuery({
+const baseQuery = fetchBaseQuery({
   baseUrl: 'https://api.flashcards.andrii.es/',
   credentials: 'include',
 })
@@ -47,5 +48,6 @@ export const baseQueryWithReauth: BaseQueryFn<
     result = await baseQuery(args, api, extraOptions)
   }
 
+  //todo mutex, test redirect
   return result
 }
