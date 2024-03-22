@@ -1,0 +1,50 @@
+header {
+  background-color: var(--color-dark-500);
+}
+
+.container {
+  max-width: 1006px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+}
+
+.logoLink {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.logoImage {
+  fill: var(--color-accent-500);
+}
+
+.logoText {
+  background: linear-gradient(
+    to right,
+    var(--color-accent-100),
+    var(--color-accent-500),
+    var(--color-accent-100),
+    var(--color-accent-500)
+  );
+  background-clip: text;
+  background-size: 400% auto;
+
+  animation: text-shine 3s ease-in-out infinite alternate;
+
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes text-shine {
+  0% {
+    background-position: 0 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}

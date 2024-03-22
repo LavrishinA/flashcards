@@ -1,1 +1,1 @@
-export * from './minmaxcards/MinMaxCards'
+export * from './ui/MinMaxCards'
