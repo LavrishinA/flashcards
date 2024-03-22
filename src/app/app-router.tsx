@@ -44,13 +44,13 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const { data: user, isError } = useMeQuery()
+  const { data: user, isError, isLoading } = useMeQuery()
 
   const isAuthenticated = !isError
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return isAuthenticated ? <Outlet context={user} /> : <Navigate to={'/sign-in'} />
 }
