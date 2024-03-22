@@ -17,7 +17,7 @@ export const Avatar = (props: AvatarProps) => {
 
   return (
     <RadixAvatar.Root>
-      <RadixAvatar.Image className={s.avatar} {...rest} />
+      <RadixAvatar.Image className={s.avatar} loading={'lazy'} {...rest} />
       <RadixAvatar.Fallback asChild className={clsx(s.avatar, s.fallback)}>
         <Typography as={'p'} variant={'subtitle2'}>
           {username?.[0]}

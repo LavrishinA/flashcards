@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+import { Profile } from '@/features/profile'
 import { Typography } from '@/shared/ui/Typography'
 import { Logo } from '@/shared/ui/icons'
 import { clsx } from 'clsx'
@@ -18,6 +19,8 @@ export const Header = () => {
             </Typography>
           </div>
         </Link>
+
+        <Profile />
       </div>
     </header>
   )
