@@ -7,6 +7,10 @@ export const userApi = baseApi.injectEndpoints({
       invalidatesTags: ['Me'],
       query: user => ({ body: user, method: 'POST', url: '/v1/auth/login' }),
     }),
+    logout: build.mutation<void, void>({
+      // invalidatesTags: ['Me'],
+      query: () => ({ method: 'POST', url: '/v1/auth/logout' }),
+    }),
     me: build.query<userMeResponse, void>({
       providesTags: ['Me'],
       query: () => ({ method: 'GET', url: '/v1/auth/me' }),
@@ -14,4 +18,4 @@ export const userApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useLoginMutation, useMeQuery } = userApi
+export const { useLoginMutation, useLogoutMutation, useMeQuery } = userApi
