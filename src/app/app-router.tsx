@@ -12,24 +12,31 @@ import { MainPage } from '@/pages/main-page'
 import { SigninPage } from '@/pages/signin-page'
 
 const publicRoutes: RouteObject[] = [
-  { element: <SigninPage />, path: '/sign-in' },
-  { element: <div>Signup form</div>, path: '/sign-up' },
-  { element: <div>Forgot password form</div>, path: '/forgot-password' },
+  {
+    children: [
+      { element: <SigninPage />, path: '/sign-in' },
+      { element: <div>Signup form</div>, path: '/sign-up' },
+      { element: <div>Forgot password form</div>, path: '/forgot-password' },
+    ],
+    element: baseLayout,
+  },
 ]
 
 const privateRoutes: RouteObject[] = [
-  { element: <MainPage />, path: '/' },
-  { element: <div>Deck Cards</div>, path: '/:deckId/cards' },
-  { element: <div>Profile</div>, path: '/profile' },
-  { element: <div>Learn</div>, path: '/:deckId/learn/:deckName' },
+  {
+    children: [
+      { element: <MainPage />, path: '/' },
+      { element: <div>Deck Cards</div>, path: '/:deckId/cards' },
+      { element: <div>Profile</div>, path: '/profile' },
+      { element: <div>Learn</div>, path: '/:deckId/learn/:deckName' },
+    ],
+    element: baseLayout,
+  },
 ]
 
 const router = createBrowserRouter([
-  {
-    children: [{ children: privateRoutes, element: <PrivateRoutes /> }, ...publicRoutes],
-    element: baseLayout,
-    path: '/',
-  },
+  { children: privateRoutes, element: <PrivateRoutes /> },
+  ...publicRoutes,
 ])
 
 export const Router = () => {
@@ -37,7 +44,7 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const { isError } = useMeQuery()
+  const { data: user, isError } = useMeQuery()
 
   const isAuthenticated = !isError
 
@@ -45,5 +52,5 @@ function PrivateRoutes() {
   //   return <div>Loading...</div>
   // }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={'/sign-in'} />
+  return isAuthenticated ? <Outlet context={user} /> : <Navigate to={'/sign-in'} />
 }
