@@ -9,6 +9,16 @@ export const userApi = baseApi.injectEndpoints({
     }),
     logout: build.mutation<void, void>({
       invalidatesTags: ['Me'],
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(userApi.util.updateQueryData('me', _, () => {}))
+
+        try {
+          await queryFulfilled
+          dispatch(userApi.util.resetApiState())
+        } catch {
+          patchResult.undo()
+        }
+      },
       query: () => ({ method: 'POST', url: '/v1/auth/logout' }),
     }),
     me: build.query<userMeResponse, void>({
