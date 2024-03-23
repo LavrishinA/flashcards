@@ -1,13 +1,17 @@
+import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Profile } from '@/features/profile'
 import { Typography } from '@/shared/ui/Typography'
 import { Logo } from '@/shared/ui/icons'
 import { clsx } from 'clsx'
 
 import s from './Header.module.scss'
 
-export const Header = () => {
+type Props = {
+  children: ReactNode
+}
+
+export const Header = ({ children }: Props) => {
   return (
     <header>
       <div className={s.container}>
@@ -19,8 +23,7 @@ export const Header = () => {
             </Typography>
           </div>
         </Link>
-
-        <Profile />
+        {children}
       </div>
     </header>
   )

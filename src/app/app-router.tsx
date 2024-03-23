@@ -4,39 +4,34 @@ import {
   RouteObject,
   RouterProvider,
   createBrowserRouter,
+  useOutletContext,
 } from 'react-router-dom'
 
-import { baseLayout } from '@/app/baseLayout'
-import { useMeQuery } from '@/entities/user'
+import { Layout } from '@/pages/layout/Layout'
 import { MainPage } from '@/pages/main-page'
 import { SigninPage } from '@/pages/signin-page'
 
 const publicRoutes: RouteObject[] = [
-  {
-    children: [
-      { element: <SigninPage />, path: '/sign-in' },
-      { element: <div>Signup form</div>, path: '/sign-up' },
-      { element: <div>Forgot password form</div>, path: '/forgot-password' },
-    ],
-    element: baseLayout,
-  },
+  { element: <SigninPage />, path: '/sign-in' },
+  { element: <div>Signup form</div>, path: '/sign-up' },
+  { element: <div>Forgot password form</div>, path: '/forgot-password' },
 ]
 
 const privateRoutes: RouteObject[] = [
-  {
-    children: [
-      { element: <MainPage />, path: '/' },
-      { element: <div>Deck Cards</div>, path: '/:deckId/cards' },
-      { element: <div>Profile</div>, path: '/profile' },
-      { element: <div>Learn</div>, path: '/:deckId/learn/:deckName' },
-    ],
-    element: baseLayout,
-  },
+  { element: <MainPage />, path: '/' },
+  { element: <div>Deck Cards</div>, path: '/:deckId/cards' },
+  { element: <div>Profile</div>, path: '/profile' },
+  { element: <div>Learn</div>, path: '/:deckId/learn/:deckName' },
 ]
 
 const router = createBrowserRouter([
-  { children: privateRoutes, element: <PrivateRoutes /> },
-  ...publicRoutes,
+  {
+    children: [
+      { children: privateRoutes, element: <PrivateRoutes /> },
+      { children: publicRoutes, element: <PublicRoutes /> },
+    ],
+    element: <Layout />,
+  },
 ])
 
 export const Router = () => {
@@ -44,13 +39,13 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const { data: user, isError, isLoading } = useMeQuery()
+  const isAuthenticated = useOutletContext()
 
-  const isAuthenticated = !isError
+  return isAuthenticated ? <Outlet /> : <Navigate to={'/sign-in'} />
+}
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
+function PublicRoutes() {
+  const isAuthenticated = useOutletContext()
 
-  return isAuthenticated ? <Outlet context={user} /> : <Navigate to={'/sign-in'} />
+  return isAuthenticated ? <Navigate to={'/'} /> : <Outlet />
 }

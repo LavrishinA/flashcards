@@ -34,8 +34,6 @@ export const baseQueryWithReauth: BaseQueryFn<
 
       if (refreshResult.meta?.response?.status === 204) {
         result = await baseQuery(args, api, extraOptions)
-      } else {
-        window.location.href = 'sign-in'
       }
     }
 
