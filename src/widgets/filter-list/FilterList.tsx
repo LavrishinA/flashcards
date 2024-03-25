@@ -9,7 +9,8 @@ export const FilterList = () => {
 
   return (
     <div>
-      {data && <MinMaxCards {...data} />} {user && <MyAllCards authorId={user.id} />}
+      {data && <MinMaxCards {...data} />}
+      {user && <MyAllCards authorId={user.id} />}
     </div>
   )
 }

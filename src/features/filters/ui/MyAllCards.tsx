@@ -33,7 +33,11 @@ export const MyAllCards = ({ authorId }: Props) => {
 
   return (
     <div>
-      <TabSwitcher defaultValue={'all'} onValueChange={tabSwitcherValueHandler} values={values} />
+      <TabSwitcher
+        defaultValue={searchParams.get('authorId') ? 'my' : 'all'}
+        onValueChange={tabSwitcherValueHandler}
+        values={values}
+      />
     </div>
   )
 }
