@@ -9,6 +9,7 @@ export const MinMaxCards = ({ max, min }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [values, setValues] = useState([searchParams.get('minCardsCount') ?? min, max])
 
+  console.log(searchParams.get('minCardsCount'))
   const sliderCommitValueHandler = (values: number[]) => {
     searchParams.set('currentPage', `1`)
     searchParams.set('minCardsCount', `${values[0]}`)
