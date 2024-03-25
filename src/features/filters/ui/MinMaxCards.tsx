@@ -6,10 +6,10 @@ import { Slider } from '@/shared/ui/Slider'
 type Props = { max: number; min: number }
 
 export const MinMaxCards = ({ max, min }: Props) => {
-  const [values, setValues] = useState([min, max])
-
   const [searchParams, setSearchParams] = useSearchParams()
+  const [values, setValues] = useState([searchParams.get('minCardsCount') ?? min, max])
 
+  console.log(searchParams.get('minCardsCount'))
   const sliderCommitValueHandler = (values: number[]) => {
     searchParams.set('currentPage', `1`)
     searchParams.set('minCardsCount', `${values[0]}`)
