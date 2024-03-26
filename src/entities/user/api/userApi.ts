@@ -11,10 +11,9 @@ export const userApi = baseApi.injectEndpoints({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(userApi.util.updateQueryData('me', _, () => {}))
 
-        dispatch(userApi.util.resetApiState())
-
         try {
           await queryFulfilled
+          dispatch(userApi.util.resetApiState())
         } catch {
           patchResult.undo()
         }
