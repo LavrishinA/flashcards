@@ -26,7 +26,6 @@ export const userApi = baseApi.injectEndpoints({
       query: () => ({ method: 'GET', url: '/v1/auth/me' }),
     }),
     signUp: build.mutation<userMeResponse, SignUpPayload>({
-      invalidatesTags: ['Me'],
       query: user => ({ body: user, method: 'POST', url: '/v1/auth/sign-up' }),
     }),
   }),

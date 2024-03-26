@@ -4,6 +4,7 @@ import { TabSwitcher } from '@/shared/ui/TabSwitcher'
 
 type Props = {
   authorId: string
+  key: string
 }
 
 const values = [
@@ -19,7 +20,7 @@ const values = [
   },
 ]
 
-export const MyAllCards = ({ authorId }: Props) => {
+export const MyAllCards = ({ authorId, key }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const tabSwitcherValueHandler = (value: string) => {
     searchParams.set('currentPage', `1`)
@@ -33,7 +34,12 @@ export const MyAllCards = ({ authorId }: Props) => {
 
   return (
     <div>
-      <TabSwitcher defaultValue={'all'} onValueChange={tabSwitcherValueHandler} values={values} />
+      <TabSwitcher
+        defaultValue={searchParams.get('authorId') ? 'my' : 'all'}
+        key={key}
+        onValueChange={tabSwitcherValueHandler}
+        values={values}
+      />
     </div>
   )
 }
