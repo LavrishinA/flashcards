@@ -14,14 +14,7 @@ import { SignupPage } from '@/pages/signup-page'
 
 const publicRoutes: RouteObject[] = [
   { element: <SigninPage />, path: '/sign-in' },
-  {
-    element: (
-      <div>
-        <SignupPage />
-      </div>
-    ),
-    path: '/sign-up',
-  },
+  { element: <SignupPage />, path: '/sign-up' },
   { element: <div>Forgot password form</div>, path: '/forgot-password' },
 ]
 
