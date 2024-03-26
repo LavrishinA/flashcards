@@ -14,13 +14,11 @@ export const TabSwitcher = (props: TabSwitcherProps) => {
   const { title, values, ...rest } = props
 
   const tabs = values.map(tab => (
-    <>
-      <Tabs.Trigger className={s.tabItem} disabled={tab.disabled} value={tab.value}>
-        <Typography as={'span'} variant={'body1'}>
-          {tab.key}
-        </Typography>
-      </Tabs.Trigger>
-    </>
+    <Tabs.Trigger className={s.tabItem} disabled={tab.disabled} key={tab.key} value={tab.value}>
+      <Typography as={'span'} variant={'body1'}>
+        {tab.key}
+      </Typography>
+    </Tabs.Trigger>
   ))
 
   return (
