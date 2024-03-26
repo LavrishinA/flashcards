@@ -13,7 +13,7 @@ export const SignupPage = () => {
   const signUpHandler = (data: SignUpPayload) => {
     signUp({ email: data.email, password: data.password })
       .unwrap()
-      .then(() => navigate('/', {}))
+      .then(() => navigate('/sign-in', {}))
       .catch(e => console.log(e)) //todo toast
   }
 
