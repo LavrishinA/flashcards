@@ -10,10 +10,18 @@ import {
 import { Layout } from '@/pages/layout/Layout'
 import { MainPage } from '@/pages/main-page'
 import { SigninPage } from '@/pages/signin-page'
+import { SignupPage } from '@/pages/signup-page'
 
 const publicRoutes: RouteObject[] = [
   { element: <SigninPage />, path: '/sign-in' },
-  { element: <div>Signup form</div>, path: '/sign-up' },
+  {
+    element: (
+      <div>
+        <SignupPage />
+      </div>
+    ),
+    path: '/sign-up',
+  },
   { element: <div>Forgot password form</div>, path: '/forgot-password' },
 ]
 
