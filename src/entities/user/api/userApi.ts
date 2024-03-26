@@ -1,4 +1,4 @@
-import { userLoginPayload, userMeResponse } from '@/entities/user/model/types'
+import { SignUpPayload, userLoginPayload, userMeResponse } from '@/entities/user/model/types'
 import { baseApi } from '@/shared/api/base-api'
 
 export const userApi = baseApi.injectEndpoints({
@@ -25,7 +25,11 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: ['Me'],
       query: () => ({ method: 'GET', url: '/v1/auth/me' }),
     }),
+    signUp: build.mutation<userMeResponse, SignUpPayload>({
+      invalidatesTags: ['Me'],
+      query: user => ({ body: user, method: 'POST', url: '/v1/auth/sign-up' }),
+    }),
   }),
 })
 
-export const { useLoginMutation, useLogoutMutation, useMeQuery } = userApi
+export const { useLoginMutation, useLogoutMutation, useMeQuery, useSignUpMutation } = userApi

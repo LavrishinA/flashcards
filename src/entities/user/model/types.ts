@@ -16,3 +16,12 @@ export type userMeResponse = {
 // type userLoginResponse = {
 //   accessToken: string
 // }
+
+export type SignUpPayload = {
+  email: string
+  html?: string
+  name?: string
+  password: string
+  sendConfirmationEmail?: boolean
+  subject?: string
+}
