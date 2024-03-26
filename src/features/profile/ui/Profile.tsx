@@ -30,6 +30,8 @@ export const Profile = (props: Props) => {
       })
   }
 
+  const navigeToEditProfile = () => navigate('/profile')
+
   return (
     <div className={s.profileContainer}>
       <Typography as={'span'} variant={'subtitle1'}>
@@ -43,7 +45,11 @@ export const Profile = (props: Props) => {
           <UserSeparator email={email} username={name}>
             <Avatar src={avatar} username={name} />
           </UserSeparator>
-          <DropdownItem icon={<ProfileIcon height={16} width={16} />} label={'My profile'} />
+          <DropdownItem
+            icon={<ProfileIcon height={16} width={16} />}
+            label={'My profile'}
+            onClick={navigeToEditProfile}
+          />
           <DropdownItem
             icon={<LogoutIcon height={16} width={16} />}
             label={'Sign out'}

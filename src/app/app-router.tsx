@@ -7,6 +7,7 @@ import {
   useOutletContext,
 } from 'react-router-dom'
 
+import { EditProfilePage } from '@/pages/edit-profile-page'
 import { Layout } from '@/pages/layout/Layout'
 import { MainPage } from '@/pages/main-page'
 import { SigninPage } from '@/pages/signin-page'
@@ -21,7 +22,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   { element: <MainPage />, path: '/' },
   { element: <div>Deck Cards</div>, path: '/:deckId/cards' },
-  { element: <div>Profile</div>, path: '/profile' },
+  { element: <EditProfilePage />, path: '/profile' },
   { element: <div>Learn</div>, path: '/:deckId/learn/:deckName' },
 ]
 
