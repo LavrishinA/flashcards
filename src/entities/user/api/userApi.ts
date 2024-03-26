@@ -8,13 +8,13 @@ export const userApi = baseApi.injectEndpoints({
       query: user => ({ body: user, method: 'POST', url: '/v1/auth/login' }),
     }),
     logout: build.mutation<void, void>({
-      invalidatesTags: ['Me'],
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(userApi.util.updateQueryData('me', _, () => {}))
 
+        dispatch(userApi.util.resetApiState())
+
         try {
           await queryFulfilled
-          dispatch(userApi.util.resetApiState())
         } catch {
           patchResult.undo()
         }
@@ -26,7 +26,6 @@ export const userApi = baseApi.injectEndpoints({
       query: () => ({ method: 'GET', url: '/v1/auth/me' }),
     }),
     signUp: build.mutation<userMeResponse, SignUpPayload>({
-      invalidatesTags: ['Me'],
       query: user => ({ body: user, method: 'POST', url: '/v1/auth/sign-up' }),
     }),
   }),
