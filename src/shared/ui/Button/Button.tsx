@@ -11,10 +11,12 @@ type ButtonProps<T extends ElementType> = {
   fullWidth?: boolean
   icon?: ReactNode
   label?: string
-  type?: 'primary' | 'secondary' | 'text'
+  variant?: 'primary' | 'secondary' | 'text'
 } & ComponentPropsWithoutRef<T>
 
-export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
+export const Button = <T extends ElementType = 'button'>(
+  props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
+) => {
   const {
     as: Component = 'button',
     children,
@@ -22,15 +24,15 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
     fullWidth,
     icon,
     label,
-    type = 'primary',
+    variant = 'primary',
     ...rest
   } = props
 
   return (
-    <Component className={clsx(s.btn, className, s[type], fullWidth && s.fullWidth)} {...rest}>
+    <Component className={clsx(s.btn, className, s[variant], fullWidth && s.fullWidth)} {...rest}>
       {icon}
       {
-        <Typography as={'span'} variant={type === 'text' ? 'caption' : 'subtitle2'}>
+        <Typography as={'span'} variant={variant === 'text' ? 'caption' : 'subtitle2'}>
           {label}
         </Typography>
       }

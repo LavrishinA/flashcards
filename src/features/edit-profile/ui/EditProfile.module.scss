@@ -1,0 +1,16 @@
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: 36px;
+}
+
+.title {
+  text-align: center;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  font-size: var(--font-size-xxl);
+  border-radius: 100%;
+}

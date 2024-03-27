@@ -22,7 +22,7 @@ export const Layout = () => {
         {user ? (
           <Profile avatar={user.avatar} email={user.email} name={user.name} />
         ) : (
-          <Button as={Link} to={'/sign-in'} type={'secondary'}>
+          <Button as={Link} to={'/sign-in'} variant={'secondary'}>
             Sign in
           </Button>
         )}
