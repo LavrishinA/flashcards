@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
-import { useLogoutMutation, useMeQuery, useUpdateProfileMutation } from '@/entities/user'
+import { useMeQuery, useUpdateProfileMutation } from '@/entities/user'
+import { useLogout } from '@/features/logout'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
@@ -14,19 +14,9 @@ import s from './EditProfile.module.scss'
 
 export const EditProfile = () => {
   const { data: user } = useMeQuery()
-  const [logout] = useLogoutMutation()
+  const { logoutHandler } = useLogout()
   const [updateProfile] = useUpdateProfileMutation()
-  const navigate = useNavigate()
   const [isEdit, setIsEdit] = useState(false)
-
-  const logoutHandler = () => {
-    logout()
-      .unwrap()
-      .then(() => {
-        navigate('/sign-in')
-      })
-      .finally(() => reset())
-  }
 
   const {
     control,
@@ -46,7 +36,7 @@ export const EditProfile = () => {
 
     formData.append('avatar', data.avatar?.[0])
     formData.append('name', data.name)
-    updateProfile(formData)
+    updateProfile(data)
       .unwrap()
       .finally(() => {
         setIsEdit(false)

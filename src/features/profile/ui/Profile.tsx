@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useLogoutMutation } from '@/entities/user'
+import { useLogout } from '@/features/logout'
 import { Avatar } from '@/shared/ui/Avatar'
 import { DropDownContent, DropdownMenu, DropdownTrigger } from '@/shared/ui/DropDown'
 import { DropdownItem } from '@/shared/ui/DropDown/Item'
@@ -19,17 +19,9 @@ type Props = {
 
 export const Profile = (props: Props) => {
   const { avatar, email, name } = props
-  const [logout] = useLogoutMutation()
+
   const navigate = useNavigate()
-
-  const logoutHandler = () => {
-    logout()
-      .unwrap()
-      .then(() => {
-        navigate('/sign-in')
-      })
-  }
-
+  const { logoutHandler } = useLogout()
   const navigateToEditProfile = () => navigate('/profile')
 
   return (
