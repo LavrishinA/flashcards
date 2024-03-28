@@ -11,6 +11,18 @@
 .avatar {
   width: 96px;
   height: 96px;
+
   font-size: var(--font-size-xxl);
+
+  object-fit: cover;
+  object-position: center;
   border-radius: 100%;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+label {
+  cursor: pointer;
 }
