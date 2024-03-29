@@ -35,7 +35,6 @@ export const EditProfileForm = (props: Props) => {
     resolver: zodResolver(editProfileZodSchema),
   })
 
-  console.log(errors)
   useEffect(() => {
     reset({
       avatar: undefined,
@@ -51,51 +50,79 @@ export const EditProfileForm = (props: Props) => {
         </Typography>
 
         <form onSubmit={handleSubmit(async data => props.onSubmit(data))}>
-          <div>
-            {user && <Avatar className={s.avatar} src={user.avatar} username={user?.name} />}
-            <label htmlFor={'avatar'}>
-              <EditIcon height={16} width={16} />
-              <input
-                multiple={false}
-                {...register('avatar')}
-                accept={'.jpeg,.jpg,.png,.webp'}
-                id={'avatar'}
-                type={'file'}
-              />
-            </label>
-          </div>
-          {isEdit ? (
-            <ControlledInput
-              autoFocus
-              control={control}
-              label={'Name'}
-              name={'name'}
-              onBlur={() => {
-                setIsEdit(false)
-              }}
-            />
-          ) : (
-            <div style={{ display: 'flex' }}>
-              <Typography variant={'h2'}>{user?.name}</Typography>
+          {Object.keys(dirtyFields).length > 0 && (
+            <div style={{ textAlign: 'right' }}>
               <Button
-                icon={<EditIcon height={16} width={16} />}
-                onClick={() => setIsEdit(!isEdit)}
+                label={'Clear all'}
+                onClick={() => {
+                  reset()
+                }}
                 type={'button'}
                 variant={'text'}
               />
             </div>
           )}
-          {dirtyFields.avatar || dirtyFields.name ? (
-            <Button disabled={isSubmitting} label={'Save changes'} variant={'primary'} />
-          ) : (
-            <Button
-              icon={<LogoutIcon height={16} width={16} />}
-              label={'Logout'}
-              onClick={logoutHandler}
-              type={'button'}
-              variant={'secondary'}
-            />
-          )}
+
+          <div className={s.formsContainer}>
+            {errors.avatar && (
+              <Typography as={'span'} className={s.errorMessage} variant={'body2'}>
+                {errors.avatar.message}
+              </Typography>
+            )}
+            <div className={s.avatarInput}>
+              {user && <Avatar className={s.avatar} src={user.avatar} username={user?.name} />}
+              <label htmlFor={'avatar'}>
+                <EditIcon className={s.avatarTrigger} height={16} width={16} />
+                <input
+                  multiple={false}
+                  {...register('avatar')}
+                  accept={'.jpeg,.jpg,.png,.webp'}
+                  id={'avatar'}
+                  type={'file'}
+                />
+              </label>
+            </div>
+
+            {isEdit ? (
+              <ControlledInput
+                autoFocus
+                className={s.nameInput}
+                control={control}
+                label={'Name'}
+                name={'name'}
+                onBlur={() => {
+                  setIsEdit(false)
+                }}
+              />
+            ) : (
+              <div className={s.nameField}>
+                <Typography variant={'h2'}>{user?.name}</Typography>
+                <Button
+                  icon={<EditIcon height={16} width={16} />}
+                  onClick={() => setIsEdit(!isEdit)}
+                  type={'button'}
+                  variant={'text'}
+                />
+              </div>
+            )}
+
+            {dirtyFields.avatar || dirtyFields.name ? (
+              <Button
+                disabled={isSubmitting}
+                fullWidth
+                label={'Save changes'}
+                variant={'primary'}
+              />
+            ) : (
+              <Button
+                icon={<LogoutIcon height={16} width={16} />}
+                label={'Logout'}
+                onClick={logoutHandler}
+                type={'button'}
+                variant={'secondary'}
+              />
+            )}
+          </div>
         </form>
       </Card>
     </>
