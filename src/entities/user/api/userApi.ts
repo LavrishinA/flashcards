@@ -27,7 +27,7 @@ export const userApi = baseApi.injectEndpoints({
     signUp: build.mutation<userMeResponse, SignUpPayload>({
       query: user => ({ body: user, method: 'POST', url: '/v1/auth/sign-up' }),
     }),
-    updateProfile: build.mutation<any, any>({
+    updateProfile: build.mutation<userMeResponse, FormData>({
       invalidatesTags: ['Me'],
       query: data => ({ body: data, method: 'PATCH', url: '/v1/auth/me' }),
     }),

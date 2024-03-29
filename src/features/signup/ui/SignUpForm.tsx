@@ -27,7 +27,7 @@ export const SignUpForm = (props: Props) => {
 
   return (
     <Card className={s.card}>
-      <form onSubmit={handleSubmit(props.onSubmit)}>
+      <form onSubmit={handleSubmit(async data => props.onSubmit(data))}>
         <div className={s.formsContainer}>
           <Typography className={s.title} variant={'h1'}>
             Sign Up

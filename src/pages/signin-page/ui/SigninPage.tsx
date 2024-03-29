@@ -10,9 +10,9 @@ export const SigninPage = () => {
   const navigate = useNavigate()
 
   const loginHandler = (data: userLoginPayload) => {
-    login(data)
+    return login(data)
       .unwrap()
-      .then(() => navigate('/', {}))
+      .then(() => navigate('/'))
       .catch(e => console.log(e)) //todo toast
   }
 

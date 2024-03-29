@@ -11,7 +11,7 @@ export const SignupPage = () => {
   const navigate = useNavigate()
 
   const signUpHandler = (data: SignUpPayload) => {
-    signUp({ email: data.email, password: data.password })
+    return signUp({ email: data.email, password: data.password })
       .unwrap()
       .then(() => navigate('/sign-in', {}))
       .catch(e => console.log(e)) //todo toast

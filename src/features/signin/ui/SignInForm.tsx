@@ -57,7 +57,6 @@ export const SignInForm = (props: Props) => {
         <div className={s.checkboxContainer}>
           <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
         </div>
-        {/*todo: add Link*/}
         <div className={s.recoverPasswordContainer}>
           <Typography
             as={Link}
