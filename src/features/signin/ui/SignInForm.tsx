@@ -57,7 +57,6 @@ export const SignInForm = (props: Props) => {
         <div className={s.checkboxContainer}>
           <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
         </div>
-        {/*todo: add Link*/}
         <div className={s.recoverPasswordContainer}>
           <Typography
             as={Link}
@@ -76,7 +75,7 @@ export const SignInForm = (props: Props) => {
         <Typography as={'span'} className={s.createAccount} variant={'body2'}>
           Don`t have an account?
         </Typography>
-        <Button as={Link} className={s.signUp} to={'/sign-up'} type={'text'}>
+        <Button as={Link} className={s.signUp} to={'/sign-up'} variant={'text'}>
           Sign Up
         </Button>
       </div>

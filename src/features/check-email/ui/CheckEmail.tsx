@@ -28,7 +28,13 @@ export const CheckEmail = () => {
         </div>
 
         <div className={s.buttonContainer}>
-          <Button as={Link} fullWidth label={'Back to Sign In'} to={'/sign-in'} />
+          <Button
+            as={Link}
+            fullWidth
+            label={'Back to Sign In'}
+            to={'/sign-in'}
+            variant={'primary'}
+          />
         </div>
       </form>
     </Card>

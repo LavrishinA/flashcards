@@ -13,12 +13,12 @@ type AvatarProps = {
 } & ComponentPropsWithoutRef<typeof RadixAvatar.Image>
 
 export const Avatar = (props: AvatarProps) => {
-  const { username, ...rest } = props
+  const { className, username, ...rest } = props
 
   return (
     <RadixAvatar.Root>
-      <RadixAvatar.Image className={s.avatar} loading={'lazy'} {...rest} />
-      <RadixAvatar.Fallback asChild className={clsx(s.avatar, s.fallback)}>
+      <RadixAvatar.Image className={className ? className : s.avatar} loading={'lazy'} {...rest} />
+      <RadixAvatar.Fallback asChild className={clsx(className ? className : s.avatar, s.fallback)}>
         <Typography as={'p'} variant={'subtitle2'}>
           {username?.[0]}
         </Typography>

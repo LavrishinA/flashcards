@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useLogoutMutation } from '@/entities/user'
+import { useLogout } from '@/features/logout'
 import { Avatar } from '@/shared/ui/Avatar'
 import { DropDownContent, DropdownMenu, DropdownTrigger } from '@/shared/ui/DropDown'
 import { DropdownItem } from '@/shared/ui/DropDown/Item'
@@ -19,16 +19,10 @@ type Props = {
 
 export const Profile = (props: Props) => {
   const { avatar, email, name } = props
-  const [logout] = useLogoutMutation()
-  const navigate = useNavigate()
 
-  const logoutHandler = () => {
-    logout()
-      .unwrap()
-      .then(() => {
-        navigate('/sign-in')
-      })
-  }
+  const navigate = useNavigate()
+  const { logoutHandler } = useLogout()
+  const navigateToEditProfile = () => navigate('/profile')
 
   return (
     <div className={s.profileContainer}>
@@ -37,13 +31,17 @@ export const Profile = (props: Props) => {
       </Typography>
       <DropdownMenu>
         <DropdownTrigger>
-          <Avatar src={avatar} username={name} />
+          <Avatar className={s.avatar} src={avatar} username={name} />
         </DropdownTrigger>
         <DropDownContent>
           <UserSeparator email={email} username={name}>
             <Avatar src={avatar} username={name} />
           </UserSeparator>
-          <DropdownItem icon={<ProfileIcon height={16} width={16} />} label={'My profile'} />
+          <DropdownItem
+            icon={<ProfileIcon height={16} width={16} />}
+            label={'My profile'}
+            onClick={navigateToEditProfile}
+          />
           <DropdownItem
             icon={<LogoutIcon height={16} width={16} />}
             label={'Sign out'}

@@ -27,7 +27,7 @@ export const SignUpForm = (props: Props) => {
 
   return (
     <Card className={s.card}>
-      <form onSubmit={handleSubmit(props.onSubmit)}>
+      <form onSubmit={handleSubmit(async data => props.onSubmit(data))}>
         <div className={s.formsContainer}>
           <Typography className={s.title} variant={'h1'}>
             Sign Up
@@ -65,7 +65,7 @@ export const SignUpForm = (props: Props) => {
         <Typography as={'span'} variant={'body2'}>
           Already have an account?
         </Typography>
-        <Button as={Link} className={s.signIn} to={'/sign-in'} type={'text'}>
+        <Button as={Link} className={s.signIn} to={'/sign-in'} variant={'text'}>
           Sign In
         </Button>
       </div>
