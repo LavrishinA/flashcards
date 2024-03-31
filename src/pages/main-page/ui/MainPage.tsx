@@ -8,6 +8,7 @@ import { PaginationList } from '@/widgets/pagination-list/PaginationList'
 
 export const MainPage = () => {
   const [searchParams] = useSearchParams()
+
   const params = Object.fromEntries(searchParams)
 
   const { data } = useGetDecksQuery(params)

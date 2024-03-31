@@ -5,8 +5,13 @@ export type DecksResponse = {
 }
 
 export type DecksPayload = {
+  authorId?: string
   currentPage?: string
   itemsPerPage?: string
+  maxCardsCount?: number
+  minCardsCount?: number
+  name?: string
+  orderBy?: string
 }
 
 export type DeckItem = {
