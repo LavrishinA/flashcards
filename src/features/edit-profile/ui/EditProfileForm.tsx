@@ -96,7 +96,9 @@ export const EditProfileForm = (props: Props) => {
               />
             ) : (
               <div className={s.nameField}>
-                <Typography variant={'h2'}>{user?.name}</Typography>
+                <Typography as={'h2'} variant={'h2'}>
+                  {user?.name}
+                </Typography>
                 <Button
                   icon={<EditIcon height={16} width={16} />}
                   onClick={() => setIsEdit(!isEdit)}
@@ -105,7 +107,7 @@ export const EditProfileForm = (props: Props) => {
                 />
               </div>
             )}
-
+            <Typography variant={'body2'}>{user?.email}</Typography>
             {dirtyFields.avatar || dirtyFields.name ? (
               <Button
                 disabled={isSubmitting}
