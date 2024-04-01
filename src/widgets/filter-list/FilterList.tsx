@@ -1,17 +1,19 @@
 import { useGetMinMaxQuery } from '@/entities/filters'
-import { useMeQuery } from '@/entities/user'
 import { MinMaxCards } from '@/features/filters'
 import { MyAllCards } from '@/features/filters/ui/MyAllCards'
 
 import s from './FilterList.module.scss'
 
-export const FilterList = () => {
+type Props = {
+  userId: string
+}
+
+export const FilterList = ({ userId }: Props) => {
   const { data } = useGetMinMaxQuery()
-  const { data: user } = useMeQuery()
 
   return (
     <div className={s.filtersContainer}>
-      {user && <MyAllCards authorId={user.id} />}
+      <MyAllCards authorId={userId} />
       {data && <MinMaxCards {...data} />}
     </div>
   )

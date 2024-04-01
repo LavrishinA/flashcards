@@ -13,9 +13,17 @@ export type userMeResponse = {
   name: string
   updated: string
 }
-// type userLoginResponse = {
-//   accessToken: string
-// }
+
+export type DeleteIconResponse = {
+  cardsCount: number
+  cover: string
+  created: string
+  id: string
+  isPrivate: boolean
+  name: string
+  updated: string
+  userId: string
+}
 
 export type SignUpPayload = {
   email: string

@@ -1,4 +1,5 @@
 import { DeckItem } from '@/entities/decks'
+import { DeleteDeck } from '@/features/decks/delete-deck/DeleteDeck'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Table } from '@/shared/ui/Table'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
@@ -6,11 +7,12 @@ import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 import s from './DeckList.module.scss'
 
 type Props = {
+  currentUser: string
   decks: DeckItem[]
 }
 
 export const DeckList = (props: Props) => {
-  const { decks } = props
+  const { currentUser, decks } = props
 
   return (
     <div>
@@ -40,8 +42,10 @@ export const DeckList = (props: Props) => {
                 </Table.TableCell>
                 <Table.TableCell>{d.cardsCount}</Table.TableCell>
                 <Table.TableCell>{dateFormater(d.updated)}</Table.TableCell>
-                <Table.TableCell>{dateFormater(d.created)}</Table.TableCell>
-                <Table.TableCell>Deck actions slot</Table.TableCell>
+                <Table.TableCell>{d.author.name}</Table.TableCell>
+                <Table.TableCell>
+                  {currentUser === d.author.id && <DeleteDeck id={d.id} />}
+                </Table.TableCell>
               </Table.TableRow>
             ))}
         </Table.TableBody>
