@@ -32,3 +32,9 @@ export type Pagination = {
   totalItems: number
   totalPages: number
 }
+
+export type CreateDeckArgs = {
+  cover?: string
+  isPrivate?: boolean
+  name: string
+}
