@@ -28,6 +28,7 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadixRadioGroup.Root>, Ra
           <Typography
             as={'label'}
             className={clsx(s.labelWrapper, { [s.disabled]: el.disabled }, className)}
+            key={el.label}
             variant={'body2'}
           >
             <RadioItem key={el.value} {...el} />

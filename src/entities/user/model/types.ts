@@ -14,17 +14,6 @@ export type userMeResponse = {
   updated: string
 }
 
-export type DeleteIconResponse = {
-  cardsCount: number
-  cover: string
-  created: string
-  id: string
-  isPrivate: boolean
-  name: string
-  updated: string
-  userId: string
-}
-
 export type SignUpPayload = {
   email: string
   html?: string

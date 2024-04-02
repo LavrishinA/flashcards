@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom'
+
 import { DeckItem } from '@/entities/decks'
 import { DeleteDeck } from '@/features/decks/delete-deck/DeleteDeck'
 import { dateFormater } from '@/shared/lib/dateFormater'
+import { Button } from '@/shared/ui/Button'
 import { Table } from '@/shared/ui/Table'
+import { PlayIcon } from '@/shared/ui/icons'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './DeckList.module.scss'
@@ -44,6 +48,14 @@ export const DeckList = (props: Props) => {
                 <Table.TableCell>{dateFormater(d.updated)}</Table.TableCell>
                 <Table.TableCell>{d.author.name}</Table.TableCell>
                 <Table.TableCell>
+                  {d.cardsCount !== 0 && (
+                    <Button
+                      as={Link}
+                      icon={<PlayIcon height={16} width={16} />}
+                      to={`/${d.id}/learn/${d.name}`}
+                      variant={'text'}
+                    />
+                  )}
                   {currentUser === d.author.id && <DeleteDeck id={d.id} />}
                 </Table.TableCell>
               </Table.TableRow>

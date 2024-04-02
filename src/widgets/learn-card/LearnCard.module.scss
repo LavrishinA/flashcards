@@ -1,0 +1,24 @@
+.cards {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 36px 36px;
+}
+
+.ratioContainer {
+  width: 100%;
+  max-width: 350px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  justify-content: center;
+}

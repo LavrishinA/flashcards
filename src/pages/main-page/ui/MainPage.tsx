@@ -14,11 +14,11 @@ export const MainPage = () => {
   const { data: user } = useMeQuery()
 
   return (
-    <div>
+    <section>
       <Typography variant={'h1'}>Deck list</Typography>
       {user && <FilterList userId={user.id} />}
       {user && decks?.items && <DeckList currentUser={user.id} decks={decks.items} />}
       {decks?.pagination && <PaginationList pagination={decks.pagination} />}
-    </div>
+    </section>
   )
 }

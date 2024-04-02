@@ -9,6 +9,7 @@ import {
 
 import { EditProfilePage } from '@/pages/edit-profile-page'
 import { Layout } from '@/pages/layout/Layout'
+import { LearnPage } from '@/pages/learn-page'
 import { MainPage } from '@/pages/main-page'
 import { SigninPage } from '@/pages/signin-page'
 import { SignupPage } from '@/pages/signup-page'
@@ -23,7 +24,7 @@ const privateRoutes: RouteObject[] = [
   { element: <MainPage />, path: '/' },
   { element: <div>Deck Cards</div>, path: '/:deckId/cards' },
   { element: <EditProfilePage />, path: '/profile' },
-  { element: <div>Learn</div>, path: '/:deckId/learn/:deckName' },
+  { element: <LearnPage />, path: '/:deckId/learn/:deckName' },
 ]
 
 const router = createBrowserRouter([
