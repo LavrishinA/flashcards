@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
 import { useGetDecksQuery } from '@/entities/decks'
+import { useDebounce } from '@/shared/lib/useDebounce'
 import { useMeQuery } from '@/entities/user'
 import { Typography } from '@/shared/ui/Typography'
 import { DeckList } from '@/widgets/deck-list/DeckList'
@@ -9,8 +10,12 @@ import { PaginationList } from '@/widgets/pagination-list/PaginationList'
 
 export const MainPage = () => {
   const [searchParams] = useSearchParams()
+
+  const debouncedValue = useDebounce<string>(searchParams.get('name') || '', 500)
+
   const params = Object.fromEntries(searchParams)
-  const { data: decks } = useGetDecksQuery(params)
+
+  const { data: decks } = useGetDecksQuery({ ...params, name: debouncedValue })
   const { data: user } = useMeQuery()
 
   return (
