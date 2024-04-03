@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { DeckItem } from '@/entities/decks'
-import { DeleteDeck } from '@/features/decks/delete-deck/DeleteDeck'
+import { DeleteDeck } from '@/features/decks/delete-deck'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Button } from '@/shared/ui/Button'
 import { Table } from '@/shared/ui/Table'
@@ -56,7 +56,7 @@ export const DeckList = (props: Props) => {
                       variant={'text'}
                     />
                   )}
-                  {currentUser === d.author.id && <DeleteDeck id={d.id} />}
+                  {currentUser === d.author.id && <DeleteDeck id={d.id} name={d.name} />}
                 </Table.TableCell>
               </Table.TableRow>
             ))}
