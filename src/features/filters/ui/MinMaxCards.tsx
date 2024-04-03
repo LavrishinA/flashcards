@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Slider } from '@/shared/ui/Slider'
+import { Typography } from '@/shared/ui/Typography'
 
 type Props = { max: number; min: number }
 
@@ -18,6 +19,9 @@ export const MinMaxCards = ({ max, min }: Props) => {
 
   return (
     <div>
+      <Typography as={'span'} variant={'body2'}>
+        Number of cards
+      </Typography>
       <Slider
         max={max}
         min={min}
