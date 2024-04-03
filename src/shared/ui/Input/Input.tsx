@@ -16,6 +16,7 @@ export type InputProps = {
   errorMessage?: string
   label?: string
   onInputClear?: (value: string) => void
+  // onValueChange?: (value: string) => void
   search?: boolean
 } & ComponentPropsWithoutRef<'input'>
 
@@ -28,6 +29,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>(
       label,
       onChange,
       onInputClear,
+      // onValueChange,
       search,
       type,
       value,
@@ -42,6 +44,7 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>(
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange?.(e)
+      // onValueChange && onValueChange(e.currentTarget.value)
     }
 
     const onClearClickHandler = () => {
