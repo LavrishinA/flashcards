@@ -7,8 +7,9 @@ import * as RadixModal from '@radix-ui/react-dialog'
 import s from './modal.module.scss'
 
 export type ModalProps = ComponentPropsWithoutRef<typeof RadixModal.Root> & {
-  isOpen: boolean
-  onOpenChange: (isOpen: boolean) => void
+  className: string
+  onOpenChange: (open: boolean) => void
+  open: boolean
   title?: string
 }
 

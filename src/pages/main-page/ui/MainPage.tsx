@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
 import { useGetDecksQuery } from '@/entities/decks'
-import { CreateDeck } from '@/features/create-deck'
+import { CreateDeckModal } from '@/features/create-deck/ui/CreateDeckModal'
 import { Typography } from '@/shared/ui/Typography'
 import { DeckList } from '@/widgets/deck-list/DeckList'
 import { FilterList } from '@/widgets/filter-list/FilterList'
@@ -17,7 +17,7 @@ export const MainPage = () => {
     <div>
       <Typography variant={'h1'}>Deck list</Typography>
       <FilterList />
-      <CreateDeck />
+      <CreateDeckModal />
       {data?.items && <DeckList decks={data.items} />}
       {data?.pagination && <PaginationList pagination={data.pagination} />}
     </div>

@@ -6,3 +6,9 @@ export type DialogProps = ModalProps & {
   onCancel?: () => void
   onConfirm?: () => void
 }
+
+export type FormValues = { cover?: File; isPrivate?: boolean; name: string }
+
+export type Props = {
+  onSubmit: (data: FormValues) => void
+}
