@@ -6,14 +6,14 @@ import * as RadixModal from '@radix-ui/react-dialog'
 
 import s from './modal.module.scss'
 
-export type Props = ComponentPropsWithoutRef<typeof RadixModal.Root> & {
+export type ModalProps = ComponentPropsWithoutRef<typeof RadixModal.Root> & {
   isOpen: boolean
   onOpenChange: (isOpen: boolean) => void
   title?: string
 }
 
-export const Modal = forwardRef<ElementRef<typeof RadixModal.Root>, Props>(
-  ({ children, title, ...props }: Props, ref) => {
+export const Modal = forwardRef<ElementRef<typeof RadixModal.Root>, ModalProps>(
+  ({ children, title, ...props }: ModalProps, ref) => {
     return (
       <RadixModal.Root {...props}>
         <RadixModal.Portal>
