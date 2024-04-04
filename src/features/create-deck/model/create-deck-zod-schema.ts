@@ -20,5 +20,6 @@ export const CreateDeckZodSchema = z.object({
 
       return ACCEPTED_IMAGE_MIME_TYPES.includes(file[0].type)
     }, 'Only .jpg, .jpeg, .png and .webp formats are supported.'),
+  isPrivate: z.boolean().default(false),
   name: z.string(),
 })

@@ -1,0 +1,95 @@
+//.modal {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: stretch;
+//
+//  width: 100%;
+//  max-width: 420px;
+//  padding-top: 48px;
+//}
+
+//
+.formsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  padding: 24px;
+}
+
+//
+//.avatar {
+//  width: 96px;
+//  height: 96px;
+//
+//  font-size: var(--font-size-xxl);
+//
+//  object-fit: cover;
+//  object-position: center;
+//  border-radius: 100%;
+//}
+//
+//input[type='file'] {
+//  display: none;
+//}
+//
+//label {
+//  cursor: pointer;
+//}
+//
+//.avatarInput {
+//  position: relative;
+//}
+//
+
+.cover {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 36px;
+  margin-top: 24px;
+  padding: 6px 16px;
+
+  background-color: #4c4c4c;
+}
+
+.checkbox {
+  position: absolute;
+  margin-top: 24px;
+  margin-left: 7px;
+}
+
+//
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 80px;
+}
+
+//
+//.coverTrigger {
+//  position: absolute;
+//  top: 80%;
+//  left: 80%;
+//}
+//
+//.nameField {
+//  display: flex;
+//  gap: 16px;
+//  align-items: center;
+//}
+
+//
+//.errorMessage {
+//  display: inline-block;
+//
+//  font-size: var(--font-size-xs);
+//  font-weight: 400;
+//  line-height: 24px;
+//  color: var(--color-danger-300);
+//  text-align: left;
+//  letter-spacing: 0;
+//}
