@@ -40,7 +40,7 @@ export const CreateDeckForm = (props: Props) => {
   return (
     <>
       <Button label={'Add New Deck'} onClick={() => setIsOpen(true)} type={'button'}></Button>
-      <Modal className={s.modal} onOpenChange={setIsOpen} open={isOpen} title={'Add New Deck'}>
+      <Modal onOpenChange={setIsOpen} open={isOpen} title={'Add New Deck'}>
         <form className={s.formsContainer} onSubmit={submit}>
           {
             <div style={{ textAlign: 'left' }}>
