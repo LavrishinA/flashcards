@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useId } from 'react'
 
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 
@@ -13,17 +13,19 @@ export type CheckboxProps = {
 
 export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckboxProps>(
   (props: CheckboxProps, ref) => {
-    const { id, label } = props
+    const generatedId = useId()
+    const { id, label, ...rest } = props
+    const finalId = id ?? generatedId
 
     return (
       <div className={s.container}>
-        <CheckboxRadix.Root ref={ref} {...props} className={s.checkbox}>
+        <CheckboxRadix.Root ref={ref} {...rest} className={s.checkbox} id={finalId}>
           <CheckboxRadix.Indicator className={s.indicator}>
             <CheckedIconIndicator height={18} width={18} />
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
         {label && (
-          <Typography as={'label'} htmlFor={id} variant={'body2'}>
+          <Typography as={'label'} htmlFor={finalId} variant={'body2'}>
             {label}
           </Typography>
         )}

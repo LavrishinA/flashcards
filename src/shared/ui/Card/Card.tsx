@@ -1,17 +1,12 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-import s from './card.module.scss'
+import s from './Card.module.scss'
 
 export type CardProps<T extends ElementType> = {
   as?: T
-  children: ReactNode
 } & ComponentPropsWithoutRef<T>
 export const Card = <T extends ElementType>(props: CardProps<T>) => {
-  const { as: Component = 'div', children, className, ...rest } = props
+  const { as: Component = 'div', className, ...rest } = props
 
-  return (
-    <Component {...rest} className={`${s.card} ${className}`}>
-      {children}
-    </Component>
-  )
+  return <Component {...rest} className={`${s.card} ${className}`} />
 }
