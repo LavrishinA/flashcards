@@ -12,9 +12,19 @@ export const SearchCards = () => {
     setSearchParams(searchParams)
   }
 
+  const clearInputHandler = (value: string) => {
+    searchParams.set('name', value)
+    setSearchParams(searchParams)
+  }
+
   return (
     <div>
-      <Input onChange={handleChange} value={searchName}></Input>
+      <Input
+        onChange={handleChange}
+        onInputClear={clearInputHandler}
+        search
+        value={searchName}
+      ></Input>
     </div>
   )
 }
