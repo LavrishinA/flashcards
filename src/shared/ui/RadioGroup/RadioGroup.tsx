@@ -27,7 +27,7 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadixRadioGroup.Root>, Ra
         {options.map(el => (
           <Typography
             as={'label'}
-            className={clsx(s.labelWrapper, { [s.disabled]: el.disabled }, className)}
+            className={clsx(s.labelWrapper, el.disabled && s.disabled, className)}
             key={el.label}
             variant={'body2'}
           >
