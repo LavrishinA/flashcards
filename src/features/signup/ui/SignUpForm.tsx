@@ -57,7 +57,9 @@ export const SignUpForm = (props: Props) => {
             type={'password'}
           />
 
-          <Button className={s.formSubmit} disabled={isSubmitting} fullWidth label={'Sign Up'} />
+          <Button className={s.formSubmit} disabled={isSubmitting} fullWidth>
+            Sign Up
+          </Button>
         </div>
       </form>
 

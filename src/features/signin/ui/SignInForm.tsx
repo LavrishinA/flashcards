@@ -68,7 +68,9 @@ export const SignInForm = (props: Props) => {
           </Typography>
         </div>
         <div className={s.buttonContainer}>
-          <Button disabled={isSubmitting} fullWidth label={'Sign In'} />
+          <Button disabled={isSubmitting} fullWidth>
+            Sign In
+          </Button>
         </div>
       </form>
       <div className={s.footerContainer}>

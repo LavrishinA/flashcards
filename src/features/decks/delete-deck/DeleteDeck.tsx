@@ -24,11 +24,9 @@ export const DeleteDeck = (props: Props) => {
 
   return (
     <>
-      <Button
-        icon={<DeleteIcon height={16} width={16} />}
-        onClick={() => setIsOpen(true)}
-        variant={'text'}
-      />
+      <Button onClick={() => setIsOpen(true)} variant={'text'}>
+        <DeleteIcon height={16} width={16} />
+      </Button>
       <Modal onOpenChange={setIsOpen} open={isOpen} title={'Delete deck'}>
         <div className={s.modalContent}>
           <Typography as={'p'} variant={'body1'}>
@@ -37,8 +35,12 @@ export const DeleteDeck = (props: Props) => {
             All cards will be deleted.
           </Typography>
           <div className={s.modalFooter}>
-            <Button label={'Cancel'} onClick={() => setIsOpen(false)} variant={'secondary'} />
-            <Button label={'Delete Deck'} onClick={deleteDeckHandler} variant={'primary'} />
+            <Button onClick={() => setIsOpen(false)} variant={'secondary'}>
+              Cancel
+            </Button>
+            <Button onClick={deleteDeckHandler} variant={'primary'}>
+              Delete Deck
+            </Button>
           </div>
         </div>
       </Modal>

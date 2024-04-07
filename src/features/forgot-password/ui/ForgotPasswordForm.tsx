@@ -47,7 +47,9 @@ export const ForgotPasswordForm = (props: Props) => {
           Enter your email address and we will send you further instructions
         </Typography>
         <div className={s.buttonContainer}>
-          <Button disabled={isSubmitting} fullWidth label={'Send Instructions'} />
+          <Button disabled={isSubmitting} fullWidth>
+            Send Instructions
+          </Button>
         </div>
       </form>
       <div className={s.footerContainer}>

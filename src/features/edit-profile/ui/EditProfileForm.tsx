@@ -53,13 +53,14 @@ export const EditProfileForm = (props: Props) => {
           {Object.keys(dirtyFields).length > 0 && (
             <div style={{ textAlign: 'right' }}>
               <Button
-                label={'Clear all'}
                 onClick={() => {
                   reset()
                 }}
                 type={'button'}
                 variant={'text'}
-              />
+              >
+                Clear all
+              </Button>
             </div>
           )}
 
@@ -99,30 +100,20 @@ export const EditProfileForm = (props: Props) => {
                 <Typography as={'h2'} variant={'h2'}>
                   {user?.name}
                 </Typography>
-                <Button
-                  icon={<EditIcon height={16} width={16} />}
-                  onClick={() => setIsEdit(!isEdit)}
-                  type={'button'}
-                  variant={'text'}
-                />
+                <Button onClick={() => setIsEdit(!isEdit)} type={'button'} variant={'text'}>
+                  <EditIcon height={16} width={16} />
+                </Button>
               </div>
             )}
             <Typography variant={'body2'}>{user?.email}</Typography>
             {dirtyFields.avatar || dirtyFields.name ? (
-              <Button
-                disabled={isSubmitting}
-                fullWidth
-                label={'Save changes'}
-                variant={'primary'}
-              />
+              <Button disabled={isSubmitting} fullWidth variant={'primary'}>
+                Save changes
+              </Button>
             ) : (
-              <Button
-                icon={<LogoutIcon height={16} width={16} />}
-                label={'Logout'}
-                onClick={logoutHandler}
-                type={'button'}
-                variant={'secondary'}
-              />
+              <Button onClick={logoutHandler} type={'button'} variant={'secondary'}>
+                <LogoutIcon height={16} width={16} /> Logout
+              </Button>
             )}
           </div>
         </form>

@@ -39,7 +39,9 @@ export const CreateDeckForm = (props: Props) => {
 
   return (
     <>
-      <Button label={'Add New Deck'} onClick={() => setIsOpen(true)} type={'button'}></Button>
+      <Button onClick={() => setIsOpen(true)} type={'button'}>
+        Add New Deck
+      </Button>
       <Modal onOpenChange={setIsOpen} open={isOpen} title={'Add New Deck'}>
         <form className={s.formsContainer} onSubmit={submit}>
           {
@@ -68,14 +70,17 @@ export const CreateDeckForm = (props: Props) => {
               </div>
               <div className={s.buttons}>
                 <Button
-                  label={'Cancel'}
                   onClick={() => {
                     setIsOpen(false)
                   }}
                   type={'button'}
                   variant={'secondary'}
-                />
-                <Button label={'Add New Pack'} type={'submit'} variant={'primary'} />
+                >
+                  Cancel
+                </Button>
+                <Button type={'submit'} variant={'primary'}>
+                  Add New Pack
+                </Button>
               </div>
             </div>
           }

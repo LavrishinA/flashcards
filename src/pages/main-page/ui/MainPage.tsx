@@ -9,6 +9,8 @@ import { DeckList } from '@/widgets/deck-list/DeckList'
 import { FilterList } from '@/widgets/filter-list/FilterList'
 import { PaginationList } from '@/widgets/pagination-list/PaginationList'
 
+import s from './MainPage.module.scss'
+
 export const MainPage = () => {
   const [searchParams] = useSearchParams()
 
@@ -21,8 +23,10 @@ export const MainPage = () => {
 
   return (
     <section>
-      <Typography variant={'h1'}>Deck list</Typography>
-      <CreateDeckModal />
+      <div className={s.mainPageHeader}>
+        <Typography variant={'h1'}>Deck list</Typography>
+        <CreateDeckModal />
+      </div>
       {user && <FilterList userId={user.id} />}
       {user && decks?.items && <DeckList currentUser={user.id} decks={decks.items} />}
       {decks?.pagination && <PaginationList pagination={decks.pagination} />}

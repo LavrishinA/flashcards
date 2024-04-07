@@ -26,6 +26,12 @@
   &:hover {
     transition: all 0.3s;
   }
+
+  > span {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+  }
 }
 
 .primary {

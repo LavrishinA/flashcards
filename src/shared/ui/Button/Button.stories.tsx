@@ -5,28 +5,6 @@ import { Button } from '@/shared/ui/Button/Button'
 import { LogoutIcon } from '../icons'
 
 const meta: Meta<typeof Button> = {
-  argTypes: {
-    as: {
-      control: 'text',
-      table: {
-        defaultValue: { summary: '"button"' },
-      },
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    fullWidth: {
-      control: { type: 'boolean' },
-    },
-    icon: {
-      control: { type: 'boolean' },
-      mapping: { false: '', true: <LogoutIcon height={16} width={16} /> },
-    },
-    label: {
-      control: 'text',
-    },
-    onClick: { action: 'clicked' },
-  },
   args: {
     as: 'button',
     label: 'Button primary',
@@ -40,3 +18,25 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const WithIconInFront: Story = {
+  args: {
+    children: (
+      <>
+        <LogoutIcon height={18} width={18} />
+        Hello
+      </>
+    ),
+  },
+}
+
+export const WithIconAfter: Story = {
+  args: {
+    children: (
+      <>
+        Hello
+        <LogoutIcon height={18} width={18} />
+      </>
+    ),
+  },
+}
