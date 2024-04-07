@@ -46,7 +46,9 @@ export const CreateNewPassword = (props: Props) => {
           Create new password and we will send you further instructions to email
         </Typography>
         <div className={s.buttonContainer}>
-          <Button disabled={isSubmitting} fullWidth label={'Create New Password'} />
+          <Button disabled={isSubmitting} fullWidth>
+            Create New Password
+          </Button>
         </div>
       </form>
     </Card>
