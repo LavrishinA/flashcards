@@ -20,22 +20,6 @@ export type SaveGradePayload = {
   id: string
 }
 
-export type SaveGradeResponse = {
-  answer: string
-  answerImg: string
-  answerVideo: string
-  created: string
-  deckId: string
-  grade: number
-  id: string
-  question: string
-  questionImg: string
-  questionVideo: string
-  shots: number
-  updated: string
-  userId: string
-}
-
 export type DeleteDeckResponse = {
   cardsCount: number
   cover: string
@@ -91,4 +75,34 @@ export type CreateDeckArgs = {
   cover?: File
   isPrivate?: boolean
   name: string
+}
+
+export type CardsIntoDeckResponse = {
+  items: SaveGradeResponse[]
+  pagination: Pagination
+}
+
+export type SaveGradeResponse = {
+  answer: string
+  answerImg: string
+  answerVideo: string
+  created: string
+  deckId: string
+  grade: number
+  id: string
+  question: string
+  questionImg: string
+  questionVideo: string
+  shots: number
+  updated: Date
+  userId: string
+}
+
+export type CardsIntoDeckPayload = {
+  answer?: string
+  currentPage?: number
+  id: string
+  itemsPerPage?: number
+  orderBy?: string
+  question?: string
 }

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useGetDecksQuery } from '@/entities/decks'
 import { useMeQuery } from '@/entities/user'
 import { CreateDeckModal } from '@/features/create-deck/ui/CreateDeckModal'
+import { DeckPage } from '@/pages/deck-page'
 import { useDebounce } from '@/shared/lib/useDebounce'
 import { Typography } from '@/shared/ui/Typography'
 import { DeckList } from '@/widgets/deck-list/DeckList'
@@ -30,6 +31,7 @@ export const MainPage = () => {
       {user && <FilterList userId={user.id} />}
       {user && decks?.items && <DeckList currentUser={user.id} decks={decks.items} />}
       {decks?.pagination && <PaginationList pagination={decks.pagination} />}
+      <DeckPage />
     </section>
   )
 }

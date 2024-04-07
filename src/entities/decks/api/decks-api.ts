@@ -1,4 +1,6 @@
 import {
+  CardsIntoDeckPayload,
+  CardsIntoDeckResponse,
   DeckItem,
   DecksPayload,
   DecksResponse,
@@ -18,6 +20,18 @@ export const decksApi = baseApi.injectEndpoints({
     deleteDeck: build.mutation<DeleteDeckResponse, { id: string }>({
       invalidatesTags: ['Decks'],
       query: ({ id }) => ({ method: 'DELETE', url: `/v1/decks/${id}` }),
+    }),
+    getCardsIntoDeck: build.query<CardsIntoDeckResponse, CardsIntoDeckPayload>({
+      providesTags: ['Deck'],
+      query: ({ id, ...params }) => ({
+        method: 'GET',
+        params,
+        url: `/v1/decks/${id}/cards`,
+      }),
+    }),
+    getDeckById: build.query<DeckItem, { id: string }>({
+      providesTags: ['Deck'],
+      query: ({ id }) => ({ method: 'GET', url: `/v1/decks/${id}` }),
     }),
     getDecks: build.query<DecksResponse, DecksPayload | void>({
       providesTags: ['Decks'],
@@ -41,6 +55,8 @@ export const decksApi = baseApi.injectEndpoints({
 export const {
   useCreateDeckMutation,
   useDeleteDeckMutation,
+  useGetCardsIntoDeckQuery,
+  useGetDeckByIdQuery,
   useGetDecksQuery,
   useGetRandomCardQuery,
   useSaveGradeMutation,
