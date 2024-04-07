@@ -19,7 +19,7 @@ export const DeckList = (props: Props) => {
   const { currentUser, decks } = props
 
   return (
-    <div>
+    <div className={s.deckListContainer}>
       <Table.Root>
         <Table.TableHeader>
           <Table.TableRow>
@@ -49,12 +49,9 @@ export const DeckList = (props: Props) => {
                 <Table.TableCell>{d.author.name}</Table.TableCell>
                 <Table.TableCell>
                   {d.cardsCount !== 0 && (
-                    <Button
-                      as={Link}
-                      icon={<PlayIcon height={16} width={16} />}
-                      to={`/${d.id}/learn/${d.name}`}
-                      variant={'text'}
-                    />
+                    <Button as={Link} to={`/${d.id}/learn/${d.name}`} variant={'text'}>
+                      <PlayIcon height={16} width={16} />
+                    </Button>
                   )}
                   {currentUser === d.author.id && <DeleteDeck id={d.id} name={d.name} />}
                 </Table.TableCell>

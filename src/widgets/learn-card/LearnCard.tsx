@@ -42,7 +42,11 @@ export const LearnCard = (props: GetCardResponse & { children: ReactNode }) => {
             Количество попыток ответов на вопрос: {shots}
           </Typography>
         </div>
-        {!showAnswer && <Button fullWidth label={'Show answer'} onClick={showAnswerHandler} />}
+        {!showAnswer && (
+          <Button fullWidth onClick={showAnswerHandler}>
+            Show answer
+          </Button>
+        )}
 
         {showAnswer && (
           <div>

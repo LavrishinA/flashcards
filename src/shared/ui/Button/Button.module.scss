@@ -10,6 +10,10 @@
 
   padding: 6px 28px;
 
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+
   border-radius: 0.25rem;
 
   &:disabled {

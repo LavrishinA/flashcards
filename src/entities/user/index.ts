@@ -3,5 +3,5 @@ export {
   useLogoutMutation,
   useMeQuery,
   useUpdateProfileMutation,
-} from './api/userApi'
+} from './api/user-api'
 export type { userLoginPayload } from './model/types'

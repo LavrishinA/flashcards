@@ -1,8 +1,6 @@
-import { useState } from 'react'
-
 import { useDeleteDeckMutation } from '@/entities/decks'
 import { Button } from '@/shared/ui/Button'
-import { Modal } from '@/shared/ui/Modal/Modal'
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
 import { Typography } from '@/shared/ui/Typography'
 import { DeleteIcon } from '@/shared/ui/icons'
 
@@ -14,20 +12,19 @@ type Props = {
 }
 
 export const DeleteDeck = (props: Props) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
   const { id, name } = props
-  const [deleteDeck] = useDeleteDeckMutation()
+  const [deleteDeck, { isLoading }] = useDeleteDeckMutation()
 
   const deleteDeckHandler = () => {
     deleteDeck({ id })
   }
 
   return (
-    <>
-      <Button onClick={() => setIsOpen(true)} variant={'text'}>
+    <Dialog>
+      <DialogTrigger>
         <DeleteIcon height={16} width={16} />
-      </Button>
-      <Modal onOpenChange={setIsOpen} open={isOpen} title={'Delete deck'}>
+      </DialogTrigger>
+      <DialogContent title={'Delete deck'}>
         <div className={s.modalContent}>
           <Typography as={'p'} variant={'body1'}>
             Do you really want to remove <span className={s.deckName}>{name}</span> deck?
@@ -35,15 +32,15 @@ export const DeleteDeck = (props: Props) => {
             All cards will be deleted.
           </Typography>
           <div className={s.modalFooter}>
-            <Button onClick={() => setIsOpen(false)} variant={'secondary'}>
-              Cancel
-            </Button>
-            <Button onClick={deleteDeckHandler} variant={'primary'}>
+            <DialogClose asChild>
+              <Button variant={'secondary'}>Cancel</Button>
+            </DialogClose>
+            <Button disabled={isLoading} onClick={deleteDeckHandler} variant={'primary'}>
               Delete Deck
             </Button>
           </div>
         </div>
-      </Modal>
-    </>
+      </DialogContent>
+    </Dialog>
   )
 }

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useSignUpMutation } from '@/entities/user/api/userApi'
+import { useSignUpMutation } from '@/entities/user/api/user-api'
 import { SignUpPayload } from '@/entities/user/model/types'
 import { SignUpForm } from '@/features/signup'
 

@@ -14,9 +14,9 @@ export const FilterList = ({ userId }: Props) => {
 
   return (
     <div className={s.filtersContainer}>
+      <SearchCards />
       <MyAllCards authorId={userId} />
       {data && <MinMaxCards {...data} />}
-      <SearchCards />
     </div>
   )
 }
