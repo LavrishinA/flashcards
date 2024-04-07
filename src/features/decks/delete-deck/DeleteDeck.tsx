@@ -13,7 +13,7 @@ type Props = {
 
 export const DeleteDeck = (props: Props) => {
   const { id, name } = props
-  const [deleteDeck] = useDeleteDeckMutation()
+  const [deleteDeck, { isLoading }] = useDeleteDeckMutation()
 
   const deleteDeckHandler = () => {
     deleteDeck({ id })
@@ -35,7 +35,7 @@ export const DeleteDeck = (props: Props) => {
             <DialogClose asChild>
               <Button variant={'secondary'}>Cancel</Button>
             </DialogClose>
-            <Button onClick={deleteDeckHandler} variant={'primary'}>
+            <Button disabled={isLoading} onClick={deleteDeckHandler} variant={'primary'}>
               Delete Deck
             </Button>
           </div>

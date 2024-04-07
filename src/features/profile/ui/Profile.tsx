@@ -34,8 +34,16 @@ export const Profile = (props: Props) => {
           <Avatar className={s.avatar} src={avatar} username={name} />
         </DropdownTrigger>
         <DropDownContent>
-          <UserSeparator email={email} username={name}>
+          <UserSeparator className={s.user} email={email} username={name}>
             <Avatar src={avatar} username={name} />
+            <div className={s.userdata}>
+              <Typography as={'span'} variant={'subtitle2'}>
+                {name}
+              </Typography>
+              <Typography as={'span'} variant={'caption'}>
+                {email}
+              </Typography>
+            </div>
           </UserSeparator>
           <DropdownItem
             icon={<ProfileIcon height={16} width={16} />}
