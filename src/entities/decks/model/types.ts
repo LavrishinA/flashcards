@@ -59,6 +59,19 @@ export type DeckItem = {
   userId: string
 }
 
+export type Deck = {
+  author: Author
+  cardsCount: number
+  cover: null | string
+  created: string
+  id: string
+  isPrivate: boolean
+  name: string
+  shots: number
+  updated: string
+  userId: string
+}
+
 type Author = {
   id: string
   name: string
@@ -78,8 +91,23 @@ export type CreateDeckArgs = {
 }
 
 export type CardsIntoDeckResponse = {
-  items: SaveGradeResponse[]
+  items: Card[]
   pagination: Pagination
+}
+
+export type Card = {
+  answer: string
+  answerImg: null | string
+  answerVideo: null | string
+  created: string
+  deckId: string
+  grade: number
+  id: string
+  question: string
+  questionImg: null | string
+  questionVideo: null | string
+  shots: number
+  updated: Date
 }
 
 export type SaveGradeResponse = {

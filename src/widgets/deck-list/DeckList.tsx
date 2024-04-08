@@ -5,6 +5,7 @@ import { DeleteDeck } from '@/features/decks/delete-deck'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Button } from '@/shared/ui/Button'
 import { Table } from '@/shared/ui/Table'
+import { Typography } from '@/shared/ui/Typography'
 import { PlayIcon } from '@/shared/ui/icons'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
@@ -42,7 +43,9 @@ export const DeckList = (props: Props) => {
                       </AspectRatio>
                     </div>
                   )}
-                  {d.name}
+                  <Typography as={Link} className={s.text} to={`/:${d.id}/cards`} variant={'body2'}>
+                    {d.name}
+                  </Typography>
                 </Table.TableCell>
                 <Table.TableCell>{d.cardsCount}</Table.TableCell>
                 <Table.TableCell>{dateFormater(d.updated)}</Table.TableCell>

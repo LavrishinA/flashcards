@@ -1,4 +1,4 @@
-import { SaveGradeResponse } from '@/entities/decks/model/types'
+import { Card } from '@/entities/decks/model/types'
 import { DeleteDeck } from '@/features/decks/delete-deck'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Table } from '@/shared/ui/Table'
@@ -7,7 +7,7 @@ import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 import s from './CardsList.module.scss'
 
 type Props = {
-  cards: SaveGradeResponse[]
+  cards: Card[]
   currentDeck: string
 }
 
@@ -53,7 +53,7 @@ export const CardsList = (props: Props) => {
                 <Table.TableCell>{dateFormater(c.updated)}</Table.TableCell>
                 <Table.TableCell>{c.grade}</Table.TableCell>
                 <Table.TableCell>
-                  {currentDeck === c.userId && <DeleteDeck id={c.id} name={c.question} />}
+                  {currentDeck === c.id && <DeleteDeck id={c.id} name={c.question} />}
                 </Table.TableCell>
               </Table.TableRow>
             ))}
