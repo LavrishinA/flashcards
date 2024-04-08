@@ -7,7 +7,9 @@ import {
   useOutletContext,
 } from 'react-router-dom'
 
+import { CheckEmailPage } from '@/pages/check-email-page/ui/CheckEmailPage'
 import { EditProfilePage } from '@/pages/edit-profile-page'
+import { ForgotPasswordPage } from '@/pages/forgot-password-page/ui/ForgotPasswordPage'
 import { Layout } from '@/pages/layout/Layout'
 import { LearnPage } from '@/pages/learn-page'
 import { MainPage } from '@/pages/main-page'
@@ -17,7 +19,8 @@ import { SignupPage } from '@/pages/signup-page'
 const publicRoutes: RouteObject[] = [
   { element: <SigninPage />, path: '/sign-in' },
   { element: <SignupPage />, path: '/sign-up' },
-  { element: <div>Forgot password form</div>, path: '/forgot-password' },
+  { element: <ForgotPasswordPage />, path: '/forgot-password' },
+  { element: <CheckEmailPage />, path: '/check-email' },
 ]
 
 const privateRoutes: RouteObject[] = [
