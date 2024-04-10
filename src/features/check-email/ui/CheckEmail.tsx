@@ -4,6 +4,7 @@
  */
 import { Link } from 'react-router-dom'
 
+import { FormValues } from '@/features/forgot-password/model/types'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
 import { Typography } from '@/shared/ui/Typography'
@@ -11,7 +12,7 @@ import { Email } from '@/shared/ui/icons/Email'
 
 import s from './checkEmail.module.scss'
 
-export const CheckEmail = () => {
+export const CheckEmail = ({ email }: FormValues) => {
   return (
     <Card className={s.card}>
       <Typography className={s.title} variant={'h1'}>
@@ -23,7 +24,8 @@ export const CheckEmail = () => {
         </div>
         <div className={s.description}>
           <Typography as={'span'} variant={'body2'}>
-            We’ve sent an Email with instructions to example@mail.com
+            {/*We’ve sent an Email with instructions to example@mail.com*/}
+            We’ve sent an Email with instructions to {email}
           </Typography>
         </div>
 

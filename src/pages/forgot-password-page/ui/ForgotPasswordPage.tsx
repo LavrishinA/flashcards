@@ -1,20 +1,27 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useForgotPasswordMutation } from '@/entities/user/api/userApi'
+import { useResetPasswordMutation } from '@/entities/user/api/userApi'
+import { CheckEmail } from '@/features/check-email'
 import { ForgotPasswordForm } from '@/features/forgot-password'
 import { FormValues } from '@/features/forgot-password/model/types'
 
 export const ForgotPasswordPage = () => {
-  const [sendPassword] = useForgotPasswordMutation()
+  const [sendEmail, { isSuccess }] = useResetPasswordMutation()
+  const [email, setEmail] = useState('')
   const navigate = useNavigate()
 
-  const sendPasswordHandler = (password: FormValues) => {
-    return sendPassword(password)
-      .unwrap()
-      .then(() => navigate('/check-email'))
+  const sendPasswordHandler = async ({ email }: FormValues) => {
+    await sendEmail({ email }).unwrap()
+    navigate('/check-email', { state: { email: email } })
+    setEmail(email)
   }
 
-  return (
+  return isSuccess ? (
+    <div>
+      <CheckEmail email={email} />
+    </div>
+  ) : (
     <div>
       <ForgotPasswordForm onSubmit={sendPasswordHandler} />
     </div>
