@@ -38,9 +38,9 @@ export const decksApi = baseApi.injectEndpoints({
       providesTags: ['Decks'],
       query: params => ({ method: 'GET', params: params ?? undefined, url: '/v1/decks' }),
     }),
-    getRandomCard: build.query<GetCardResponse, CardsIntoDeckPayload>({
+    getRandomCard: build.query<GetCardResponse, { id: string }>({
       providesTags: ['Learn'],
-      query: ({ id, ...params }) => ({ method: 'GET', url: `/v1/decks/${id}/learn` }),
+      query: ({ id }) => ({ method: 'GET', url: `/v1/decks/${id}/learn` }),
     }),
     saveGrade: build.mutation<SaveGradeResponse, SaveGradePayload>({
       invalidatesTags: ['Learn'],

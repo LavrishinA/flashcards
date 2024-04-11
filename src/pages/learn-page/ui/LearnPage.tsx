@@ -27,7 +27,7 @@ export const LearnPage = () => {
 
   return (
     <section>
-      <PreviousPage to={'Deck list'} />
+      <PreviousPage />
       {card && (
         <LearnCard key={card.id} {...card}>
           <SetGrade onSave={onSaveGradeHandler} />

@@ -5,16 +5,12 @@ import { Typography } from '@/shared/ui/Typography'
 
 import s from './PreviousPage.module.scss'
 
-type Props = {
-  to: string
-}
-
-export const PreviousPage = (props: Props) => {
+export const PreviousPage = () => {
   const navigate = useNavigate()
 
   return (
     <Button className={s.prevpage} onClick={() => navigate(-1)} variant={'text'}>
-      <Typography variant={'body2'}>&#8592; Back to {props.to}</Typography>
+      <Typography variant={'body2'}>&#8592; Back </Typography>
     </Button>
   )
 }

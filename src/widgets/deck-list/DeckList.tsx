@@ -43,7 +43,7 @@ export const DeckList = (props: Props) => {
                       </AspectRatio>
                     </div>
                   )}
-                  <Typography as={Link} className={s.text} to={`/:${d.id}/cards`} variant={'body2'}>
+                  <Typography as={Link} className={s.text} to={`/${d.id}/cards`} variant={'body2'}>
                     {d.name}
                   </Typography>
                 </Table.TableCell>

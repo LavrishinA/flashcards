@@ -32,7 +32,7 @@ export const CreateDeck = () => {
         <DialogTrigger asChild>
           <Button>Create Deck</Button>
         </DialogTrigger>
-        <DialogContent title={'Delete deck'}>
+        <DialogContent title={'Add New Deck'}>
           <CreateDeckForm onSubmit={createDeckHandler} />
         </DialogContent>
       </Dialog>

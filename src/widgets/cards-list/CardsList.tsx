@@ -1,5 +1,4 @@
 import { Card } from '@/entities/decks/model/types'
-import { DeleteDeck } from '@/features/decks/delete-deck'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Table } from '@/shared/ui/Table'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
@@ -12,7 +11,7 @@ type Props = {
 }
 
 export const CardsList = (props: Props) => {
-  const { cards, currentDeck } = props
+  const { cards } = props
 
   return (
     <div>
@@ -23,6 +22,7 @@ export const CardsList = (props: Props) => {
             <Table.TableCellHead>Answer</Table.TableCellHead>
             <Table.TableCellHead>Last Updated</Table.TableCellHead>
             <Table.TableCellHead>Grade</Table.TableCellHead>
+            <Table.TableCellHead>Actions</Table.TableCellHead>
             <Table.TableCellHead>{''}</Table.TableCellHead>
           </Table.TableRow>
         </Table.TableHeader>
@@ -52,9 +52,7 @@ export const CardsList = (props: Props) => {
                 </Table.TableCell>
                 <Table.TableCell>{dateFormater(c.updated)}</Table.TableCell>
                 <Table.TableCell>{c.grade}</Table.TableCell>
-                <Table.TableCell>
-                  {currentDeck === c.id && <DeleteDeck id={c.id} name={c.question} />}
-                </Table.TableCell>
+                <Table.TableCell></Table.TableCell>
               </Table.TableRow>
             ))}
         </Table.TableBody>

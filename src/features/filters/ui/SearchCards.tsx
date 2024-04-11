@@ -3,17 +3,20 @@ import { useSearchParams } from 'react-router-dom'
 
 import { Input } from '@/shared/ui/Input'
 
-export const SearchCards = () => {
+type SearchCards = {
+  name: string
+}
+export const SearchCards = ({ name }: SearchCards) => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const searchName = searchParams.get('name') || ''
+  const searchValue = searchParams.get(name) || ''
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    searchParams.set('name', `${e.currentTarget.value}`)
+    searchParams.set(name, `${e.currentTarget.value}`)
     setSearchParams(searchParams)
   }
 
   const clearInputHandler = (value: string) => {
-    searchParams.set('name', value)
+    searchParams.set(name, value)
     setSearchParams(searchParams)
   }
 
@@ -23,7 +26,7 @@ export const SearchCards = () => {
         onChange={handleChange}
         onInputClear={clearInputHandler}
         search
-        value={searchName}
+        value={searchValue}
       ></Input>
     </div>
   )
