@@ -33,30 +33,35 @@ export const DeckList = (props: Props) => {
         </Table.TableHeader>
         <Table.TableBody>
           {decks &&
-            decks.map(d => (
-              <Table.TableRow key={d.id}>
+            decks.map(deck => (
+              <Table.TableRow key={deck.id}>
                 <Table.TableCell className={s.name}>
-                  {d.cover && (
+                  {deck.cover && (
                     <div className={s.ratioContainer}>
                       <AspectRatio ratio={21 / 9}>
-                        <img alt={''} className={s.image} loading={'lazy'} src={d?.cover} />
+                        <img alt={''} className={s.image} loading={'lazy'} src={deck?.cover} />
                       </AspectRatio>
                     </div>
                   )}
-                  <Typography as={Link} className={s.text} to={`/${d.id}/cards`} variant={'body2'}>
-                    {d.name}
+                  <Typography
+                    as={Link}
+                    className={s.text}
+                    to={`/${deck.id}/cards`}
+                    variant={'body2'}
+                  >
+                    {deck.name}
                   </Typography>
                 </Table.TableCell>
-                <Table.TableCell>{d.cardsCount}</Table.TableCell>
-                <Table.TableCell>{dateFormater(d.updated)}</Table.TableCell>
-                <Table.TableCell>{d.author.name}</Table.TableCell>
+                <Table.TableCell>{deck.cardsCount}</Table.TableCell>
+                <Table.TableCell>{dateFormater(deck.updated)}</Table.TableCell>
+                <Table.TableCell>{deck.author.name}</Table.TableCell>
                 <Table.TableCell>
-                  {d.cardsCount !== 0 && (
-                    <Button as={Link} to={`/${d.id}/learn/${d.name}`} variant={'text'}>
+                  {deck.cardsCount !== 0 && (
+                    <Button as={Link} to={`/${deck.id}/learn/${deck.name}`} variant={'text'}>
                       <PlayIcon height={16} width={16} />
                     </Button>
                   )}
-                  {currentUser === d.author.id && <DeleteDeck id={d.id} name={d.name} />}
+                  {currentUser === deck.author.id && <DeleteDeck id={deck.id} name={deck.name} />}
                 </Table.TableCell>
               </Table.TableRow>
             ))}

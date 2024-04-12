@@ -14,7 +14,7 @@ export const CardsList = (props: Props) => {
   const { cards } = props
 
   return (
-    <div>
+    <div className={s.cardsListContainer}>
       <Table.Root>
         <Table.TableHeader>
           <Table.TableRow>
@@ -28,30 +28,35 @@ export const CardsList = (props: Props) => {
         </Table.TableHeader>
         <Table.TableBody>
           {cards &&
-            cards.map(c => (
-              <Table.TableRow key={c.id}>
-                <Table.TableCell className={c.question}>
-                  {c.questionImg && (
+            cards.map(card => (
+              <Table.TableRow key={card.id}>
+                <Table.TableCell className={card.question}>
+                  {card.questionImg && (
                     <div className={s.ratioContainer}>
                       <AspectRatio ratio={21 / 9}>
-                        <img alt={''} className={s.image} loading={'lazy'} src={c?.questionImg} />
+                        <img
+                          alt={''}
+                          className={s.image}
+                          loading={'lazy'}
+                          src={card?.questionImg}
+                        />
                       </AspectRatio>
                     </div>
                   )}
-                  {c.question}
+                  {card.question}
                 </Table.TableCell>
                 <Table.TableCell>
-                  {c.answerImg && (
+                  {card.answerImg && (
                     <div className={s.ratioContainer}>
                       <AspectRatio ratio={21 / 9}>
-                        <img alt={''} className={s.image} loading={'lazy'} src={c?.answerImg} />
+                        <img alt={''} className={s.image} loading={'lazy'} src={card?.answerImg} />
                       </AspectRatio>
                     </div>
                   )}
-                  {c.answer}
+                  {card.answer}
                 </Table.TableCell>
-                <Table.TableCell>{dateFormater(c.updated)}</Table.TableCell>
-                <Table.TableCell>{c.grade}</Table.TableCell>
+                <Table.TableCell>{dateFormater(card.updated)}</Table.TableCell>
+                <Table.TableCell>{card.grade}</Table.TableCell>
                 <Table.TableCell></Table.TableCell>
               </Table.TableRow>
             ))}
