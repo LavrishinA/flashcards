@@ -39,7 +39,7 @@ export const DeckPage = () => {
           Learn To Deck
         </Button>
       </div>
-      <div className={s.imgInput}>
+      <div className={s.imgInputArea}>
         {deck?.cover && (
           <div className={s.ratioContainer}>
             <AspectRatio ratio={25 / 15}>
