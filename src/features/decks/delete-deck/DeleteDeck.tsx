@@ -19,6 +19,8 @@ export const DeleteDeck = (props: Props) => {
     deleteDeck({ id })
   }
 
+  console.log('delete')
+
   return (
     <Dialog>
       <DialogTrigger>

@@ -15,13 +15,14 @@ export const DropdownItem = forwardRef<
   ElementRef<typeof RadixDropdownMenu.Item>,
   DropdownItemProps
 >((props: DropdownItemProps, ref) => {
-  const { className, icon, label, ...rest } = props
+  const { children, className, icon, label, ...rest } = props
 
   return (
     <RadixDropdownMenu.Item ref={ref} {...rest} className={clsx(className, s.item)}>
       {icon}
       <Typography as={'span'} variant={'caption'}>
         {label}
+        {/*{children}*/}
       </Typography>
     </RadixDropdownMenu.Item>
   )

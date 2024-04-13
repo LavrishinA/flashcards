@@ -26,7 +26,7 @@ export const decksApi = baseApi.injectEndpoints({
       providesTags: ['Deck'],
       query: ({ id, ...params }) => ({
         method: 'GET',
-        params: params ?? undefined,
+        params,
         url: `/v1/decks/${id}/cards`,
       }),
     }),

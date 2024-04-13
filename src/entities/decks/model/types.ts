@@ -63,12 +63,11 @@ export type Deck = {
   author: Author
   cardsCount: number
   cover: null | string
-  created: string
+  created: Date
   id: string
   isPrivate: boolean
   name: string
-  shots: number
-  updated: string
+  updated: Date
   userId: string
 }
 
