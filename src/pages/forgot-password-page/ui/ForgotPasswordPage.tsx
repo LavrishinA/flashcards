@@ -12,12 +12,13 @@ export const ForgotPasswordPage = () => {
   const navigate = useNavigate()
 
   const sendPasswordHandler = async ({ email }: FormValues) => {
-    await sendEmail({ email }).unwrap()
+    await sendEmail(email).unwrap()
     navigate('/check-email', { state: { email: email } })
     setEmail(email)
   }
 
   return isSuccess ? (
+    //delete div?
     <div>
       <CheckEmail email={email} />
     </div>
