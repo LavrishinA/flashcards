@@ -40,8 +40,10 @@ export const DeckPage = () => {
         <PreviousPage />
       </div>
       <div className={s.container}>
-        <Typography variant={'h1'}>{deck?.name}</Typography>
-        {isOwner && <DeckMenu deck={deck || ({} as Deck)} id={deckId} />}
+        <div className={s.name}>
+          <Typography variant={'h1'}>{deck?.name}</Typography>
+          {isOwner && <DeckMenu deck={deck || ({} as Deck)} id={deckId} />}
+        </div>
         {isOwner ? (
           <Button>Add New Card</Button>
         ) : (
@@ -54,15 +56,13 @@ export const DeckPage = () => {
           </>
         )}
       </div>
-      <div className={s.imgInputArea}>
-        {deck?.cover && (
-          <div className={s.ratioContainer}>
-            <AspectRatio ratio={25 / 15}>
-              <img alt={''} className={s.image} loading={'lazy'} src={deck?.cover} />
-            </AspectRatio>
-          </div>
-        )}
-      </div>
+      {deck?.cover && (
+        <div className={s.ratioContainer}>
+          <AspectRatio ratio={25 / 15}>
+            <img alt={''} className={s.image} loading={'lazy'} src={deck?.cover} />
+          </AspectRatio>
+        </div>
+      )}
       {deck && deck.cardsCount === 0 ? (
         <>
           <Typography className={s.emptyDeck} variant={'h2'}>
@@ -70,11 +70,11 @@ export const DeckPage = () => {
           </Typography>
         </>
       ) : (
-        <>
+        <div className={s.mainContent}>
           <SearchCards name={'question'} />
           {deck && cards?.items && <CardsList cards={cards.items} currentDeck={deck.id} />}
           {cards?.pagination && <PaginationList pagination={cards.pagination} />}
-        </>
+        </div>
       )}
     </section>
   )

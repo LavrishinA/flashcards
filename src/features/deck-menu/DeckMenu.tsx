@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useDeleteDeckMutation } from '@/entities/decks'
 import { Deck } from '@/entities/decks/model/types'
 import { DeleteDeck } from '@/features/decks/delete-deck'
 import { DropDownContent, DropdownMenu, DropdownTrigger } from '@/shared/ui/DropDown'
@@ -15,11 +14,11 @@ type Props = {
 export const DeckMenu = ({ deck, id }: Props) => {
   const navigate = useNavigate()
 
-  const [deleteDeck] = useDeleteDeckMutation()
+  // const [deleteDeck] = useDeleteDeckMutation()
 
-  const deleteDeckHandler = () => {
-    deleteDeck({ id })
-  }
+  // const deleteDeckHandler = () => {
+  //   deleteDeck({ id })
+  // }
 
   const navigateToLearnDeck = () => navigate(`/${deck?.id}/learn/${deck?.name}`)
 
@@ -35,11 +34,7 @@ export const DeckMenu = ({ deck, id }: Props) => {
           onClick={navigateToLearnDeck}
         />
         <DropdownItem icon={<EditIcon height={16} width={16} />} label={'Edit'} />
-        <DropdownItem
-          icon={<DeleteIcon height={16} width={16} />}
-          label={'Delete'}
-          onClick={deleteDeckHandler}
-        >
+        <DropdownItem icon={<DeleteIcon height={16} width={16} />} label={'Delete'}>
           <DeleteDeck id={id} name={deck.name} />
         </DropdownItem>
       </DropDownContent>
