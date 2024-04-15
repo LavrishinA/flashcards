@@ -1,31 +1,29 @@
+import { ReactNode } from 'react'
+
 import { useDeleteDeckMutation } from '@/entities/decks'
 import { Button } from '@/shared/ui/Button'
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
 import { Typography } from '@/shared/ui/Typography'
-import { DeleteIcon } from '@/shared/ui/icons'
 
 import s from './DeleteDeck.module.scss'
 
 type Props = {
+  children: ReactNode
   id: string
   name: string
 }
 
 export const DeleteDeck = (props: Props) => {
-  const { id, name } = props
+  const { children, id, name } = props
   const [deleteDeck, { isLoading }] = useDeleteDeckMutation()
 
   const deleteDeckHandler = () => {
     deleteDeck({ id })
   }
 
-  console.log('delete')
-
   return (
     <Dialog>
-      <DialogTrigger>
-        <DeleteIcon height={16} width={16} />
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent title={'Delete deck'}>
         <div className={s.modalContent}>
           <Typography as={'p'} variant={'body1'}>
@@ -37,9 +35,11 @@ export const DeleteDeck = (props: Props) => {
             <DialogClose asChild>
               <Button variant={'secondary'}>Cancel</Button>
             </DialogClose>
-            <Button disabled={isLoading} onClick={deleteDeckHandler} variant={'primary'}>
-              Delete Deck
-            </Button>
+            <DialogClose asChild>
+              <Button disabled={isLoading} onClick={deleteDeckHandler} variant={'primary'}>
+                Delete Deck
+              </Button>
+            </DialogClose>
           </div>
         </div>
       </DialogContent>

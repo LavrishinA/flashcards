@@ -45,16 +45,13 @@ export const Profile = (props: Props) => {
               </Typography>
             </div>
           </UserSeparator>
-          <DropdownItem
-            icon={<ProfileIcon height={16} width={16} />}
-            label={'My profile'}
-            onClick={navigateToEditProfile}
-          />
-          <DropdownItem
-            icon={<LogoutIcon height={16} width={16} />}
-            label={'Sign out'}
-            onClick={logoutHandler}
-          />
+          <DropdownItem onClick={navigateToEditProfile}>
+            <ProfileIcon height={16} width={16} />
+            My profile
+          </DropdownItem>
+          <DropdownItem onClick={logoutHandler}>
+            <LogoutIcon height={16} width={16} /> Sign out
+          </DropdownItem>
         </DropDownContent>
       </DropdownMenu>
     </div>

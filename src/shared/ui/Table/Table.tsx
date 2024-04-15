@@ -1,6 +1,5 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
-import { Typography } from '@/shared/ui/Typography'
 import clsx from 'clsx'
 
 import s from './Table.module.scss'
@@ -39,9 +38,7 @@ const TableCellHead = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<
 
     return (
       <th className={clsx(className, s.cellHead)} {...rest} ref={ref}>
-        <Typography as={'span'} variant={'subtitle2'}>
-          {children}
-        </Typography>
+        {children}
       </th>
     )
   }
@@ -51,10 +48,8 @@ const TableCell = forwardRef<HTMLTableCellElement, ComponentPropsWithoutRef<'td'
   const { children, className, ...rest } = props
 
   return (
-    <td className={clsx(s.cellRow)} {...rest} ref={ref}>
-      <Typography as={'span'} className={className} variant={'body2'}>
-        {children}
-      </Typography>
+    <td className={clsx(className, s.cellRow)} {...rest} ref={ref}>
+      {children}
     </td>
   )
 })

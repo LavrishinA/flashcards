@@ -28,15 +28,17 @@ export const DeckMenu = ({ deck, id }: Props) => {
         <DropDownTriggerIcon height={16} width={16} />
       </DropdownTrigger>
       <DropDownContent>
-        <DropdownItem
-          icon={<PlayIcon height={16} width={16} />}
-          label={'Learn'}
-          onClick={navigateToLearnDeck}
-        />
-        <DropdownItem icon={<EditIcon height={16} width={16} />} label={'Edit'} />
-        <DropdownItem icon={<DeleteIcon height={16} width={16} />} label={'Delete'}>
-          <DeleteDeck id={id} name={deck.name} />
+        <DropdownItem onClick={navigateToLearnDeck}>
+          <PlayIcon height={16} width={16} /> Learn
         </DropdownItem>
+        <DropdownItem>
+          <EditIcon height={16} width={16} /> Edit
+        </DropdownItem>
+        <DeleteDeck id={id} name={deck.name}>
+          <DropdownItem onSelect={e => e.preventDefault()}>
+            <DeleteIcon height={16} width={16} /> Delete
+          </DropdownItem>
+        </DeleteDeck>
       </DropDownContent>
     </DropdownMenu>
   )

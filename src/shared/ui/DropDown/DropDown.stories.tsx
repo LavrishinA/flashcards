@@ -28,9 +28,15 @@ export const DropDownDefault: Story = {
           <DropDownTriggerIcon height={16} width={16} />
         </DropdownTrigger>
         <DropDownContent>
-          <DropdownItem icon={<PlayIcon height={16} width={16} />} label={'Learn'} />
-          <DropdownItem icon={<EditIcon height={16} width={16} />} label={'Edit'} />
-          <DropdownItem icon={<DeleteIcon height={16} width={16} />} label={'Delete'} />
+          <DropdownItem>
+            <PlayIcon height={16} width={16} /> Learn
+          </DropdownItem>
+          <DropdownItem>
+            <EditIcon height={16} width={16} /> Edit
+          </DropdownItem>
+          <DropdownItem>
+            <DeleteIcon height={16} width={16} /> Delete
+          </DropdownItem>
         </DropDownContent>
       </DropdownMenu>
     )
@@ -48,8 +54,12 @@ export const DropDownWithUser: Story = {
           <UserSeparator email={'happyhack@gmail.com'} username={'Alex'}>
             <Avatar username={'Alex'} />
           </UserSeparator>
-          <DropdownItem icon={<ProfileIcon height={16} width={16} />} label={'My profile'} />
-          <DropdownItem icon={<LogoutIcon height={16} width={16} />} label={'Sign out'} />
+          <DropdownItem>
+            <ProfileIcon height={16} width={16} /> My profile
+          </DropdownItem>
+          <DropdownItem>
+            <LogoutIcon height={16} width={16} /> Sign out
+          </DropdownItem>
         </DropDownContent>
       </DropdownMenu>
     )

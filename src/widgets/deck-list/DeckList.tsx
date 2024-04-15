@@ -6,7 +6,7 @@ import { dateFormater } from '@/shared/lib/dateFormater'
 import { Button } from '@/shared/ui/Button'
 import { Table } from '@/shared/ui/Table'
 import { Typography } from '@/shared/ui/Typography'
-import { PlayIcon } from '@/shared/ui/icons'
+import { DeleteIcon, PlayIcon } from '@/shared/ui/icons'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './DeckList.module.scss'
@@ -22,7 +22,7 @@ export const DeckList = (props: Props) => {
   return (
     <div className={s.deckListContainer}>
       <Table.Root>
-        <Table.TableHeader>
+        <Table.TableHeader className={s.cellHead}>
           <Table.TableRow>
             <Table.TableCellHead>Name</Table.TableCellHead>
             <Table.TableCellHead>Cards</Table.TableCellHead>
@@ -53,7 +53,7 @@ export const DeckList = (props: Props) => {
                   </Typography>
                 </Table.TableCell>
                 <Table.TableCell>{deck.cardsCount}</Table.TableCell>
-                <Table.TableCell>{dateFormater(deck.updated)}</Table.TableCell>
+                <Table.TableCell className={s.cell}>{dateFormater(deck.updated)}</Table.TableCell>
                 <Table.TableCell>{deck.author.name}</Table.TableCell>
                 <Table.TableCell>
                   {deck.cardsCount !== 0 && (
@@ -61,7 +61,13 @@ export const DeckList = (props: Props) => {
                       <PlayIcon height={16} width={16} />
                     </Button>
                   )}
-                  {currentUser === deck.author.id && <DeleteDeck id={deck.id} name={deck.name} />}
+                  {currentUser === deck.author.id && (
+                    <DeleteDeck id={deck.id} name={deck.name}>
+                      <Button variant={'text'}>
+                        <DeleteIcon height={16} width={16} />{' '}
+                      </Button>
+                    </DeleteDeck>
+                  )}
                 </Table.TableCell>
               </Table.TableRow>
             ))}
