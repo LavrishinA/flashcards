@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useDeleteDeckMutation } from '@/entities/decks'
 import { Button } from '@/shared/ui/Button'
@@ -16,9 +17,11 @@ type Props = {
 export const DeleteDeck = (props: Props) => {
   const { children, id, name } = props
   const [deleteDeck, { isLoading }] = useDeleteDeckMutation()
+  const navigate = useNavigate()
 
   const deleteDeckHandler = () => {
     deleteDeck({ id })
+    navigate(-1)
   }
 
   return (
