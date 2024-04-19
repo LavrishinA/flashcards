@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useDeleteDeckMutation } from '@/entities/decks'
+import { Deck } from '@/entities/decks/model/types'
 import { Button } from '@/shared/ui/Button'
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
 import { Typography } from '@/shared/ui/Typography'
@@ -10,18 +11,22 @@ import s from './DeleteDeck.module.scss'
 
 type Props = {
   children: ReactNode
+  deck: Deck
   id: string
   name: string
 }
 
 export const DeleteDeck = (props: Props) => {
-  const { children, id, name } = props
+  const { children, deck, id, name } = props
   const [deleteDeck, { isLoading }] = useDeleteDeckMutation()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const deleteDeckHandler = () => {
     deleteDeck({ id })
-    navigate('/')
+    if (location.pathname === `/${deck.id}/cards`) {
+      navigate(-1)
+    }
   }
 
   return (
