@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Slider } from '@/shared/ui/Slider'
 import { Typography } from '@/shared/ui/Typography'
 
-type Props = { max: number; min: number }
+type Props = {
+  max: number
+  min: number
+}
 
 export const MinMaxCards = ({ max, min }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [values, setValues] = useState([Number(searchParams.get('minCardsCount')) ?? min, max])
+  const currentMin = Number(searchParams.get('minCardsCount'))
+  const currentMax = Number(searchParams.get('maxCardsCount'))
+  const [values, setValues] = useState([currentMin ?? min, currentMax ?? max])
 
   const sliderCommitValueHandler = (values: number[]) => {
     searchParams.set('currentPage', `1`)
@@ -16,6 +21,14 @@ export const MinMaxCards = ({ max, min }: Props) => {
     searchParams.set('maxCardsCount', `${values[1]}`)
     setSearchParams(searchParams)
   }
+
+  const sliderChangeValueHandler = (values: number[]) => {
+    setValues(values)
+  }
+
+  useEffect(() => {
+    currentMin || currentMax || setValues([min, max])
+  }, [currentMin, currentMax, min, max])
 
   return (
     <div>
@@ -25,7 +38,7 @@ export const MinMaxCards = ({ max, min }: Props) => {
       <Slider
         max={max}
         min={min}
-        onValueChange={setValues}
+        onValueChange={sliderChangeValueHandler}
         onValueCommit={sliderCommitValueHandler}
         value={values}
       />
