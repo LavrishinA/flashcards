@@ -75,7 +75,6 @@ export const EditProfileForm = (props: Props) => {
               {user && (
                 <Avatar
                   className={s.avatar}
-                  onLoadingStatusChange={async status => console.log(status)}
                   src={
                     getValues('avatar') ? URL.createObjectURL(getValues('avatar')[0]) : user.avatar
                   }
