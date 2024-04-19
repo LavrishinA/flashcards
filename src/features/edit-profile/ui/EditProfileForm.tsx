@@ -24,6 +24,7 @@ export const EditProfileForm = (props: Props) => {
   const {
     control,
     formState: { dirtyFields, errors, isSubmitting },
+    getValues,
     handleSubmit,
     register,
     reset,
@@ -71,7 +72,16 @@ export const EditProfileForm = (props: Props) => {
               </Typography>
             )}
             <div className={s.avatarInput}>
-              {user && <Avatar className={s.avatar} src={user.avatar} username={user?.name} />}
+              {user && (
+                <Avatar
+                  className={s.avatar}
+                  onLoadingStatusChange={async status => console.log(status)}
+                  src={
+                    getValues('avatar') ? URL.createObjectURL(getValues('avatar')[0]) : user.avatar
+                  }
+                  username={user?.name}
+                />
+              )}
               <label htmlFor={'avatar'}>
                 <EditIcon className={s.avatarTrigger} height={16} width={16} />
                 <input
