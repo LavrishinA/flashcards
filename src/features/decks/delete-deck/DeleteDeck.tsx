@@ -21,7 +21,7 @@ export const DeleteDeck = (props: Props) => {
 
   const deleteDeckHandler = () => {
     deleteDeck({ id })
-    navigate(-1)
+    navigate('/')
   }
 
   return (

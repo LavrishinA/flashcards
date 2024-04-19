@@ -133,3 +133,8 @@ export type CardsIntoDeckPayload = {
   orderBy?: string
   question?: string
 }
+
+export type Sort = {
+  sortBy: string
+  sortDirection: 'asc' | 'desc'
+} | null

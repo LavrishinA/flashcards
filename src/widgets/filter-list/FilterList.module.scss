@@ -1,6 +1,18 @@
 .filtersContainer {
   display: flex;
-  gap: 24px;
+  gap: 46px;
   align-items: end;
   margin-bottom: 36px;
+}
+
+.clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }

@@ -14,12 +14,6 @@ type Props = {
 export const DeckMenu = ({ deck, id }: Props) => {
   const navigate = useNavigate()
 
-  // const [deleteDeck] = useDeleteDeckMutation()
-
-  // const deleteDeckHandler = () => {
-  //   deleteDeck({ id })
-  // }
-
   const navigateToLearnDeck = () => navigate(`/${deck?.id}/learn/${deck?.name}`)
 
   return (
