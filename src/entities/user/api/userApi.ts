@@ -1,4 +1,6 @@
 import { SignUpPayload, userLoginPayload, userMeResponse } from '@/entities/user/model/types'
+import { FormValues as ResetPasswordArgs } from '@/features/create-password/model/types'
+import { FormValues as RecoverPasswordArgs } from '@/features/forgot-password/model/types'
 import { baseApi } from '@/shared/api/base-api'
 
 export const userApi = baseApi.injectEndpoints({
@@ -24,14 +26,18 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: ['Me'],
       query: () => ({ method: 'GET', url: '/v1/auth/me' }),
     }),
-    resetPassword: build.mutation<void, string>({
-      query: email => ({
-        body: {
-          email,
-          html: '<h1>Hello, ##name##!</h1><p>You have received this email because the Quiz cards website has made a password reset request to your address. To set a new password for your account, please follow the link  <a href="http://localhost:5173/create-new-password/##token##">here</a></p><p>If you did not submit a password reset request, please ignore this email.</p>',
-        },
+    recoverPassword: build.mutation<void, RecoverPasswordArgs>({
+      query: args => ({
+        body: args,
         method: 'POST',
         url: '/v1/auth/recover-password',
+      }),
+    }),
+    resetPassword: build.mutation<void, ResetPasswordArgs>({
+      query: ({ token, ...args }) => ({
+        body: args,
+        method: 'POST',
+        url: `/v1/auth/reset-password/${token}`,
       }),
     }),
     signUp: build.mutation<userMeResponse, SignUpPayload>({
@@ -75,6 +81,7 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useMeQuery,
+  useRecoverPasswordMutation,
   useResetPasswordMutation,
   useSignUpMutation,
   useUpdateProfileMutation,

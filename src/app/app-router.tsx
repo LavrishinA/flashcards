@@ -13,6 +13,7 @@ import { ForgotPasswordPage } from '@/pages/forgot-password-page/ui/ForgotPasswo
 import { Layout } from '@/pages/layout/Layout'
 import { LearnPage } from '@/pages/learn-page'
 import { MainPage } from '@/pages/main-page'
+import { ResetPasswordPage } from '@/pages/reset-password-page/ui/ResetPasswordPage'
 import { SigninPage } from '@/pages/signin-page'
 import { SignupPage } from '@/pages/signup-page'
 
@@ -21,6 +22,7 @@ const publicRoutes: RouteObject[] = [
   { element: <SignupPage />, path: '/sign-up' },
   { element: <ForgotPasswordPage />, path: '/forgot-password' },
   { element: <CheckEmailPage />, path: '/check-email' },
+  { element: <ResetPasswordPage />, path: '/create-new-password/:token' },
 ]
 
 const privateRoutes: RouteObject[] = [
