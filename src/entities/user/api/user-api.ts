@@ -1,4 +1,6 @@
 import { SignUpPayload, userLoginPayload, userMeResponse } from '@/entities/user/model/types'
+import { FormValues as ResetPasswordArgs } from '@/features/create-password/model/types'
+import { FormValues as RecoverPasswordArgs } from '@/features/forgot-password/model/types'
 import { baseApi } from '@/shared/api/base-api'
 
 export const userApi = baseApi.injectEndpoints({
@@ -23,6 +25,20 @@ export const userApi = baseApi.injectEndpoints({
     me: build.query<userMeResponse, void>({
       providesTags: ['Me'],
       query: () => ({ method: 'GET', url: '/v1/auth/me' }),
+    }),
+    recoverPassword: build.mutation<void, RecoverPasswordArgs>({
+      query: args => ({
+        body: args,
+        method: 'POST',
+        url: '/v1/auth/recover-password',
+      }),
+    }),
+    resetPassword: build.mutation<void, ResetPasswordArgs>({
+      query: ({ token, ...args }) => ({
+        body: args,
+        method: 'POST',
+        url: `/v1/auth/reset-password/${token}`,
+      }),
     }),
     signUp: build.mutation<userMeResponse, SignUpPayload>({
       query: user => ({ body: user, method: 'POST', url: '/v1/auth/sign-up' }),
@@ -65,6 +81,8 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useMeQuery,
+  useRecoverPasswordMutation,
+  useResetPasswordMutation,
   useSignUpMutation,
   useUpdateProfileMutation,
 } = userApi
