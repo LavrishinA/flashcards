@@ -4,6 +4,8 @@ import { useResetPasswordMutation } from '@/entities/user/api/userApi'
 import { CreateNewPassword } from '@/features/create-password'
 import { FormValues } from '@/features/create-password/model/types'
 
+import s from './ResetPasswordPage.module.scss'
+
 export const ResetPasswordPage = () => {
   const [createNewPassword] = useResetPasswordMutation()
   const navigate = useNavigate()
@@ -16,5 +18,9 @@ export const ResetPasswordPage = () => {
     }
   }
 
-  return <CreateNewPassword onSubmit={createPassword} />
+  return (
+    <section className={s.page}>
+      <CreateNewPassword onSubmit={createPassword} />
+    </section>
+  )
 }

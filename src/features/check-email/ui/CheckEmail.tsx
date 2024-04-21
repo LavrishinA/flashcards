@@ -24,7 +24,6 @@ export const CheckEmail = ({ email }: FormValues) => {
         </div>
         <div className={s.description}>
           <Typography as={'span'} variant={'body2'}>
-            {/*We’ve sent an Email with instructions to example@mail.com*/}
             We’ve sent an Email with instructions to {email}
           </Typography>
         </div>
