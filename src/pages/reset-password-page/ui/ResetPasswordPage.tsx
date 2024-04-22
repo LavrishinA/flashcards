@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useResetPasswordMutation } from '@/entities/user/api/userApi'
+import { useResetPasswordMutation } from '@/entities/user/api/user-api'
 import { CreateNewPassword } from '@/features/create-password'
 import { FormValues } from '@/features/create-password/model/types'
 

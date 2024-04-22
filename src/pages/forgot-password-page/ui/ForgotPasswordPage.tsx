@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useRecoverPasswordMutation } from '@/entities/user/api/userApi'
+import { useRecoverPasswordMutation } from '@/entities/user/api/user-api'
 import { ForgotPasswordForm } from '@/features/forgot-password'
 import { emailTemplate } from '@/features/forgot-password/const/emailTemplate'
 import { FormValues } from '@/features/forgot-password/model/types'
