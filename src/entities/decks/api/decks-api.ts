@@ -13,7 +13,7 @@ import { baseApi } from '@/shared/api/base-api'
 
 export const decksApi = baseApi.injectEndpoints({
   endpoints: build => ({
-    createDeck: build.mutation<DeckItem, FormData>({
+    createDeck: build.mutation<Deck, FormData>({
       invalidatesTags: ['Decks'],
       query: args => ({ body: args, method: 'POST', url: '/v1/decks' }),
     }),
