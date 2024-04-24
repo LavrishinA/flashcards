@@ -22,7 +22,7 @@ export const CreateDeckForm = (props: Props) => {
     watch,
   } = useForm<FormValues>({
     defaultValues: {
-      cover: undefined,
+      cover: null,
       isPrivate: false,
       name: '',
     },
