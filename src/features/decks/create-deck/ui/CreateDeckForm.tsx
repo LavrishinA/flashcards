@@ -32,9 +32,10 @@ export const CreateDeckForm = (props: Props) => {
   return (
     <form className={s.formsContainer} onSubmit={handleSubmit(async data => props.onSubmit(data))}>
       {watch('cover') && (
-        <div className={s.cover}>
-          <img src={getValues('cover') && URL.createObjectURL(getValues('cover')?.[0]!)} />
-        </div>
+        <img
+          className={s.cover}
+          src={getValues('cover') && URL.createObjectURL(getValues('cover')?.[0]!)}
+        />
       )}
       <div style={{ textAlign: 'left' }}>
         <ControlledInput
