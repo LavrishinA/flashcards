@@ -66,7 +66,7 @@ export const CardsList = (props: Props) => {
                 </Table.TableCell>
                 <Table.TableCell className={s.cell}>{dateFormater(card.updated)}</Table.TableCell>
                 <Table.TableCell className={s.cell}>
-                  <Rating rating={card.grade} />
+                  <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={14} />
                 </Table.TableCell>
                 <Table.TableCell className={s.cell}></Table.TableCell>
               </Table.TableRow>
