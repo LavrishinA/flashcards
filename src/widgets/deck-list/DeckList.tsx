@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import { Deck } from '@/entities/decks/model/types'
 import { DeleteDeck } from '@/features/decks/delete-deck'
@@ -7,7 +7,9 @@ import { Button } from '@/shared/ui/Button'
 import { Table } from '@/shared/ui/Table'
 import { Typography } from '@/shared/ui/Typography'
 import { DeleteIcon, PlayIcon } from '@/shared/ui/icons'
+import { Caret } from '@/shared/ui/icons/Caret'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
+import { clsx } from 'clsx'
 
 import s from './DeckList.module.scss'
 
@@ -16,18 +18,45 @@ type Props = {
   decks: Deck[]
 }
 
+const headers = [
+  { keyToSort: 'name', label: 'Name' },
+  { keyToSort: 'cardsCount', label: 'Cards' },
+  { keyToSort: 'updated', label: 'Last Updated' },
+  { keyToSort: 'created', label: 'Created by' },
+]
+
 export const DeckList = (props: Props) => {
   const { currentUser, decks } = props
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [currentKeyToSort, direction] = searchParams.get('orderBy')?.split('-') || []
+
+  const headerClickHandler = (th: { keyToSort: string; label: string }) => {
+    searchParams.set(
+      'orderBy',
+      `${th.keyToSort}-${
+        th.keyToSort === currentKeyToSort ? (direction === 'asc' ? 'desc' : 'asc') : 'desc'
+      }`
+    )
+    setSearchParams(searchParams)
+  }
 
   return (
     <div className={s.deckListContainer}>
       <Table.Root>
         <Table.TableHeader className={s.cellHead}>
           <Table.TableRow>
-            <Table.TableCellHead>Name</Table.TableCellHead>
-            <Table.TableCellHead>Cards</Table.TableCellHead>
-            <Table.TableCellHead>Last Updated</Table.TableCellHead>
-            <Table.TableCellHead>Created by</Table.TableCellHead>
+            {headers.map(th => (
+              <Table.TableCellHead key={th.label} onClick={() => headerClickHandler(th)}>
+                <div className={s.colName}>
+                  {th.label}
+                  {currentKeyToSort === th.keyToSort && (
+                    <Caret
+                      className={clsx(currentKeyToSort === th.keyToSort ? s[direction] : 'asc')}
+                    />
+                  )}
+                </div>
+              </Table.TableCellHead>
+            ))}
             <Table.TableCellHead>{''}</Table.TableCellHead>
           </Table.TableRow>
         </Table.TableHeader>

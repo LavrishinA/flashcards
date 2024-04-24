@@ -21,3 +21,11 @@ export const FullRating: Story = {
     return <Rating color={color} maxStar={maxStar} rating={rating} size={size} />
   },
 }
+
+export const ReadOnlyRating: Story = {
+  args: {
+    maxStar: 5,
+    readonly: true,
+    size: 16,
+  },
+}
