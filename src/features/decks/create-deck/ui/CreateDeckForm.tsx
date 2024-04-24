@@ -16,8 +16,10 @@ export const CreateDeckForm = (props: Props) => {
   const {
     control,
     formState: { errors, isSubmitting },
+    getValues,
     handleSubmit,
     register,
+    watch,
   } = useForm<FormValues>({
     defaultValues: {
       cover: undefined,
@@ -29,6 +31,11 @@ export const CreateDeckForm = (props: Props) => {
 
   return (
     <form className={s.formsContainer} onSubmit={handleSubmit(async data => props.onSubmit(data))}>
+      {watch('cover') && (
+        <div className={s.cover}>
+          <img src={getValues('cover') && URL.createObjectURL(getValues('cover')?.[0]!)} />
+        </div>
+      )}
       <div style={{ textAlign: 'left' }}>
         <ControlledInput
           autoFocus
@@ -38,7 +45,7 @@ export const CreateDeckForm = (props: Props) => {
           label={'Name Pack'}
           name={'name'}
         />
-        <label className={s.cover} htmlFor={'cover'}>
+        <label className={s.label} htmlFor={'cover'}>
           <DeckIcon className={s.coverTrigger} height={16} width={16} />
           <Typography variant={'body1'}>Upload Image</Typography>
           <input

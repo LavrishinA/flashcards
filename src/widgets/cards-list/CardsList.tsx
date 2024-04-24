@@ -1,5 +1,6 @@
 import { Card } from '@/entities/decks/model/types'
 import { dateFormater } from '@/shared/lib/dateFormater'
+import { Rating } from '@/shared/ui/Rating'
 import { Table } from '@/shared/ui/Table'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
@@ -64,7 +65,9 @@ export const CardsList = (props: Props) => {
                   </div>
                 </Table.TableCell>
                 <Table.TableCell className={s.cell}>{dateFormater(card.updated)}</Table.TableCell>
-                <Table.TableCell className={s.cell}>{card.grade}</Table.TableCell>
+                <Table.TableCell className={s.cell}>
+                  <Rating rating={card.grade} />
+                </Table.TableCell>
                 <Table.TableCell className={s.cell}></Table.TableCell>
               </Table.TableRow>
             ))}

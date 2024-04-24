@@ -2,7 +2,6 @@ import {
   CardsIntoDeckPayload,
   CardsIntoDeckResponse,
   Deck,
-  DeckItem,
   DecksPayload,
   DecksResponse,
   DeleteDeckResponse,

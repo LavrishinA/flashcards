@@ -20,7 +20,6 @@ export const SetGrade = ({ onSave }: Props) => {
     <div>
       <Typography variant={'subtitle1'}>Rate yourself:</Typography>
       <RadioGroup onValueChange={setGradeHandler} options={gradeOptions} value={grade} />
-
       <Button fullWidth onClick={() => onSave(grade)}>
         Next Question
       </Button>
