@@ -33,3 +33,11 @@ export const FullRating: Story = {
     )
   },
 }
+
+export const ReadOnlyRating: Story = {
+  args: {
+    maxStar: 5,
+    readonly: true,
+    size: 16,
+  },
+}
