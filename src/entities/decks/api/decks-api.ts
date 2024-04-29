@@ -28,6 +28,10 @@ export const decksApi = baseApi.injectEndpoints({
       invalidatesTags: ['Decks'],
       query: ({ id }) => ({ method: 'DELETE', url: `/v1/decks/${id}` }),
     }),
+    editDeck: build.mutation<Deck, { body: FormData; id: string }>({
+      invalidatesTags: ['Decks', 'Deck'],
+      query: ({ body, id }) => ({ body, method: 'PATCH', url: `/v1/decks/${id}` }),
+    }),
     getCardsIntoDeck: build.query<CardsIntoDeckResponse, CardsIntoDeckPayload>({
       providesTags: ['Deck'],
       query: ({ id, ...params }) => ({
@@ -63,6 +67,7 @@ export const {
   useCreateCardMutation,
   useCreateDeckMutation,
   useDeleteDeckMutation,
+  useEditDeckMutation,
   useGetCardsIntoDeckQuery,
   useGetDeckByIdQuery,
   useGetDecksQuery,
