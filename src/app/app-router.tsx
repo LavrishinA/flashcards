@@ -7,8 +7,8 @@ import {
   useOutletContext,
 } from 'react-router-dom'
 
+import { CheckEmailPage } from '@/pages/check-email-page'
 import { DeckPage } from '@/pages/deck-page'
-import { CheckEmailPage } from '@/pages/check-email-page/ui/CheckEmailPage'
 import { EditProfilePage } from '@/pages/edit-profile-page'
 import { ForgotPasswordPage } from '@/pages/forgot-password-page/ui/ForgotPasswordPage'
 import { Layout } from '@/pages/layout/Layout'

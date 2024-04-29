@@ -1,7 +1,10 @@
 import { Card } from '@/entities/decks/model/types'
+import { DeleteCard } from '@/features/cards/delete-card'
 import { dateFormater } from '@/shared/lib/dateFormater'
+import { Button } from '@/shared/ui/Button'
 import { Rating } from '@/shared/ui/Rating'
 import { Table } from '@/shared/ui/Table'
+import { DeleteIcon } from '@/shared/ui/icons'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './CardsList.module.scss'
@@ -68,7 +71,13 @@ export const CardsList = (props: Props) => {
                 <Table.TableCell className={s.cell}>
                   <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={14} />
                 </Table.TableCell>
-                <Table.TableCell className={s.cell}></Table.TableCell>
+                <Table.TableCell className={s.cell}>
+                  <DeleteCard card={card} id={card.id}>
+                    <Button variant={'text'}>
+                      <DeleteIcon height={16} width={16} />{' '}
+                    </Button>
+                  </DeleteCard>
+                </Table.TableCell>
               </Table.TableRow>
             ))}
         </Table.TableBody>

@@ -1,0 +1,14 @@
+.modalContent {
+  padding: 0 24px 24px;
+}
+
+.cardName {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-accent-500);
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+}

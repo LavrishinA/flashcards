@@ -4,7 +4,7 @@ import { baseApi } from '@/shared/api/base-api'
 export const cardsApi = baseApi.injectEndpoints({
   endpoints: build => ({
     deleteCard: build.mutation<void, DeleteCardArgs>({
-      invalidatesTags: ['Cards'],
+      invalidatesTags: ['Deck'],
       query: ({ id }) => ({ method: 'DELETE', url: `/v1/cards/${id}` }),
     }),
   }),
