@@ -16,6 +16,7 @@ import s from './DeckList.module.scss'
 type Props = {
   currentUser: string
   decks: Deck[]
+  loading: boolean
 }
 
 const headers = [
@@ -42,7 +43,7 @@ export const DeckList = (props: Props) => {
 
   return (
     <div className={s.deckListContainer}>
-      <Table.Root>
+      <Table.Root className={s.table}>
         <Table.TableHeader className={s.cellHead}>
           <Table.TableRow>
             {headers.map(th => (
@@ -82,7 +83,7 @@ export const DeckList = (props: Props) => {
                   </Typography>
                 </Table.TableCell>
                 <Table.TableCell>{deck.cardsCount}</Table.TableCell>
-                <Table.TableCell className={s.cell}>{dateFormater(deck.updated)}</Table.TableCell>
+                <Table.TableCell>{dateFormater(deck.updated)}</Table.TableCell>
                 <Table.TableCell>{deck.author.name}</Table.TableCell>
                 <Table.TableCell>
                   {deck.cardsCount !== 0 && (

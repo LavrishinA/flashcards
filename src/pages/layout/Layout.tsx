@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useMeQuery } from '@/entities/user'
 import { Profile } from '@/features/profile'
 import { Button } from '@/shared/ui/Button'
+import { Loader } from '@/shared/ui/Loader'
 import { Header } from '@/widgets/header/Header'
 
 import s from './Layout.module.scss'
@@ -13,7 +14,7 @@ export const Layout = () => {
   const isAuth = !isError
 
   if (isLoading) {
-    return <span>loading</span>
+    return <Loader />
   }
 
   return (
