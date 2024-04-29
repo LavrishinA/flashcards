@@ -1,3 +1,4 @@
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { Link, useSearchParams } from 'react-router-dom'
 
 import { Deck } from '@/entities/decks/model/types'
@@ -11,11 +12,14 @@ import { Caret } from '@/shared/ui/icons/Caret'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 import { clsx } from 'clsx'
 
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import s from './DeckList.module.scss'
 
 type Props = {
   currentUser: string
   decks: Deck[]
+  loading: boolean
 }
 
 const headers = [
@@ -26,7 +30,7 @@ const headers = [
 ]
 
 export const DeckList = (props: Props) => {
-  const { currentUser, decks } = props
+  const { currentUser, decks, loading } = props
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentKeyToSort, direction] = searchParams.get('orderBy')?.split('-') || []
 
@@ -42,7 +46,7 @@ export const DeckList = (props: Props) => {
 
   return (
     <div className={s.deckListContainer}>
-      <Table.Root>
+      <Table.Root className={s.table} width={'100%'}>
         <Table.TableHeader className={s.cellHead}>
           <Table.TableRow>
             {headers.map(th => (
@@ -62,46 +66,74 @@ export const DeckList = (props: Props) => {
         </Table.TableHeader>
         <Table.TableBody>
           {decks &&
-            decks.map(deck => (
-              <Table.TableRow key={deck.id}>
-                <Table.TableCell className={s.name}>
-                  {deck.cover && (
-                    <div className={s.ratioContainer}>
-                      <AspectRatio ratio={21 / 9}>
-                        <img alt={''} className={s.image} loading={'lazy'} src={deck?.cover} />
-                      </AspectRatio>
-                    </div>
-                  )}
-                  <Typography
-                    as={Link}
-                    className={s.text}
-                    to={`/${deck.id}/cards`}
-                    variant={'body2'}
-                  >
-                    {deck.name}
-                  </Typography>
-                </Table.TableCell>
-                <Table.TableCell>{deck.cardsCount}</Table.TableCell>
-                <Table.TableCell className={s.cell}>{dateFormater(deck.updated)}</Table.TableCell>
-                <Table.TableCell>{deck.author.name}</Table.TableCell>
-                <Table.TableCell>
-                  {deck.cardsCount !== 0 && (
-                    <Button as={Link} to={`/${deck.id}/learn/${deck.name}`} variant={'text'}>
-                      <PlayIcon height={16} width={16} />
-                    </Button>
-                  )}
-                  {currentUser === deck.author.id && (
-                    <DeleteDeck deck={deck} id={deck.id} name={deck.name}>
-                      <Button variant={'text'}>
-                        <DeleteIcon height={16} width={16} />{' '}
+            decks.map(deck =>
+              loading ? (
+                <TableRowSkeleton />
+              ) : (
+                <Table.TableRow key={deck.id}>
+                  <Table.TableCell className={s.name}>
+                    {deck.cover && (
+                      <div className={s.ratioContainer}>
+                        <AspectRatio ratio={21 / 9}>
+                          <img alt={''} className={s.image} loading={'lazy'} src={deck?.cover} />
+                        </AspectRatio>
+                      </div>
+                    )}
+                    <Typography
+                      as={Link}
+                      className={s.text}
+                      to={`/${deck.id}/cards`}
+                      variant={'body2'}
+                    >
+                      {deck.name}
+                    </Typography>
+                  </Table.TableCell>
+                  <Table.TableCell>{deck.cardsCount}</Table.TableCell>
+                  <Table.TableCell>{dateFormater(deck.updated)}</Table.TableCell>
+                  <Table.TableCell>{deck.author.name}</Table.TableCell>
+                  <Table.TableCell>
+                    {deck.cardsCount !== 0 && (
+                      <Button as={Link} to={`/${deck.id}/learn/${deck.name}`} variant={'text'}>
+                        <PlayIcon height={16} width={16} />
                       </Button>
-                    </DeleteDeck>
-                  )}
-                </Table.TableCell>
-              </Table.TableRow>
-            ))}
+                    )}
+                    {currentUser === deck.author.id && (
+                      <DeleteDeck deck={deck} id={deck.id} name={deck.name}>
+                        <Button variant={'text'}>
+                          <DeleteIcon height={16} width={16} />{' '}
+                        </Button>
+                      </DeleteDeck>
+                    )}
+                  </Table.TableCell>
+                </Table.TableRow>
+              )
+            )}
         </Table.TableBody>
       </Table.Root>
     </div>
+  )
+}
+
+const TableRowSkeleton = () => {
+  return (
+    <SkeletonTheme baseColor={'#333'} highlightColor={'#382766'}>
+      <Table.TableRow>
+        <Table.TableCell>
+          <Skeleton />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton circle className={s.actionSkeleton} />
+        </Table.TableCell>
+      </Table.TableRow>
+    </SkeletonTheme>
   )
 }

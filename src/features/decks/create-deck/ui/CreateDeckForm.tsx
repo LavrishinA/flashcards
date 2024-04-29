@@ -19,6 +19,7 @@ export const CreateDeckForm = (props: Props) => {
     getValues,
     handleSubmit,
     register,
+
     watch,
   } = useForm<FormValues>({
     defaultValues: {
@@ -29,14 +30,14 @@ export const CreateDeckForm = (props: Props) => {
     resolver: zodResolver(CreateDeckZodSchema),
   })
 
+  // const [coverSrc, setCoverSrc] = useState<null | string>()
+
   return (
     <form className={s.formsContainer} onSubmit={handleSubmit(async data => props.onSubmit(data))}>
       {watch('cover') && (
-        <img
-          className={s.cover}
-          src={getValues('cover') && URL.createObjectURL(getValues('cover')?.[0]!)}
-        />
+        <img className={s.cover} src={URL.createObjectURL(getValues('cover')?.[0]!)} />
       )}
+      {/*{coverSrc ? <img alt={'preview'} src={coverSrc} /> : null}*/}
       <div style={{ textAlign: 'left' }}>
         <ControlledInput
           autoFocus
@@ -51,9 +52,24 @@ export const CreateDeckForm = (props: Props) => {
           <Typography variant={'body1'}>Upload Image</Typography>
           <input
             multiple={false}
-            {...register('cover')}
+            {...register(
+              'cover'
+              //   {
+              //   onChange: (e: ChangeEvent<HTMLInputElement>) => {
+              //     const file = e.currentTarget?.files?.[0]
+              //
+              //     if (!file) {
+              //       return
+              //     }
+              //     const src = URL.createObjectURL(file)
+              //
+              //     setCoverSrc(src)
+              //   },
+              // }
+            )}
             accept={'.jpeg,.jpg,.png,.webp'}
             id={'cover'}
+            name={'cover'}
             type={'file'}
           />
         </label>

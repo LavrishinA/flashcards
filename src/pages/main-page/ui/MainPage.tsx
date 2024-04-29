@@ -18,7 +18,7 @@ export const MainPage = () => {
 
   const params = Object.fromEntries(searchParams)
 
-  const { data: decks } = useGetDecksQuery({ ...params, name: debouncedValue })
+  const { data: decks, isFetching } = useGetDecksQuery({ ...params, name: debouncedValue })
   const { data: user } = useMeQuery()
 
   return (
@@ -28,7 +28,9 @@ export const MainPage = () => {
         <CreateDeck />
       </div>
       {user && <FilterList userId={user.id} />}
-      {user && decks?.items && <DeckList currentUser={user.id} decks={decks.items} />}
+      {user && decks?.items && (
+        <DeckList currentUser={user.id} decks={decks.items} loading={isFetching} />
+      )}
       {decks?.pagination && <PaginationList pagination={decks.pagination} />}
     </section>
   )
