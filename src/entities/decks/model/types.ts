@@ -84,7 +84,7 @@ export type Pagination = {
 }
 
 export type CreateDeckArgs = {
-  cover?: File
+  cover?: FileList
   isPrivate?: boolean
   name: string
 }

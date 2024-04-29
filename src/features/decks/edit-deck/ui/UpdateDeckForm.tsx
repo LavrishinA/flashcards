@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
-import { CreateDeckZodSchema } from '@/features/decks/create-deck/model/create-deck-zod-schema'
-import { FormValues, Props } from '@/features/decks/create-deck/model/types'
+import { FormState, Props } from '@/features/decks/edit-deck/model/types'
+import { UpdateDeckZodSchema } from '@/features/decks/edit-deck/model/update-deck-zod-schema'
 import useImageUploader from '@/features/decks/install-cover/InstallCover'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
@@ -12,29 +12,26 @@ import { Close } from '@/shared/ui/icons/close'
 import { DeckIcon } from '@/shared/ui/icons/image-outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import s from './CreateDeck.module.scss'
+import s from './UpdateDeck.module.scss'
 
-export const CreateDeckForm = ({ onSubmit }: Props) => {
-  const [coverSrc, handleImageChange, resetImage] = useImageUploader(null)
+export const UpdateDeckForm = ({ deck, onSubmit }: Props) => {
+  const [coverSrc, handleImageChange, resetImage] = useImageUploader(deck.cover || null)
   const {
     control,
     formState: { errors, isSubmitting },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
+  } = useForm<FormState>({
     defaultValues: {
       cover: null,
-      isPrivate: false,
-      name: '',
+      isPrivate: deck.isPrivate || false,
+      name: deck.name || '',
     },
-    resolver: zodResolver(CreateDeckZodSchema),
+    resolver: zodResolver(UpdateDeckZodSchema),
   })
 
   return (
-    <form
-      className={s.formsContainer}
-      onSubmit={handleSubmit(async formData => onSubmit(formData))}
-    >
+    <form className={s.formsContainer} onSubmit={handleSubmit(async body => onSubmit(body))}>
       {coverSrc && (
         <div className={s.cover}>
           <Button onClick={resetImage} variant={'text'}>
@@ -49,12 +46,12 @@ export const CreateDeckForm = ({ onSubmit }: Props) => {
           className={s.nameInput}
           control={control}
           errorMessage={errors.name?.message}
-          label={'Name Pack'}
+          label={'Edit Name'}
           name={'name'}
         />
         <label className={s.label} htmlFor={'cover'}>
           <DeckIcon className={s.coverTrigger} height={16} width={16} />
-          <Typography variant={'body1'}>Upload Image</Typography>
+          <Typography variant={'body1'}>Change Cover</Typography>
           <input
             multiple={false}
             {...register('cover', {
@@ -74,8 +71,7 @@ export const CreateDeckForm = ({ onSubmit }: Props) => {
               Cancel
             </Button>
           </DialogClose>
-
-          <Button disabled={isSubmitting}>Add New Pack</Button>
+          <Button disabled={isSubmitting}>Edit Deck</Button>
         </div>
       </div>
     </form>

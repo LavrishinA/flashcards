@@ -2,11 +2,12 @@ import { Link, useSearchParams } from 'react-router-dom'
 
 import { Deck } from '@/entities/decks/model/types'
 import { DeleteDeck } from '@/features/decks/delete-deck'
+import { UpdateDeck } from '@/features/decks/edit-deck'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Button } from '@/shared/ui/Button'
 import { Table } from '@/shared/ui/Table'
 import { Typography } from '@/shared/ui/Typography'
-import { DeleteIcon, PlayIcon } from '@/shared/ui/icons'
+import { DeleteIcon, EditIcon, PlayIcon } from '@/shared/ui/icons'
 import { Caret } from '@/shared/ui/icons/Caret'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 import { clsx } from 'clsx'
@@ -91,9 +92,16 @@ export const DeckList = (props: Props) => {
                     </Button>
                   )}
                   {currentUser === deck.author.id && (
+                    <UpdateDeck deck={deck}>
+                      <Button variant={'text'}>
+                        <EditIcon height={16} width={16} />
+                      </Button>
+                    </UpdateDeck>
+                  )}
+                  {currentUser === deck.author.id && (
                     <DeleteDeck deck={deck} id={deck.id} name={deck.name}>
                       <Button variant={'text'}>
-                        <DeleteIcon height={16} width={16} />{' '}
+                        <DeleteIcon height={16} width={16} />
                       </Button>
                     </DeleteDeck>
                   )}
