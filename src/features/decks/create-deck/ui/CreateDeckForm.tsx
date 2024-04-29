@@ -2,25 +2,26 @@ import { useForm } from 'react-hook-form'
 
 import { CreateDeckZodSchema } from '@/features/decks/create-deck/model/create-deck-zod-schema'
 import { FormValues, Props } from '@/features/decks/create-deck/model/types'
+import useImageUploader from '@/features/decks/install-cover/InstallCover'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
 import { Typography } from '@/shared/ui/Typography'
 import { ControlledCheckbox } from '@/shared/ui/controlled/controlled-checkbox/Controlled-checkbox'
 import { ControlledInput } from '@/shared/ui/controlled/controlled-input/Controlled-input'
+import { Close } from '@/shared/ui/icons/close'
 import { DeckIcon } from '@/shared/ui/icons/image-outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './CreateDeck.module.scss'
 
 export const CreateDeckForm = (props: Props) => {
+  const [coverSrc, handleImageChange, resetImage] = useImageUploader(null)
+
   const {
     control,
     formState: { errors, isSubmitting },
-    getValues,
     handleSubmit,
     register,
-
-    watch,
   } = useForm<FormValues>({
     defaultValues: {
       cover: null,
@@ -34,10 +35,14 @@ export const CreateDeckForm = (props: Props) => {
 
   return (
     <form className={s.formsContainer} onSubmit={handleSubmit(async data => props.onSubmit(data))}>
-      {watch('cover') && (
-        <img className={s.cover} src={URL.createObjectURL(getValues('cover')?.[0]!)} />
+      {coverSrc && (
+        <div className={s.cover}>
+          <Button onClick={resetImage} variant={'text'}>
+            <Close />
+          </Button>
+          <img alt={'preview'} className={s.cover} src={coverSrc} />
+        </div>
       )}
-      {/*{coverSrc ? <img alt={'preview'} src={coverSrc} /> : null}*/}
       <div style={{ textAlign: 'left' }}>
         <ControlledInput
           autoFocus
@@ -52,21 +57,9 @@ export const CreateDeckForm = (props: Props) => {
           <Typography variant={'body1'}>Upload Image</Typography>
           <input
             multiple={false}
-            {...register(
-              'cover'
-              //   {
-              //   onChange: (e: ChangeEvent<HTMLInputElement>) => {
-              //     const file = e.currentTarget?.files?.[0]
-              //
-              //     if (!file) {
-              //       return
-              //     }
-              //     const src = URL.createObjectURL(file)
-              //
-              //     setCoverSrc(src)
-              //   },
-              // }
-            )}
+            {...register('cover', {
+              onChange: handleImageChange,
+            })}
             accept={'.jpeg,.jpg,.png,.webp'}
             id={'cover'}
             name={'cover'}
