@@ -3,6 +3,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { useGetCardsIntoDeckQuery, useGetDeckByIdQuery } from '@/entities/decks/api/decks-api'
 import { Deck } from '@/entities/decks/model/types'
 import { useMeQuery } from '@/entities/user'
+import { CreateCard } from '@/features/cards/create-card/ui/CreateCard'
 import { DeckMenu } from '@/features/deck-menu/DeckMenu'
 import { SearchCards } from '@/features/filters/ui/SearchCards'
 import { PreviousPage } from '@/shared/lib/PreviousPage/PreviousPage'
@@ -45,7 +46,8 @@ export const DeckPage = () => {
           {isOwner && <DeckMenu deck={deck || ({} as Deck)} id={deckId} />}
         </div>
         {isOwner ? (
-          <Button>Add New Card</Button>
+          // <Button>Add New Card</Button>
+          <CreateCard />
         ) : (
           <>
             {deck && deck.cardsCount !== 0 && (

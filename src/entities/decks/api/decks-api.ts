@@ -1,6 +1,8 @@
 import {
+  Card,
   CardsIntoDeckPayload,
   CardsIntoDeckResponse,
+  CreateCardArgs,
   Deck,
   DecksPayload,
   DecksResponse,
@@ -14,6 +16,11 @@ import { baseApi } from '@/shared/api/base-api'
 export const decksApi = baseApi.injectEndpoints({
   endpoints: build => ({
     createDeck: build.mutation<Deck, FormData>({
+    createCard: build.mutation<Card, CreateCardArgs>({
+      invalidatesTags: ['Deck'],
+      query: ({ id, ...args }) => ({ body: args, method: 'POST', url: `/v1/decks/${id}/cards` }),
+    }),
+    createDeck: build.mutation<DeckItem, FormData>({
       invalidatesTags: ['Decks'],
       query: args => ({ body: args, method: 'POST', url: '/v1/decks' }),
     }),
@@ -53,6 +60,7 @@ export const decksApi = baseApi.injectEndpoints({
 })
 
 export const {
+  useCreateCardMutation,
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetCardsIntoDeckQuery,

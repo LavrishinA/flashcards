@@ -133,3 +133,13 @@ export type CardsIntoDeckPayload = {
   orderBy?: string
   question?: string
 }
+
+export type CreateCardArgs = {
+  answer: string
+  answerImg?: string
+  answerVideo?: string
+  id: string
+  question: string
+  questionImg?: string
+  questionVideo?: string
+}
