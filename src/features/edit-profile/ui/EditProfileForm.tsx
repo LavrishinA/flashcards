@@ -23,7 +23,7 @@ export const EditProfileForm = (props: Props) => {
 
   const {
     control,
-    formState: { dirtyFields, errors, isSubmitting },
+    formState: { dirtyFields, errors, isSubmitSuccessful, isSubmitting },
     getValues,
     handleSubmit,
     register,
@@ -41,7 +41,7 @@ export const EditProfileForm = (props: Props) => {
       avatar: undefined,
       name: user?.name,
     })
-  }, [reset, user?.name, user?.avatar])
+  }, [reset, user?.name, user?.avatar, isSubmitSuccessful])
 
   return (
     <>

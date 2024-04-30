@@ -13,7 +13,6 @@ export const CreateDeck = () => {
   const createDeckHandler = (data: FormValues) => {
     const formData = new FormData()
 
-    console.log(data.cover)
     formData.append('name', data.name)
     if (data.isPrivate) {
       formData.append('isPrivate', data?.isPrivate.toString())
@@ -23,7 +22,6 @@ export const CreateDeck = () => {
     } else {
       formData.append('cover', '')
     }
-    console.log(formData)
 
     return createDeck(formData)
       .unwrap()

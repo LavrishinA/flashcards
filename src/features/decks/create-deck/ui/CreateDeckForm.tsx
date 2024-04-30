@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 
 import { CreateDeckZodSchema } from '@/features/decks/create-deck/model/create-deck-zod-schema'
 import { FormValues, Props } from '@/features/decks/create-deck/model/types'
-import useImageUploader from '@/features/decks/install-cover/InstallCover'
+import { useUplodedImage } from '@/shared/lib/useUplodedImage'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
 import { Typography } from '@/shared/ui/Typography'
@@ -15,13 +15,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import s from './CreateDeck.module.scss'
 
 export const CreateDeckForm = (props: Props) => {
-  const [coverSrc, handleImageChange, resetImage] = useImageUploader(null)
+  const [coverSrc, handleImageChange, resetImage] = useUplodedImage(null)
 
   const {
     control,
     formState: { errors, isSubmitting },
     handleSubmit,
     register,
+    resetField,
   } = useForm<FormValues>({
     defaultValues: {
       cover: null,
@@ -31,13 +32,16 @@ export const CreateDeckForm = (props: Props) => {
     resolver: zodResolver(CreateDeckZodSchema),
   })
 
-  // const [coverSrc, setCoverSrc] = useState<null | string>()
+  const resetFormHandler = () => {
+    resetImage()
+    resetField('cover')
+  }
 
   return (
     <form className={s.formsContainer} onSubmit={handleSubmit(async data => props.onSubmit(data))}>
       {coverSrc && (
         <div className={s.cover}>
-          <Button onClick={resetImage} variant={'text'}>
+          <Button onClick={resetFormHandler} variant={'text'}>
             <Close />
           </Button>
           <img alt={'preview'} className={s.cover} src={coverSrc} />
