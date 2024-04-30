@@ -47,18 +47,6 @@ export type GetCardResponse = {
   userId: string
 }
 
-// export type DeckItem = {
-//   author: Author
-//   cardsCount: number
-//   cover?: string
-//   created: Date
-//   id: string
-//   isPrivate: boolean
-//   name: string
-//   updated: Date
-//   userId: string
-// }
-
 export type Deck = {
   author: Author
   cardsCount: number

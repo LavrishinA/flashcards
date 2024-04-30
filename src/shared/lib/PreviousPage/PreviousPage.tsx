@@ -10,7 +10,7 @@ export const PreviousPage = () => {
 
   return (
     <Button className={s.prevpage} onClick={() => navigate(-1)} variant={'text'}>
-      <Typography variant={'body2'}>&#8592; Back </Typography>
+      <Typography variant={'body2'}>&#8592; Back to Deck List </Typography>
     </Button>
   )
 }
