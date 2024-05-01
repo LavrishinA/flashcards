@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react'
 
 type ChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void
 
-export const useUplodedImage = (
+export const useUploadedImage = (
   initialUrl: null | string = null
 ): [null | string, (event: ChangeEvent<HTMLInputElement>) => void, () => void] => {
   const [imageUrl, setImageUrl] = useState<null | string>(initialUrl)

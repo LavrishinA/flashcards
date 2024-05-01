@@ -9,7 +9,9 @@ export const EditProfilePage = () => {
   const submitForm = (data: FormValues) => {
     const formData = new FormData()
 
-    formData.append('avatar', data.avatar?.[0])
+    if (data.avatar) {
+      formData.append('avatar', data.avatar?.[0])
+    }
     formData.append('name', data.name)
 
     return updateProfile(formData).unwrap()

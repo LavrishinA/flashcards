@@ -46,7 +46,6 @@ export const DeckPage = () => {
           {isOwner && <DeckMenu deck={deck || ({} as Deck)} id={deckId} />}
         </div>
         {isOwner ? (
-          // <Button>Add New Card</Button>
           <CreateCard />
         ) : (
           <>

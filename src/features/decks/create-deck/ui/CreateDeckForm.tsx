@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 
 import { CreateDeckZodSchema } from '@/features/decks/create-deck/model/create-deck-zod-schema'
 import { FormValues, Props } from '@/features/decks/create-deck/model/types'
-import { useUplodedImage } from '@/shared/lib/useUplodedImage'
+import { useUploadedImage } from '@/shared/lib/useUploadedImage'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
 import { Typography } from '@/shared/ui/Typography'
@@ -15,7 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import s from './CreateDeck.module.scss'
 
 export const CreateDeckForm = (props: Props) => {
-  const [coverSrc, handleImageChange, resetImage] = useUplodedImage(null)
+  const [coverSrc, handleImageChange, resetImage] = useUploadedImage(null)
 
   const {
     control,
@@ -41,10 +41,10 @@ export const CreateDeckForm = (props: Props) => {
     <form className={s.formsContainer} onSubmit={handleSubmit(async data => props.onSubmit(data))}>
       {coverSrc && (
         <div className={s.cover}>
-          <Button onClick={resetFormHandler} variant={'text'}>
+          <Button className={s.clear} onClick={resetFormHandler} variant={'text'}>
             <Close />
           </Button>
-          <img alt={'preview'} className={s.cover} src={coverSrc} />
+          <img alt={'preview'} className={s.coverImg} src={coverSrc} />
         </div>
       )}
       <div style={{ textAlign: 'left' }}>

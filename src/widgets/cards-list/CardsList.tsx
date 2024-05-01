@@ -26,7 +26,7 @@ export const CardsList = (props: Props) => {
             <Table.TableCellHead>Answer</Table.TableCellHead>
             <Table.TableCellHead>Last Updated</Table.TableCellHead>
             <Table.TableCellHead>Grade</Table.TableCellHead>
-            <Table.TableCellHead>Actions</Table.TableCellHead>
+            <Table.TableCellHead></Table.TableCellHead>
           </Table.TableRow>
         </Table.TableHeader>
         <Table.TableBody>
@@ -69,12 +69,12 @@ export const CardsList = (props: Props) => {
                 </Table.TableCell>
                 <Table.TableCell className={s.cell}>{dateFormater(card.updated)}</Table.TableCell>
                 <Table.TableCell className={s.cell}>
-                  <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={14} />
+                  <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={15} />
                 </Table.TableCell>
                 <Table.TableCell className={s.cell}>
                   <DeleteCard card={card} id={card.id}>
                     <Button variant={'text'}>
-                      <DeleteIcon height={16} width={16} />{' '}
+                      <DeleteIcon height={16} width={16} />
                     </Button>
                   </DeleteCard>
                 </Table.TableCell>
