@@ -1,11 +1,12 @@
 import { Card } from '@/entities/decks/model/types'
 import { useMeQuery } from '@/entities/user'
 import { DeleteCard } from '@/features/cards/delete-card'
+import { UpdateCard } from '@/features/cards/update-card/ui/UpdateCard'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Button } from '@/shared/ui/Button'
 import { Rating } from '@/shared/ui/Rating'
 import { Table } from '@/shared/ui/Table'
-import { DeleteIcon } from '@/shared/ui/icons'
+import { DeleteIcon, EditIcon } from '@/shared/ui/icons'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './CardsList.module.scss'
@@ -75,6 +76,13 @@ export const CardsList = (props: Props) => {
                   <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={15} />
                 </Table.TableCell>
                 <Table.TableCell className={s.cell}>
+                  {user?.id === card.userId && (
+                    <UpdateCard card={card}>
+                      <Button variant={'text'}>
+                        <EditIcon height={16} width={16} />
+                      </Button>
+                    </UpdateCard>
+                  )}
                   {user?.id === card.userId && (
                     <DeleteCard card={card} id={card.id}>
                       <Button variant={'text'}>
