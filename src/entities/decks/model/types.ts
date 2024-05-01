@@ -95,6 +95,7 @@ export type Card = {
   questionVideo: null | string
   shots: number
   updated: Date
+  userId: string
 }
 
 export type SaveGradeResponse = {

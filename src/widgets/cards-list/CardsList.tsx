@@ -1,4 +1,5 @@
 import { Card } from '@/entities/decks/model/types'
+import { useMeQuery } from '@/entities/user'
 import { DeleteCard } from '@/features/cards/delete-card'
 import { dateFormater } from '@/shared/lib/dateFormater'
 import { Button } from '@/shared/ui/Button'
@@ -16,6 +17,8 @@ type Props = {
 
 export const CardsList = (props: Props) => {
   const { cards } = props
+
+  const { data: user } = useMeQuery()
 
   return (
     <div className={s.cardsListContainer}>
@@ -72,11 +75,13 @@ export const CardsList = (props: Props) => {
                   <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={15} />
                 </Table.TableCell>
                 <Table.TableCell className={s.cell}>
-                  <DeleteCard card={card} id={card.id}>
-                    <Button variant={'text'}>
-                      <DeleteIcon height={16} width={16} />
-                    </Button>
-                  </DeleteCard>
+                  {user?.id === card.userId && (
+                    <DeleteCard card={card} id={card.id}>
+                      <Button variant={'text'}>
+                        <DeleteIcon height={16} width={16} />
+                      </Button>
+                    </DeleteCard>
+                  )}
                 </Table.TableCell>
               </Table.TableRow>
             ))}
