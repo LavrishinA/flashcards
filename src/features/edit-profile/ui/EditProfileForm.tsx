@@ -30,7 +30,7 @@ export const EditProfileForm = (props: Props) => {
     reset,
   } = useForm<FormValues>({
     defaultValues: {
-      avatar: undefined,
+      avatar: null,
       name: user?.name,
     },
     resolver: zodResolver(editProfileZodSchema),
@@ -38,7 +38,7 @@ export const EditProfileForm = (props: Props) => {
 
   useEffect(() => {
     reset({
-      avatar: undefined,
+      avatar: null,
       name: user?.name,
     })
   }, [reset, user?.name, user?.avatar, isSubmitSuccessful])
@@ -76,7 +76,9 @@ export const EditProfileForm = (props: Props) => {
                 <Avatar
                   className={s.avatar}
                   src={
-                    getValues('avatar') ? URL.createObjectURL(getValues('avatar')[0]) : user.avatar
+                    getValues('avatar')
+                      ? URL.createObjectURL(getValues('avatar')?.[0]!)
+                      : user.avatar
                   }
                   username={user?.name}
                 />
