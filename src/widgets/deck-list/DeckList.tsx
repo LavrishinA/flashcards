@@ -46,6 +46,10 @@ export const DeckList = (props: Props) => {
     setSearchParams(searchParams)
   }
 
+  const saveSearchParamsHanlder = () => {
+    localStorage.setItem('searchUrl', location.search)
+  }
+
   return (
     <div className={s.deckListContainer}>
       <Table.Root className={s.table} width={'100%'}>
@@ -84,8 +88,8 @@ export const DeckList = (props: Props) => {
                     <Typography
                       as={Link}
                       className={s.text}
+                      onClick={saveSearchParamsHanlder}
                       replace
-                      state={{ searchUrl: location.search }}
                       to={`/${deck.id}/cards`}
                       variant={'body2'}
                     >
