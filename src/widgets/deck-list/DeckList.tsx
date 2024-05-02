@@ -1,5 +1,5 @@
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 
 import { Deck } from '@/entities/decks/model/types'
 import { DeleteDeck } from '@/features/decks/delete-deck'
@@ -33,6 +33,7 @@ const headers = [
 export const DeckList = (props: Props) => {
   const { currentUser, decks, loading } = props
   const [searchParams, setSearchParams] = useSearchParams()
+  const location = useLocation()
   const [currentKeyToSort, direction] = searchParams.get('orderBy')?.split('-') || []
 
   const headerClickHandler = (th: { keyToSort: string; label: string }) => {
@@ -67,9 +68,9 @@ export const DeckList = (props: Props) => {
         </Table.TableHeader>
         <Table.TableBody>
           {decks &&
-            decks.map(deck =>
+            decks.map((deck, index) =>
               loading ? (
-                <TableRowSkeleton />
+                <TableRowSkeleton key={index} />
               ) : (
                 <Table.TableRow key={deck.id}>
                   <Table.TableCell className={s.name}>
@@ -83,6 +84,8 @@ export const DeckList = (props: Props) => {
                     <Typography
                       as={Link}
                       className={s.text}
+                      replace
+                      state={{ searchUrl: location.search }}
                       to={`/${deck.id}/cards`}
                       variant={'body2'}
                     >

@@ -27,9 +27,7 @@ export const DeleteCard = ({ card, children, id }: Props) => {
       <DialogContent title={'Delete card'}>
         <div className={s.modalContent}>
           <Typography as={'p'} variant={'body1'}>
-            Do you really want to remove <span className={s.cardName}>{card.answer}</span>?
-            <br />
-            All cards will be deleted.
+            Do you really want to remove card <span className={s.cardName}>{card.question}</span>?
           </Typography>
           <div className={s.modalFooter}>
             <DialogClose asChild>
