@@ -76,7 +76,7 @@ export const CardsList = (props: Props) => {
                   <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={15} />
                 </Table.TableCell>
                 {user?.id === card.userId && (
-                  <Table.TableCell className={s.cell}>
+                  <Table.TableCell className={s.sell}>
                     <UpdateCard card={card}>
                       <Button variant={'text'}>
                         <EditIcon height={16} width={16} />
