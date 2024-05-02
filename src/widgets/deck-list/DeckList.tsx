@@ -46,7 +46,7 @@ export const DeckList = (props: Props) => {
     setSearchParams(searchParams)
   }
 
-  const saveSearchParamsHanlder = () => {
+  const saveSearchParamsHandler = () => {
     localStorage.setItem('searchUrl', location.search)
   }
 
@@ -88,7 +88,7 @@ export const DeckList = (props: Props) => {
                     <Typography
                       as={Link}
                       className={s.text}
-                      onClick={saveSearchParamsHanlder}
+                      onClick={saveSearchParamsHandler}
                       replace
                       to={`/${deck.id}/cards`}
                       variant={'body2'}
