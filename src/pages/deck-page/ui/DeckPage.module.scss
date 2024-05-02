@@ -16,16 +16,8 @@
   justify-content: space-between;
 }
 
-.imgInputArea {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 .emptyDeck {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
 .mainContent {
@@ -33,8 +25,6 @@
   flex-direction: column;
   gap: 24px;
   justify-content: center;
-
-  margin-bottom: 35px;
 }
 
 .name {

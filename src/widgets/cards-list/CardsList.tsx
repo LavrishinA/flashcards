@@ -75,22 +75,21 @@ export const CardsList = (props: Props) => {
                 <Table.TableCell className={s.cell}>
                   <Rating maxStar={5} onClick={() => {}} rating={card.grade} readonly size={15} />
                 </Table.TableCell>
-                <Table.TableCell className={s.cell}>
-                  {user?.id === card.userId && (
+                {user?.id === card.userId && (
+                  <Table.TableCell className={s.cell}>
                     <UpdateCard card={card}>
                       <Button variant={'text'}>
                         <EditIcon height={16} width={16} />
                       </Button>
                     </UpdateCard>
-                  )}
-                  {user?.id === card.userId && (
+
                     <DeleteCard card={card} id={card.id}>
                       <Button variant={'text'}>
                         <DeleteIcon height={16} width={16} />
                       </Button>
                     </DeleteCard>
-                  )}
-                </Table.TableCell>
+                  </Table.TableCell>
+                )}
               </Table.TableRow>
             ))}
         </Table.TableBody>

@@ -37,9 +37,7 @@ export const DeckPage = () => {
 
   return (
     <section>
-      <div>
-        <PreviousPage />
-      </div>
+      <PreviousPage />
       <div className={s.container}>
         <div className={s.name}>
           <Typography variant={'h1'}>{deck?.name}</Typography>

@@ -1,4 +1,5 @@
-import { useSearchParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 import { useGetDecksQuery } from '@/entities/decks'
 import { useMeQuery } from '@/entities/user'
@@ -13,6 +14,7 @@ import s from './MainPage.module.scss'
 
 export const MainPage = () => {
   const [searchParams] = useSearchParams()
+  const { state } = useLocation()
 
   const debouncedValue = useDebounce<string>(searchParams.get('name') || '', 500)
 
@@ -20,6 +22,18 @@ export const MainPage = () => {
 
   const { data: decks, isFetching } = useGetDecksQuery({ ...params, name: debouncedValue })
   const { data: user } = useMeQuery()
+
+  useEffect(() => {
+    if (state) {
+      localStorage.setItem('prevUrl', `/${state.search}`)
+    }
+
+    return () => {
+      if (state) {
+        localStorage.removeItem('prevUrl')
+      }
+    }
+  }, [])
 
   return (
     <section>
