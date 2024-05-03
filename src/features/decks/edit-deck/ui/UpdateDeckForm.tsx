@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
+import { CreateDeckZodSchema } from '@/features/decks/create-deck/model/create-deck-zod-schema'
 import { FormState, Props } from '@/features/decks/edit-deck/model/types'
-import { UpdateDeckZodSchema } from '@/features/decks/edit-deck/model/update-deck-zod-schema'
 import { useUploadedImage } from '@/shared/lib/useUploadedImage'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
@@ -12,7 +12,7 @@ import { Close } from '@/shared/ui/icons/close'
 import { DeckIcon } from '@/shared/ui/icons/image-outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import s from './UpdateDeck.module.scss'
+import s from '../../create-deck/ui/CreateDeck.module.scss'
 
 export const UpdateDeckForm = ({ deck, onSubmit }: Props) => {
   const [coverSrc, handleImageChange, resetImage] = useUploadedImage(deck.cover || null)
@@ -28,7 +28,7 @@ export const UpdateDeckForm = ({ deck, onSubmit }: Props) => {
       isPrivate: deck.isPrivate || false,
       name: deck.name || '',
     },
-    resolver: zodResolver(UpdateDeckZodSchema),
+    resolver: zodResolver(CreateDeckZodSchema),
   })
   const resetFormHandler = () => {
     resetImage()
