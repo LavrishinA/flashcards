@@ -89,7 +89,6 @@ export const DeckList = (props: Props) => {
                       as={Link}
                       className={s.text}
                       onClick={saveSearchParamsHanlder}
-                      replace
                       to={`/${deck.id}/cards`}
                       variant={'body2'}
                     >
@@ -113,7 +112,7 @@ export const DeckList = (props: Props) => {
                       </UpdateDeck>
                     )}
                     {currentUser === deck.author.id && (
-                      <DeleteDeck deck={deck} id={deck.id} name={deck.name}>
+                      <DeleteDeck id={deck.id} name={deck.name}>
                         <Button variant={'text'}>
                           <DeleteIcon height={16} width={16} />{' '}
                         </Button>

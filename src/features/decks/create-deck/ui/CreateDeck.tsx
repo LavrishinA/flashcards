@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { useCreateDeckMutation } from '@/entities/decks/api/decks-api'
 import { CreateDeckForm } from '@/features/decks/create-deck'
@@ -25,6 +26,9 @@ export const CreateDeck = () => {
 
     return createDeck(formData)
       .unwrap()
+      .then(() => {
+        toast.success(`Deck ${data.name} has been created successfully.`)
+      })
       .finally(() => setIsOpen(false))
   }
 

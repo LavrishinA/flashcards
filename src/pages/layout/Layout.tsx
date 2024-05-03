@@ -1,10 +1,13 @@
 import { Link, Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import { useMeQuery } from '@/entities/user'
 import { Profile } from '@/features/profile'
 import { Button } from '@/shared/ui/Button'
 import { Loader } from '@/shared/ui/Loader'
 import { Header } from '@/widgets/header/Header'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 import s from './Layout.module.scss'
 
@@ -30,6 +33,7 @@ export const Layout = () => {
       </Header>
       <main className={s.root}>
         <Outlet context={isAuth} />
+        <ToastContainer autoClose={2000} className={s.root} position={'bottom-left'} />
       </main>
     </>
   )
