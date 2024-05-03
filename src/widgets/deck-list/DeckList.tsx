@@ -89,7 +89,6 @@ export const DeckList = (props: Props) => {
                       as={Link}
                       className={s.text}
                       onClick={saveSearchParamsHandler}
-                      replace
                       to={`/${deck.id}/cards`}
                       variant={'body2'}
                     >
