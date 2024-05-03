@@ -41,7 +41,7 @@ export const DeckMenu = ({ deck, id }: Props) => {
             <EditIcon height={16} width={16} /> Edit
           </DropdownItem>
         </UpdateDeck>
-        <DeleteDeck deck={deck} id={id} name={deck.name}>
+        <DeleteDeck id={id} name={deck.name}>
           <DropdownItem onSelect={e => e.preventDefault()}>
             <DeleteIcon height={16} width={16} /> Delete
           </DropdownItem>

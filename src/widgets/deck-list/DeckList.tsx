@@ -106,18 +106,18 @@ export const DeckList = (props: Props) => {
                       </Button>
                     )}
                     {currentUser === deck.author.id && (
-                      <>
-                        <UpdateDeck deck={deck}>
-                          <Button variant={'text'}>
-                            <EditIcon height={16} width={16} />
-                          </Button>
-                        </UpdateDeck>
-                        <DeleteDeck deck={deck} id={deck.id} name={deck.name}>
-                          <Button variant={'text'}>
-                            <DeleteIcon height={16} width={16} />
-                          </Button>
-                        </DeleteDeck>
-                      </>
+                      <UpdateDeck deck={deck}>
+                        <Button variant={'text'}>
+                          <EditIcon height={16} width={16} />
+                        </Button>
+                      </UpdateDeck>
+                    )}
+                    {currentUser === deck.author.id && (
+                      <DeleteDeck id={deck.id} name={deck.name}>
+                        <Button variant={'text'}>
+                          <DeleteIcon height={16} width={16} />{' '}
+                        </Button>
+                      </DeleteDeck>
                     )}
                   </Table.TableCell>
                 </Table.TableRow>
