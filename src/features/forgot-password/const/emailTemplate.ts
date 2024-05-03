@@ -326,7 +326,7 @@ export const emailTemplate = `<!doctype html>
                                         <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                             <tbody>
                                             <tr>
-                                                <td> <a href="http://localhost:5173/create-new-password/##token##" target="_blank">Reset password</a> </td>
+                                                <td> <a href="https://flashcards-quiz-puce.vercel.app/create-new-password/##token##" target="_blank">Reset password</a> </td>
                                             </tr>
                                             </tbody>
                                         </table>
