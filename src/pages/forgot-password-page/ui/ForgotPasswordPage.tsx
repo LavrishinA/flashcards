@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useRecoverPasswordMutation } from '@/entities/user/api/user-api'
 import { ForgotPasswordForm } from '@/features/forgot-password'
-// import { emailTemplate } from '@/features/forgot-password/const/emailTemplate'
+import { emailTemplate } from '@/features/forgot-password/const/emailTemplate'
 import { FormValues } from '@/features/forgot-password/model/types'
 import { CheckEmailPage } from '@/pages/check-email-page/ui/CheckEmailPage'
 
@@ -13,7 +13,7 @@ export const ForgotPasswordPage = () => {
   const navigate = useNavigate()
 
   const sendPasswordHandler = async ({ email }: FormValues) => {
-    await sendEmail({ email, html: '' }).unwrap()
+    await sendEmail({ email, html: emailTemplate }).unwrap()
     navigate('/check-email', { state: { email: email } })
   }
 
