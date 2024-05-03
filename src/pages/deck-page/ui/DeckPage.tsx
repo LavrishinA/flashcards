@@ -70,9 +70,13 @@ export const DeckPage = () => {
         </>
       ) : (
         <div className={s.mainContent}>
-          <SearchCards name={'question'} />
-          {deck && cards?.items && <CardsList cards={cards.items} currentDeck={deck.id} />}
-          {cards?.pagination && <PaginationList pagination={cards.pagination} />}
+          <div>
+            <SearchCards name={'question'} />
+          </div>
+          <div>
+            {deck && cards?.items && <CardsList cards={cards.items} currentDeck={deck.id} />}
+            {cards?.pagination && <PaginationList pagination={cards.pagination} />}
+          </div>
         </div>
       )}
     </section>
