@@ -44,7 +44,7 @@ export const userApi = baseApi.injectEndpoints({
       query: user => ({ body: user, method: 'POST', url: '/v1/auth/sign-up' }),
     }),
     updateProfile: build.mutation<userMeResponse, FormData>({
-      invalidatesTags: ['Me'],
+      invalidatesTags: (_, error) => (error ? [] : ['Me']),
       async onQueryStarted(body, { dispatch, queryFulfilled }) {
         let avatar
 
