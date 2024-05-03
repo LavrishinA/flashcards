@@ -65,7 +65,7 @@ export const DeckPage = () => {
       {deck && deck.cardsCount === 0 ? (
         <>
           <Typography className={s.emptyDeck} variant={'h2'}>
-            Deck is empty
+            This pack is empty.
           </Typography>
         </>
       ) : (
