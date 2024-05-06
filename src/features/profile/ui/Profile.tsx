@@ -4,7 +4,7 @@ import { useLogout } from '@/features/logout'
 import { Avatar } from '@/shared/ui/Avatar'
 import { DropDownContent, DropdownMenu, DropdownTrigger } from '@/shared/ui/DropDown'
 import { DropdownItem } from '@/shared/ui/DropDown/Item'
-import { UserSeparator } from '@/shared/ui/DropDown/UserSeparator'
+import { DropdownLabel } from '@/shared/ui/DropDown/Label'
 import { Typography } from '@/shared/ui/Typography'
 import { LogoutIcon } from '@/shared/ui/icons'
 import { ProfileIcon } from '@/shared/ui/icons/ProfileIcon'
@@ -34,7 +34,7 @@ export const Profile = (props: Props) => {
           <Avatar className={s.avatar} src={avatar} username={name} />
         </DropdownTrigger>
         <DropDownContent>
-          <UserSeparator className={s.user} email={email} username={name}>
+          <DropdownLabel className={s.user}>
             <Avatar src={avatar} username={name} />
             <div className={s.userdata}>
               <Typography as={'span'} variant={'subtitle2'}>
@@ -44,7 +44,7 @@ export const Profile = (props: Props) => {
                 {email}
               </Typography>
             </div>
-          </UserSeparator>
+          </DropdownLabel>
           <DropdownItem onClick={navigateToEditProfile}>
             <ProfileIcon height={16} width={16} />
             My profile

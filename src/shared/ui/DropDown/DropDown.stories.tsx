@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Avatar } from '@/shared/ui/Avatar'
 import { DropDownContent, DropdownMenu, DropdownTrigger } from '@/shared/ui/DropDown/DropDown'
 import { DropdownItem } from '@/shared/ui/DropDown/Item'
-import { UserSeparator } from '@/shared/ui/DropDown/UserSeparator'
+import { DropdownLabel } from '@/shared/ui/DropDown/Label'
 import { DeleteIcon, DropDownTriggerIcon, EditIcon, LogoutIcon, PlayIcon } from '@/shared/ui/icons'
 import { ProfileIcon } from '@/shared/ui/icons/ProfileIcon'
 
@@ -43,7 +43,7 @@ export const DropDownDefault: Story = {
   },
 }
 
-export const DropDownWithUser: Story = {
+export const DropDownWithLabel: Story = {
   render: () => {
     return (
       <DropdownMenu>
@@ -51,9 +51,9 @@ export const DropDownWithUser: Story = {
           <Avatar username={'Alex'} />
         </DropdownTrigger>
         <DropDownContent>
-          <UserSeparator email={'happyhack@gmail.com'} username={'Alex'}>
+          <DropdownLabel>
             <Avatar username={'Alex'} />
-          </UserSeparator>
+          </DropdownLabel>
           <DropdownItem>
             <ProfileIcon height={16} width={16} /> My profile
           </DropdownItem>
