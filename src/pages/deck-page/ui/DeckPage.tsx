@@ -48,7 +48,7 @@ export const DeckPage = () => {
         ) : (
           <>
             {deck && deck.cardsCount !== 0 && (
-              <Button as={Link} to={`/${deck?.id}/learn/${deck?.name}`}>
+              <Button as={Link} to={`/${deck?.id}/learn`}>
                 Learn To Deck
               </Button>
             )}

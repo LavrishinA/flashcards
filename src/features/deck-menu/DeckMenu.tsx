@@ -18,7 +18,7 @@ type Props = {
 export const DeckMenu = ({ deck, id }: Props) => {
   const navigate = useNavigate()
 
-  const navigateToLearnDeck = () => navigate(`/${deck?.id}/learn/${deck?.name}`)
+  const navigateToLearnDeck = () => navigate(`/${deck?.id}/learn`)
 
   return (
     <DropdownMenu>

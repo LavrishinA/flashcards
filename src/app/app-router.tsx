@@ -30,7 +30,7 @@ const privateRoutes: RouteObject[] = [
   { element: <MainPage />, path: '/' },
   { element: <DeckPage />, path: '/:deckId/cards' },
   { element: <EditProfilePage />, path: '/profile' },
-  { element: <LearnPage />, path: '/:deckId/learn/:deckName' },
+  { element: <LearnPage />, path: '/:deckId/learn' },
 ]
 
 const router = createBrowserRouter([

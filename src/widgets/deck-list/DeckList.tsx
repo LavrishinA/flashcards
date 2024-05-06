@@ -27,7 +27,7 @@ const headers = [
   { keyToSort: 'name', label: 'Name' },
   { keyToSort: 'cardsCount', label: 'Cards' },
   { keyToSort: 'updated', label: 'Last Updated' },
-  { keyToSort: 'created', label: 'Created by' },
+  { keyToSort: 'author.name', label: 'Created by' },
 ]
 
 export const DeckList = (props: Props) => {
@@ -100,7 +100,7 @@ export const DeckList = (props: Props) => {
                   <Table.TableCell>{deck.author.name}</Table.TableCell>
                   <Table.TableCell>
                     {deck.cardsCount !== 0 && (
-                      <Button as={Link} to={`/${deck.id}/learn/${deck.name}`} variant={'text'}>
+                      <Button as={Link} to={`/${deck.id}/learn`} variant={'text'}>
                         <PlayIcon height={16} width={16} />
                       </Button>
                     )}
