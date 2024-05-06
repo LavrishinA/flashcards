@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 
 import { useGetRandomCardQuery, useSaveGradeMutation } from '@/entities/decks'
+import { useGetDeckByIdQuery } from '@/entities/decks/api/decks-api'
 import { SetGrade } from '@/features/set-grade'
 import { PreviousPage } from '@/shared/lib/PreviousPage/PreviousPage'
 import { LearnCard } from '@/widgets/learn-card/LearnCard'
@@ -9,6 +10,7 @@ export const LearnPage = () => {
   const { deckId } = useParams()
 
   const { data: card } = useGetRandomCardQuery({ id: deckId ?? '' })
+  const { data: deck } = useGetDeckByIdQuery({ id: deckId ?? '' })
   const [saveGrade] = useSaveGradeMutation()
 
   const onSaveGradeHandler = (value: string) => {
@@ -28,8 +30,8 @@ export const LearnPage = () => {
   return (
     <section>
       <PreviousPage />
-      {card && (
-        <LearnCard key={card.id} {...card}>
+      {card && deck && (
+        <LearnCard key={card.id} {...card} deckName={deck.name}>
           <SetGrade onSave={onSaveGradeHandler} />
         </LearnCard>
       )}

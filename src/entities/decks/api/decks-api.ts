@@ -17,7 +17,7 @@ export const decksApi = baseApi.injectEndpoints({
   endpoints: build => ({
     createCard: build.mutation<Card, CreateCardArgs>({
       invalidatesTags: ['Deck'],
-      query: ({ id, ...args }) => ({ body: args, method: 'POST', url: `/v1/decks/${id}/cards` }),
+      query: ({ id, ...args }) => ({ body: args, method: 'POST', url: `/v2/decks/${id}/cards` }),
     }),
     createDeck: build.mutation<Deck, FormData>({
       invalidatesTags: ['Decks'],
@@ -48,11 +48,18 @@ export const decksApi = baseApi.injectEndpoints({
       query: params => ({ method: 'GET', params: params ?? undefined, url: '/v1/decks' }),
     }),
     getRandomCard: build.query<GetCardResponse, { id: string }>({
-      providesTags: ['Learn'],
       query: ({ id }) => ({ method: 'GET', url: `/v1/decks/${id}/learn` }),
     }),
     saveGrade: build.mutation<SaveGradeResponse, SaveGradePayload>({
-      invalidatesTags: ['Learn'],
+      async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
+        try {
+          const { data: newCard } = await queryFulfilled
+
+          dispatch(decksApi.util.updateQueryData('getRandomCard', { id: id }, () => newCard))
+        } catch {
+          /* empty */
+        }
+      },
       query: ({ id, ...body }) => ({
         body,
         method: 'POST',

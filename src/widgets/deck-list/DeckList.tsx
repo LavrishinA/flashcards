@@ -52,7 +52,7 @@ export const DeckList = (props: Props) => {
 
   return (
     <div className={s.deckListContainer}>
-      <Table.Root className={s.table} width={'100%'}>
+      <Table.Root className={s.table}>
         <Table.TableHeader className={s.cellHead}>
           <Table.TableRow>
             {headers.map(th => (
@@ -133,13 +133,13 @@ const TableRowSkeleton = () => {
     <SkeletonTheme baseColor={'#333'} highlightColor={'#382766'}>
       <Table.TableRow>
         <Table.TableCell>
-          <Skeleton />
+          <Skeleton width={220} />
         </Table.TableCell>
         <Table.TableCell>
-          <Skeleton />
+          <Skeleton width={20} />
         </Table.TableCell>
         <Table.TableCell>
-          <Skeleton />
+          <Skeleton width={50} />
         </Table.TableCell>
         <Table.TableCell>
           <Skeleton />

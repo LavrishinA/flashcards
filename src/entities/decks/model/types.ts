@@ -23,11 +23,11 @@ export type SaveGradePayload = {
 export type DeleteDeckResponse = {
   cardsCount: number
   cover: string
-  created: string
+  created: Date
   id: string
   isPrivate: boolean
   name: string
-  updated: string
+  updated: Date
   userId: string
 }
 
@@ -43,7 +43,7 @@ export type GetCardResponse = {
   questionImg: string
   questionVideo: string
   shots: number
-  updated: string
+  updated: Date
   userId: string
 }
 
@@ -86,7 +86,7 @@ export type Card = {
   answer: string
   answerImg: null | string
   answerVideo: null | string
-  created: string
+  created: Date
   deckId: string
   grade: number
   id: string

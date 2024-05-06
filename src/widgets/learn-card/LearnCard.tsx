@@ -1,5 +1,4 @@
 import { ReactNode, useState } from 'react'
-import { useParams } from 'react-router-dom'
 
 import { GetCardResponse } from '@/entities/decks'
 import { Button } from '@/shared/ui/Button'
@@ -9,10 +8,9 @@ import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './LearnCard.module.scss'
 
-export const LearnCard = (props: GetCardResponse & { children: ReactNode }) => {
-  const { answer, answerImg, children, question, questionImg, shots } = props
+export const LearnCard = (props: GetCardResponse & { children: ReactNode; deckName: string }) => {
+  const { answer, answerImg, children, deckName, question, questionImg, shots } = props
   const [showAnswer, setShowAnswer] = useState<boolean>(false)
-  const { deckName } = useParams()
 
   const showAnswerHandler = () => {
     setShowAnswer(prevState => !prevState)
