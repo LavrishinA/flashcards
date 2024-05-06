@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
-import { CreateDeckZodSchema } from '@/features/decks/create-deck/model/create-deck-zod-schema'
-import { FormState, Props } from '@/features/decks/edit-deck/model/types'
+import { DeckFormZodSchema } from '@/features/decks/deck-form/model/deck-form-zod-schema'
+import { FormState, Props } from '@/features/decks/deck-form/model/types'
 import { useUploadedImage } from '@/shared/lib/useUploadedImage'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
@@ -12,10 +12,10 @@ import { Close } from '@/shared/ui/icons/close'
 import { DeckIcon } from '@/shared/ui/icons/image-outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import s from '../../create-deck/ui/CreateDeck.module.scss'
+import s from './DeckForm.module.scss'
 
-export const UpdateDeckForm = ({ deck, onSubmit }: Props) => {
-  const [coverSrc, handleImageChange, resetImage] = useUploadedImage(deck.cover || null)
+export const DeckForm = ({ btnTitle, coverTitle, deck, onSubmit }: Props) => {
+  const [coverSrc, handleImageChange, resetImage] = useUploadedImage(deck?.cover || null)
   const {
     control,
     formState: { errors, isSubmitting },
@@ -24,11 +24,10 @@ export const UpdateDeckForm = ({ deck, onSubmit }: Props) => {
     resetField,
   } = useForm<FormState>({
     defaultValues: {
-      cover: null,
-      isPrivate: deck.isPrivate || false,
-      name: deck.name || '',
+      isPrivate: deck?.isPrivate || false,
+      name: deck?.name || '',
     },
-    resolver: zodResolver(CreateDeckZodSchema),
+    resolver: zodResolver(DeckFormZodSchema),
   })
   const resetFormHandler = () => {
     resetImage()
@@ -56,7 +55,7 @@ export const UpdateDeckForm = ({ deck, onSubmit }: Props) => {
         />
         <label className={s.label} htmlFor={'cover'}>
           <DeckIcon className={s.coverTrigger} height={16} width={16} />
-          <Typography variant={'body1'}>Change Cover</Typography>
+          <Typography variant={'body1'}>{coverTitle}</Typography>
           <input
             multiple={false}
             {...register('cover', {
@@ -76,7 +75,7 @@ export const UpdateDeckForm = ({ deck, onSubmit }: Props) => {
               Cancel
             </Button>
           </DialogClose>
-          <Button disabled={isSubmitting}>Edit Deck</Button>
+          <Button disabled={isSubmitting}>{btnTitle}</Button>
         </div>
       </div>
     </form>

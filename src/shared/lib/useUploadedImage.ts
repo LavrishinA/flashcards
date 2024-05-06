@@ -9,9 +9,6 @@ export const useUploadedImage = (
   const handleImageChange: ChangeHandler = event => {
     const newFile = event.currentTarget?.files?.[0]
 
-    if (!newFile) {
-      return
-    }
     if (newFile) {
       const newImageUrl = URL.createObjectURL(newFile)
 

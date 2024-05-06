@@ -1,11 +1,11 @@
 import { ReactNode, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { useEditDeckMutation } from '@/entities/decks/api/decks-api'
 import { Deck } from '@/entities/decks/model/types'
-import { FormState } from '@/features/decks/edit-deck/model/types'
+import { FormState } from '@/features/decks/deck-form/model/types'
+import { DeckForm } from '@/features/decks/deck-form/ui/DeckForm'
 import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
-
-import { UpdateDeckForm } from './UpdateDeckForm'
 
 type Props = {
   children: ReactNode
@@ -31,6 +31,9 @@ export const UpdateDeck = ({ children, deck }: Props) => {
 
     return editDeck({ body: body, id: deck.id })
       .unwrap()
+      .then(() => {
+        toast.success(`Deck ${data.name} has been updated successfully.`)
+      })
       .finally(() => setIsOpen(false))
   }
 
@@ -41,7 +44,12 @@ export const UpdateDeck = ({ children, deck }: Props) => {
           {children}
         </DialogTrigger>
         <DialogContent title={'Edit Deck'}>
-          <UpdateDeckForm deck={deck} onSubmit={updateDeckHandler} />
+          <DeckForm
+            btnTitle={'Edit Deck'}
+            coverTitle={'Change Cover'}
+            deck={deck}
+            onSubmit={updateDeckHandler}
+          />
         </DialogContent>
       </Dialog>
     </>
