@@ -45,7 +45,8 @@
   transform: rotate(180deg);
 }
 
-.colName {
+.colName,
+.actions {
   display: flex;
   gap: 5px;
   align-items: center;

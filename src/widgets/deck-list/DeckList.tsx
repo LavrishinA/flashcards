@@ -99,25 +99,27 @@ export const DeckList = (props: Props) => {
                   <Table.TableCell>{dateFormater(deck.updated)}</Table.TableCell>
                   <Table.TableCell>{deck.author.name}</Table.TableCell>
                   <Table.TableCell>
-                    {deck.cardsCount !== 0 && (
-                      <Button as={Link} to={`/${deck.id}/learn`} variant={'text'}>
-                        <PlayIcon height={16} width={16} />
-                      </Button>
-                    )}
-                    {currentUser === deck.author.id && (
-                      <UpdateDeck deck={deck}>
-                        <Button variant={'text'}>
-                          <EditIcon height={16} width={16} />
+                    <div className={s.actions}>
+                      {deck.cardsCount !== 0 && (
+                        <Button as={Link} to={`/${deck.id}/learn`} variant={'text'}>
+                          <PlayIcon height={16} width={16} />
                         </Button>
-                      </UpdateDeck>
-                    )}
-                    {currentUser === deck.author.id && (
-                      <DeleteDeck id={deck.id} name={deck.name}>
-                        <Button variant={'text'}>
-                          <DeleteIcon height={16} width={16} />{' '}
-                        </Button>
-                      </DeleteDeck>
-                    )}
+                      )}
+                      {currentUser === deck.author.id && (
+                        <UpdateDeck deck={deck}>
+                          <Button variant={'text'}>
+                            <EditIcon height={16} width={16} />
+                          </Button>
+                        </UpdateDeck>
+                      )}
+                      {currentUser === deck.author.id && (
+                        <DeleteDeck id={deck.id} name={deck.name}>
+                          <Button variant={'text'}>
+                            <DeleteIcon height={16} width={16} />{' '}
+                          </Button>
+                        </DeleteDeck>
+                      )}
+                    </div>
                   </Table.TableCell>
                 </Table.TableRow>
               )

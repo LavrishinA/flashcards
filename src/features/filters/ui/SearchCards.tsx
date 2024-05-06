@@ -25,7 +25,7 @@ export const SearchCards = ({ name }: SearchCardsProps) => {
       <Input
         onChange={handleChange}
         onInputClear={clearInputHandler}
-        placeholder={'Input Search'}
+        placeholder={'javascript'}
         search
         value={searchValue}
       ></Input>
