@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 import { useCreateDeckMutation } from '@/entities/decks/api/decks-api'
-import { CreateDeckForm } from '@/features/decks/create-deck'
-import { FormValues } from '@/features/decks/create-deck/model/types'
+import { FormState } from '@/features/decks/deck-form/model/types'
+import { DeckForm } from '@/features/decks/deck-form/ui/DeckForm'
 import { Button } from '@/shared/ui/Button'
 import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
 
@@ -11,7 +11,7 @@ export const CreateDeck = () => {
   const [createDeck] = useCreateDeckMutation()
   const [isOpen, setIsOpen] = useState(false)
 
-  const createDeckHandler = (data: FormValues) => {
+  const createDeckHandler = (data: FormState) => {
     const formData = new FormData()
 
     formData.append('name', data.name)
@@ -39,7 +39,11 @@ export const CreateDeck = () => {
           <Button>Create Deck</Button>
         </DialogTrigger>
         <DialogContent title={'Add New Deck'}>
-          <CreateDeckForm onSubmit={createDeckHandler} />
+          <DeckForm
+            btnTitle={'Add New Pack'}
+            coverTitle={'Upload Image'}
+            onSubmit={createDeckHandler}
+          />
         </DialogContent>
       </Dialog>
     </>
