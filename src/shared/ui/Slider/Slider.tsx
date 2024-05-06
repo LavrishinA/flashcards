@@ -19,6 +19,11 @@ export const Slider = (props: Props) => {
       </Typography>
       <SliderPrimitive.Root
         className={s.sliderRoot}
+        onLostPointerCapture={() => {
+          if (value[0] === 0 && value[1] === 0) {
+            rest?.onValueCommit?.([0, 0])
+          }
+        }}
         onValueChange={onValueChange}
         value={value}
         {...rest}
