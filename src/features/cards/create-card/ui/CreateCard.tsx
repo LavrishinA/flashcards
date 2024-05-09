@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { useCreateCardMutation } from '@/entities/decks/api/decks-api'
 import { FormValues } from '@/features/cards/create-card/model/types'
@@ -32,6 +33,9 @@ export const CreateCard = ({ deckId }: Props) => {
     if (deckId) {
       createCard({ body: formData, id: deckId })
         .unwrap()
+        .then(() => {
+          toast.success(`Card has been created successfully.`)
+        })
         .finally(() => setIsOpen(false))
     }
   }

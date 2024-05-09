@@ -20,16 +20,23 @@ export const CreateCardForm = ({ onSubmit }: Props) => {
     formState: { errors, isSubmitting },
     handleSubmit,
     register,
+    resetField,
   } = useForm<FormValues>({
+    defaultValues: {
+      answerImg: null,
+      questionImg: null,
+    },
     resolver: zodResolver(createCardZodSchema),
   })
 
   const resetQuestionFormHandler = () => {
     resetQuestionImage()
+    resetField('questionImg')
   }
 
   const resetAnswerFormHandler = () => {
     resetAnswerImage()
+    resetField('answerImg')
   }
 
   return (
@@ -52,7 +59,7 @@ export const CreateCardForm = ({ onSubmit }: Props) => {
         )}
         <label className={s.label} htmlFor={'questionImg'}>
           <DeckIcon className={s.coverTrigger} height={16} width={16} />
-          <Typography variant={'body1'}>questionImg</Typography>
+          <Typography variant={'body1'}>Change Image</Typography>
           <input
             multiple={false}
             {...register('questionImg', {
@@ -81,7 +88,7 @@ export const CreateCardForm = ({ onSubmit }: Props) => {
         )}
         <label className={s.label} htmlFor={'answerImg'}>
           <DeckIcon className={s.coverTrigger} height={16} width={16} />
-          <Typography variant={'body1'}>questionImg</Typography>
+          <Typography variant={'body1'}>Change Image</Typography>
           <input
             multiple={false}
             {...register('answerImg', {
