@@ -27,7 +27,7 @@ export const DeckPage = () => {
 
   const { data: user } = useMeQuery()
   const { data: deck } = useGetDeckByIdQuery({ id: deckId })
-  const { data: cards } = useGetCardsIntoDeckQuery({
+  const { data: cards, isLoading } = useGetCardsIntoDeckQuery({
     ...params,
     id: deckId,
     question: debouncedValue,
@@ -44,7 +44,7 @@ export const DeckPage = () => {
           {isOwner && <DeckMenu deck={deck || ({} as Deck)} id={deckId} />}
         </div>
         {isOwner ? (
-          <CreateCard />
+          <CreateCard deckId={deckId} />
         ) : (
           <>
             {deck && deck.cardsCount !== 0 && (
@@ -74,7 +74,9 @@ export const DeckPage = () => {
             <SearchCards name={'question'} />
           </div>
           <div>
-            {deck && cards?.items && <CardsList cards={cards.items} currentDeck={deck.id} />}
+            {deck && cards?.items && (
+              <CardsList cards={cards.items} currentDeck={deck.id} loadingCards={isLoading} />
+            )}
             {cards?.pagination && <PaginationList pagination={cards.pagination} />}
           </div>
         </div>
