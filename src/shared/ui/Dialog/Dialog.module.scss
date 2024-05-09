@@ -12,7 +12,9 @@
 
   width: 90vw;
   max-width: 542px;
-  max-height: 85vh;
+
+  // max-height: 85vh;
+  max-height: 100vh;
 
   background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500, #333);
