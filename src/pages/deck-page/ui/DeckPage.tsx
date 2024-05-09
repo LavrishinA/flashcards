@@ -58,7 +58,7 @@ export const DeckPage = () => {
       {deck?.cover && (
         <div className={s.ratioContainer}>
           <AspectRatio ratio={25 / 15}>
-            <img alt={''} className={s.image} loading={'lazy'} src={deck?.cover} />
+            <img alt={'cover'} className={s.image} loading={'lazy'} src={deck?.cover} />
           </AspectRatio>
         </div>
       )}

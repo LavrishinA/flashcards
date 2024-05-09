@@ -14,7 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './DeckForm.module.scss'
 
-export const DeckForm = ({ btnTitle, coverTitle, deck, onSubmit }: Props) => {
+export const DeckForm = ({ btnTitle, coverTitle, deck, label, onSubmit }: Props) => {
   const [coverSrc, handleImageChange, resetImage] = useUploadedImage(deck?.cover || null)
   const {
     control,
@@ -50,7 +50,7 @@ export const DeckForm = ({ btnTitle, coverTitle, deck, onSubmit }: Props) => {
           className={s.nameInput}
           control={control}
           errorMessage={errors.name?.message}
-          label={'Edit Name'}
+          label={label}
           name={'name'}
         />
         <label className={s.label} htmlFor={'cover'}>

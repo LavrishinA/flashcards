@@ -6,5 +6,6 @@ export type Props = {
   btnTitle: string
   coverTitle: string
   deck?: Pick<Deck, 'cover' | 'isPrivate' | 'name'>
+  label: string
   onSubmit: (body: FormState) => void
 }

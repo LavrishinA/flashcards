@@ -42,6 +42,7 @@ export const CreateDeck = () => {
           <DeckForm
             btnTitle={'Add New Pack'}
             coverTitle={'Upload Image'}
+            label={'Name Pack'}
             onSubmit={createDeckHandler}
           />
         </DialogContent>

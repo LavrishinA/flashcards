@@ -48,6 +48,7 @@ export const UpdateDeck = ({ children, deck }: Props) => {
             btnTitle={'Edit Deck'}
             coverTitle={'Change Cover'}
             deck={deck}
+            label={'Change Name'}
             onSubmit={updateDeckHandler}
           />
         </DialogContent>
