@@ -19,15 +19,15 @@ export const decksApi = baseApi.injectEndpoints({
       query: ({ body, id }) => ({ body, method: 'POST', url: `/v1/decks/${id}/cards` }),
     }),
     createDeck: build.mutation<Deck, FormData>({
-      invalidatesTags: ['Decks'],
+      invalidatesTags: ['Deck'],
       query: args => ({ body: args, method: 'POST', url: '/v1/decks' }),
     }),
     deleteDeck: build.mutation<DeleteDeckResponse, { id: string }>({
-      invalidatesTags: ['Decks'],
+      invalidatesTags: ['Deck'],
       query: ({ id }) => ({ method: 'DELETE', url: `/v1/decks/${id}` }),
     }),
     editDeck: build.mutation<Deck, { body: FormData; id: string }>({
-      invalidatesTags: ['Decks', 'Deck'],
+      invalidatesTags: (_result, _error, arg) => [{ id: arg.id, type: 'Deck' }],
       query: ({ body, id }) => ({ body, method: 'PATCH', url: `/v1/decks/${id}` }),
     }),
     getCardsIntoDeck: build.query<CardsIntoDeckResponse, CardsIntoDeckPayload>({
@@ -43,8 +43,11 @@ export const decksApi = baseApi.injectEndpoints({
       query: ({ id }) => ({ method: 'GET', url: `/v1/decks/${id}` }),
     }),
     getDecks: build.query<DecksResponse, DecksPayload | void>({
-      providesTags: ['Decks'],
-      query: params => ({ method: 'GET', params: params ?? undefined, url: '/v1/decks' }),
+      providesTags: result =>
+        result
+          ? [...result.items.map(deck => ({ id: deck.id, type: 'Deck' as const })), 'Deck']
+          : ['Deck'],
+      query: params => ({ method: 'GET', params: params || undefined, url: '/v2/decks' }),
     }),
     getRandomCard: build.query<GetCardResponse, { id: string }>({
       query: ({ id }) => ({ method: 'GET', url: `/v1/decks/${id}/learn` }),
