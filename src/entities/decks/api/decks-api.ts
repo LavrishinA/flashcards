@@ -27,7 +27,7 @@ export const decksApi = baseApi.injectEndpoints({
       query: ({ id }) => ({ method: 'DELETE', url: `/v1/decks/${id}` }),
     }),
     editDeck: build.mutation<Deck, { body: FormData; id: string }>({
-      invalidatesTags: (_result, _error, arg) => [{ id: arg.id, type: 'Decks' }],
+      invalidatesTags: (_result, _error, arg) => [{ id: arg.id, type: 'Decks' }, 'Deck'],
       query: ({ body, id }) => ({ body, method: 'PATCH', url: `/v1/decks/${id}` }),
     }),
     getCardsIntoDeck: build.query<CardsIntoDeckResponse, CardsIntoDeckPayload>({
@@ -45,7 +45,7 @@ export const decksApi = baseApi.injectEndpoints({
     getDecks: build.query<DecksResponse, DecksPayload | void>({
       providesTags: result =>
         result
-          ? [...result.items.map(deck => ({ id: deck.id, type: 'Deck' as const })), 'Decks']
+          ? [...result.items.map(deck => ({ id: deck.id, type: 'Decks' as const }))]
           : ['Decks'],
       query: params => ({ method: 'GET', params: params ?? {}, url: '/v2/decks' }),
     }),

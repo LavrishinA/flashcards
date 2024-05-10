@@ -38,7 +38,7 @@ export const DeckForm = ({ btnTitle, coverTitle, deck, label, onSubmit }: Props)
     <form className={s.formsContainer} onSubmit={handleSubmit(async body => onSubmit(body))}>
       {coverSrc && (
         <div className={s.cover}>
-          <Button className={s.clear} onClick={resetFormHandler} variant={'text'}>
+          <Button className={s.clear} onClick={resetFormHandler} type={'button'} variant={'text'}>
             <Close />
           </Button>
           <img alt={'preview'} className={s.coverImg} src={coverSrc} />
@@ -75,7 +75,9 @@ export const DeckForm = ({ btnTitle, coverTitle, deck, label, onSubmit }: Props)
               Cancel
             </Button>
           </DialogClose>
-          <Button disabled={isSubmitting}>{btnTitle}</Button>
+          <Button disabled={isSubmitting} type={'submit'}>
+            {btnTitle}
+          </Button>
         </div>
       </div>
     </form>
