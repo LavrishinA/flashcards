@@ -1,7 +1,11 @@
 import { useForm } from 'react-hook-form'
 
-import { createCardZodSchema } from '@/features/cards/create-card/model/create-card-zod-schema'
-import { FormValues, Props } from '@/features/cards/create-card/model/types'
+import {
+  CardFormValues,
+  cardFormZodSchema,
+} from '@/features/cards/create-card/model/card-form-zod-schema'
+// import { FormValues, Props } from '@/features/cards/create-card/model/types'
+import { Props } from '@/features/cards/create-card/model/types'
 import { useUploadedImage } from '@/shared/lib/useUploadedImage'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
@@ -13,22 +17,27 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './CreateCardForm.module.scss'
 
-export const CreateCardForm = ({ onSubmit }: Props) => {
-  const [questionUrl, handleQuestionImageChange, resetQuestionImage] = useUploadedImage()
-  const [answerUrl, handleAnswerImageChange, resetAnswerImage] = useUploadedImage()
+export const CardForm = ({ card, onSubmit }: Props) => {
+  const [questionUrl, handleQuestionImageChange, resetQuestionImage] = useUploadedImage(
+    card?.questionImg || null
+  )
+  const [answerUrl, handleAnswerImageChange, resetAnswerImage] = useUploadedImage(
+    card?.answerImg || null
+  )
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
     register,
     resetField,
-  } = useForm<FormValues>({
+  } = useForm<CardFormValues>({
     defaultValues: {
       answerImg: null,
       questionImg: null,
     },
-    resolver: zodResolver(createCardZodSchema),
+    resolver: zodResolver(cardFormZodSchema),
   })
 
+  console.log(errors)
   const resetQuestionFormHandler = () => {
     resetQuestionImage()
     resetField('questionImg')
@@ -46,6 +55,7 @@ export const CreateCardForm = ({ onSubmit }: Props) => {
         <Input
           {...register('question')}
           className={s.input}
+          defaultValue={card?.question || ''}
           errorMessage={errors?.question?.message}
           label={'Question?'}
         ></Input>
@@ -75,6 +85,7 @@ export const CreateCardForm = ({ onSubmit }: Props) => {
         </Typography>
         <Input
           {...register('answer')}
+          defaultValue={card?.answer || ''}
           errorMessage={errors?.answer?.message}
           label={'Answer?'}
         ></Input>
@@ -107,7 +118,7 @@ export const CreateCardForm = ({ onSubmit }: Props) => {
           </Button>
         </DialogClose>
 
-        <Button disabled={isSubmitting}>Add New Card</Button>
+        <Button disabled={isSubmitting}>{card ? 'Edit Card' : 'Add New Card'}</Button>
       </div>
     </form>
   )

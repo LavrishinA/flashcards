@@ -1,4 +1,5 @@
 import * as z from 'zod'
+
 const ACCEPTED_IMAGE_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 const MAX_FILE_SIZE = 1024 * 1024 * 5
 
@@ -18,3 +19,5 @@ export const fileValidation = z
 
     return ACCEPTED_IMAGE_MIME_TYPES.includes(file[0].type)
   }, 'Only .jpg, .jpeg, .png and .webp formats are supported.')
+  .nullable()
+  .optional()

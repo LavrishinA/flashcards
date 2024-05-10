@@ -39,9 +39,9 @@ export const CardsList = (props: Props) => {
         </Table.TableHeader>
         <Table.TableBody>
           {cards &&
-            cards.map(card =>
+            cards.map((card, index) =>
               props.loadingCards ? (
-                <CardsSkeleton count={cards.length} />
+                <CardsSkeleton count={cards.length} key={index} />
               ) : (
                 <Table.TableRow className={s.row} key={card.id}>
                   <Table.TableCell className={s.cell}>
