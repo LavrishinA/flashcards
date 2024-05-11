@@ -27,10 +27,10 @@ export const CardForm = ({ card, onSubmit }: Props) => {
     register,
     resetField,
   } = useForm<FormValues>({
-    defaultValues: {
-      answerImg: null,
-      questionImg: null,
-    },
+    // defaultValues: {
+    //   answerImg: null,
+    //   questionImg: null,
+    // },
     resolver: zodResolver(cardFormZodSchema),
   })
 
