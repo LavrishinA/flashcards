@@ -73,6 +73,7 @@ export const CardForm = ({ card, onSubmit }: Props) => {
           defaultValue={card?.question || ''}
           errorMessage={errors?.question?.message}
           label={'Question?'}
+          placeholder={card ? '' : 'What was the original name of JavaScript?'}
         ></Input>
         {questionUrl && (
           <div className={s.cover}>
@@ -103,6 +104,7 @@ export const CardForm = ({ card, onSubmit }: Props) => {
           defaultValue={card?.answer || ''}
           errorMessage={errors?.answer?.message}
           label={'Answer?'}
+          placeholder={card ? '' : 'LiveScript'}
         ></Input>
         {answerUrl && (
           <div className={s.cover}>
