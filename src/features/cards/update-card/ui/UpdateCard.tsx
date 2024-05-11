@@ -4,8 +4,7 @@ import { toast } from 'react-toastify'
 import { useUpdateCardMutation } from '@/entities/cards/api/cards-api'
 import { Card } from '@/entities/decks/model/types'
 import { CardForm } from '@/features/cards/create-card'
-import { CardFormValues } from '@/features/cards/create-card/model/card-form-zod-schema'
-// import { FormValues } from '@/features/cards/update-card/model/types'
+import { FormValues } from '@/features/cards/update-card/model/types'
 import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
 
 type Props = {
@@ -17,23 +16,18 @@ export const UpdateCard = ({ card, children }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [updateCard] = useUpdateCardMutation()
 
-  const updateCardHandler = (data: CardFormValues) => {
-    const formData = new FormData()
+  const updateCardHandler = async (data: FormValues) => {
+    const form = new FormData()
 
-    formData.append('answer', data.answer)
-    formData.append('question', data.question)
+    form.append('question', data.question)
+    form.append('answer', data.answer)
     if (data.questionImg) {
-      formData.append('questionImg', data.questionImg?.[0])
-    } else {
-      formData.append('questionImg', '')
+      form.append('questionImg', data.questionImg?.[0])
     }
     if (data.answerImg) {
-      formData.append('answerImg', data.answerImg?.[0])
-    } else {
-      formData.append('answerImg', '')
+      form.append('answerImg', data.answerImg?.[0])
     }
-
-    updateCard({ body: formData, id: card.id })
+    updateCard({ data: form, id: card.id })
       .unwrap()
       .then(() => {
         toast.success(`Card has been updated successfully.`)

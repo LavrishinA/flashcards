@@ -8,4 +8,4 @@ export const cardFormZodSchema = z.object({
   questionImg: fileValidation,
 })
 
-export type CardFormValues = z.infer<typeof cardFormZodSchema>
+export type CardFormType = z.infer<typeof cardFormZodSchema>

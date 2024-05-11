@@ -1,11 +1,7 @@
 import { useForm } from 'react-hook-form'
 
-import {
-  CardFormValues,
-  cardFormZodSchema,
-} from '@/features/cards/create-card/model/card-form-zod-schema'
-// import { FormValues, Props } from '@/features/cards/create-card/model/types'
-import { Props } from '@/features/cards/create-card/model/types'
+import { cardFormZodSchema } from '@/features/cards/create-card/model/card-form-zod-schema'
+import { FormValues, Props } from '@/features/cards/update-card/model/types'
 import { useUploadedImage } from '@/shared/lib/useUploadedImage'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
@@ -26,10 +22,11 @@ export const CardForm = ({ card, onSubmit }: Props) => {
   )
   const {
     formState: { errors, isSubmitting },
+
     handleSubmit,
     register,
     resetField,
-  } = useForm<CardFormValues>({
+  } = useForm<FormValues>({
     defaultValues: {
       answerImg: null,
       questionImg: null,
@@ -37,7 +34,10 @@ export const CardForm = ({ card, onSubmit }: Props) => {
     resolver: zodResolver(cardFormZodSchema),
   })
 
-  console.log(errors)
+  const onSubmitHandler = (data: FormValues) => {
+    onSubmit(data)
+  }
+
   const resetQuestionFormHandler = () => {
     resetQuestionImage()
     resetField('questionImg')
@@ -49,7 +49,7 @@ export const CardForm = ({ card, onSubmit }: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
       <div className={s.content}>
         <Typography variant={'subtitle2'}>Question:</Typography>
         <Input
