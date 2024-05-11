@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
-import { cardFormZodSchema } from '@/features/cards/create-card/model/card-form-zod-schema'
-import { FormValues, Props } from '@/features/cards/update-card/model/types'
+import { cardFormZodSchema } from '@/features/cards/card-form/model/card-form-zod-schema'
+import { FormValues, Props } from '@/features/cards/card-form/model/types'
 import { useUploadedImage } from '@/shared/lib/useUploadedImage'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
@@ -11,7 +11,7 @@ import { Close } from '@/shared/ui/icons/close'
 import { DeckIcon } from '@/shared/ui/icons/image-outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import s from './CreateCardForm.module.scss'
+import s from '../../create-card/ui/CreateCardForm.module.scss'
 
 export const CardForm = ({ card, onSubmit }: Props) => {
   const [questionUrl, handleQuestionImageChange, resetQuestionImage] = useUploadedImage(

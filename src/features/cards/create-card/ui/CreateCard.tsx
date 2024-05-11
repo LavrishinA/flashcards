@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 import { useCreateCardMutation } from '@/entities/decks/api/decks-api'
-import { FormValues } from '@/features/cards/create-card/model/types'
-import { CardForm } from '@/features/cards/create-card/ui/CardForm'
+import { FormValues } from '@/features/cards/card-form/model/types'
+import { CardForm } from '@/features/cards/card-form/ui/CardForm'
 import { Button } from '@/shared/ui/Button'
 import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
 

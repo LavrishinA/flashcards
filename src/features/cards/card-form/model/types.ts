@@ -8,6 +8,6 @@ export type FormValues = {
 }
 
 export type Props = {
-  card: Card
+  card?: Card
   onSubmit: (data: FormValues) => void
 }

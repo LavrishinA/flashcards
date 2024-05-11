@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import { FormValues, Props } from '@/features/cards/update-card/model/types'
+import { FormValues, Props } from '@/features/cards/card-form/model/types'
 import { updateCardZodSchema } from '@/features/cards/update-card/model/update-card-zod-schema'
 import { Button } from '@/shared/ui/Button'
 import { DialogClose } from '@/shared/ui/Dialog'
