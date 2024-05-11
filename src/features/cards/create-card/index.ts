@@ -1,1 +1,1 @@
-export * from './ui/CreateCardForm'
+export * from '../card-form/ui/CardForm'

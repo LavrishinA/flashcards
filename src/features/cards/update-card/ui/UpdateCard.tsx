@@ -1,9 +1,10 @@
 import { ReactNode, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { useUpdateCardMutation } from '@/entities/cards/api/cards-api'
 import { Card } from '@/entities/decks/model/types'
-import { UpdateCardForm } from '@/features/cards/update-card'
-import { FormValues } from '@/features/cards/update-card/model/types'
+// import { FormValues } from '@/features/cards/card-form/model/types'
+import { CardForm } from '@/features/cards/create-card'
 import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui/Dialog'
 
 type Props = {
@@ -14,9 +15,13 @@ type Props = {
 export const UpdateCard = ({ card, children }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [updateCard] = useUpdateCardMutation()
-  const updateCardHandler = ({ answer, question }: FormValues) => {
-    return updateCard({ answer, id: card.id, question })
+
+  const updateCardHandler = (data: FormData) => {
+    updateCard({ data, id: card.id })
       .unwrap()
+      .then(() => {
+        toast.success(`Card has been updated successfully.`)
+      })
       .finally(() => setIsOpen(false))
   }
 
@@ -25,7 +30,7 @@ export const UpdateCard = ({ card, children }: Props) => {
       <Dialog onOpenChange={setIsOpen} open={isOpen}>
         <DialogTrigger asChild>{children}</DialogTrigger>
         <DialogContent title={'Edit Card'}>
-          <UpdateCardForm card={card} onSubmit={updateCardHandler} />
+          <CardForm card={card} onSubmit={updateCardHandler} />
         </DialogContent>
       </Dialog>
     </>

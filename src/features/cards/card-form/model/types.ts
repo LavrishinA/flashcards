@@ -1,3 +1,5 @@
+import { Card } from '@/entities/decks/model/types'
+
 export type FormValues = {
   answer: string
   answerImg?: FileList | null
@@ -6,5 +8,6 @@ export type FormValues = {
 }
 
 export type Props = {
-  onSubmit: (data: FormValues) => void
+  card?: Card
+  onSubmit: (data: FormData) => void
 }
