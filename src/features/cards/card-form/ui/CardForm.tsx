@@ -27,15 +27,30 @@ export const CardForm = ({ card, onSubmit }: Props) => {
     register,
     resetField,
   } = useForm<FormValues>({
-    // defaultValues: {
-    //   answerImg: null,
-    //   questionImg: null,
-    // },
+    defaultValues: {
+      answerImg: null,
+      questionImg: null,
+    },
     resolver: zodResolver(cardFormZodSchema),
   })
 
   const onSubmitHandler = (data: FormValues) => {
-    onSubmit(data)
+    const form = new FormData()
+
+    form.append('question', data.question)
+    form.append('answer', data.answer)
+    if (questionUrl === null) {
+      form.append('questionImg', '')
+    } else if (data.questionImg) {
+      form.append('questionImg', data.questionImg?.[0])
+    }
+
+    if (answerUrl === null) {
+      form.append('answerImg', '')
+    } else if (data.answerImg) {
+      form.append('answerImg', data.answerImg?.[0])
+    }
+    onSubmit(form)
   }
 
   const resetQuestionFormHandler = () => {
@@ -69,7 +84,7 @@ export const CardForm = ({ card, onSubmit }: Props) => {
         )}
         <label className={s.label} htmlFor={'questionImg'}>
           <DeckIcon className={s.coverTrigger} height={16} width={16} />
-          <Typography variant={'body1'}>Change Image</Typography>
+          <Typography variant={'body1'}>{card ? 'Change Image' : 'Upload Image'}</Typography>
           <input
             multiple={false}
             {...register('questionImg', {
@@ -99,7 +114,7 @@ export const CardForm = ({ card, onSubmit }: Props) => {
         )}
         <label className={s.label} htmlFor={'answerImg'}>
           <DeckIcon className={s.coverTrigger} height={16} width={16} />
-          <Typography variant={'body1'}>Change Image</Typography>
+          <Typography variant={'body1'}>{card ? 'Change Image' : 'Upload Image'}</Typography>
           <input
             multiple={false}
             {...register('answerImg', {
