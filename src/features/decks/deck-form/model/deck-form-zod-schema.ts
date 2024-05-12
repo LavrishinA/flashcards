@@ -8,6 +8,10 @@ export const DeckFormZodSchema = z
     name: z.string(),
   })
   .refine(data => data.name.length > 2, {
-    message: 'Field Name Pack must contain at least 3 character(s)',
+    message: 'Field Name must contain at least 3 character(s)',
+    path: ['name'],
+  })
+  .refine(data => data.name.length < 30, {
+    message: 'Field Name  must contain max 30 character(s)',
     path: ['name'],
   })
