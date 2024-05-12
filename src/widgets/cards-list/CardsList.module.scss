@@ -28,6 +28,13 @@
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-m);
+  word-break: break-all;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .cellHead {

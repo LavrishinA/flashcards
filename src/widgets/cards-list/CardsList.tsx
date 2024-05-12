@@ -84,17 +84,19 @@ export const CardsList = (props: Props) => {
                   </Table.TableCell>
                   {user?.id === card.userId && (
                     <Table.TableCell className={s.sell}>
-                      <UpdateCard card={card}>
-                        <Button variant={'text'}>
-                          <EditIcon height={16} width={16} />
-                        </Button>
-                      </UpdateCard>
+                      <div className={s.actions}>
+                        <UpdateCard card={card}>
+                          <Button variant={'text'}>
+                            <EditIcon height={16} width={16} />
+                          </Button>
+                        </UpdateCard>
 
-                      <DeleteCard card={card} id={card.id}>
-                        <Button variant={'text'}>
-                          <DeleteIcon height={16} width={16} />
-                        </Button>
-                      </DeleteCard>
+                        <DeleteCard card={card} id={card.id}>
+                          <Button variant={'text'}>
+                            <DeleteIcon height={16} width={16} />
+                          </Button>
+                        </DeleteCard>
+                      </div>
                     </Table.TableCell>
                   )}
                 </Table.TableRow>
