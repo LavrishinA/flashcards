@@ -33,10 +33,14 @@ export const TableHeaderWithSort: FC<
   }
 
   return (
-    <Table.TableHeader className={s.cellHead} {...restProps}>
+    <Table.TableHeader {...restProps}>
       <Table.TableRow>
         {headers.map(th => (
-          <Table.TableCellHead key={th.label} onClick={() => headerClickHandler(th)}>
+          <Table.TableCellHead
+            className={th.keyToSort ? s.cellHead : s.noneArrow}
+            key={th.label}
+            onClick={() => headerClickHandler(th)}
+          >
             <div className={s.colName}>
               {th.label}
               {currentKeyToSort === th.keyToSort && (

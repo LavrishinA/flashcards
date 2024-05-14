@@ -5,6 +5,10 @@
   line-height: var(--line-height-m);
 }
 
+.noneArrow {
+  cursor: none;
+}
+
 .colName {
   display: flex;
   gap: 5px;

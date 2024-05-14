@@ -25,27 +25,11 @@
   line-height: var(--line-height-m);
 }
 
-.cellHead {
-  cursor: pointer;
-  font-size: var(--font-size-s);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-m);
-}
-
 .text {
   color: white;
   text-decoration: none;
 }
 
-.asc {
-  transform: rotate(0deg);
-}
-
-.desc {
-  transform: rotate(180deg);
-}
-
-.colName,
 .actions {
   display: flex;
   gap: 5px;
