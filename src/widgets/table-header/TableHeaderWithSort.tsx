@@ -1,10 +1,11 @@
+import { ComponentPropsWithoutRef, FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Table } from '@/shared/ui/Table'
 import { Caret } from '@/shared/ui/icons/Caret'
 import { clsx } from 'clsx'
 
-import s from '@/widgets/deck-list/DeckList.module.scss'
+import s from './TableHeaderWithSort.module.scss'
 
 type Props = {
   headers: HeaderKeys[]
@@ -15,22 +16,24 @@ type HeaderKeys = {
   label: string
 }
 
-export const TableHeaderWithSort = ({ headers }: Props) => {
+export const TableHeaderWithSort: FC<
+  Omit<
+    ComponentPropsWithoutRef<'thead'> & {
+      headers: HeaderKeys[]
+    },
+    'children'
+  >
+> = ({ headers, ...restProps }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentKeyToSort, direction] = searchParams.get('orderBy')?.split('-') || []
 
   const headerClickHandler = (th: { keyToSort: string; label: string }) => {
-    searchParams.set(
-      'orderBy',
-      `${th.keyToSort}-${
-        th.keyToSort === currentKeyToSort ? (direction === 'asc' ? 'desc' : 'asc') : 'desc'
-      }`
-    )
+    searchParams.set('orderBy', `${th.keyToSort}-${direction === 'asc' ? 'desc' : 'asc'}`)
     setSearchParams(searchParams)
   }
 
   return (
-    <Table.TableHeader className={s.cellHead}>
+    <Table.TableHeader className={s.cellHead} {...restProps}>
       <Table.TableRow>
         {headers.map(th => (
           <Table.TableCellHead key={th.label} onClick={() => headerClickHandler(th)}>
