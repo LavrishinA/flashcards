@@ -9,6 +9,7 @@ import { Button } from '@/shared/ui/Button'
 import { Rating } from '@/shared/ui/Rating'
 import { Table } from '@/shared/ui/Table'
 import { DeleteIcon, EditIcon } from '@/shared/ui/icons'
+import { TableHeaderWithSort } from '@/widgets/table-header/TableHeaderWithSort'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './CardsList.module.scss'
@@ -19,6 +20,13 @@ type Props = {
   loadingCards: boolean
 }
 
+const headers = [
+  { keyToSort: 'question', label: 'Question' },
+  { keyToSort: 'answer', label: 'Answer' },
+  { keyToSort: 'updated', label: 'Last Updated' },
+  { keyToSort: 'grade', label: 'Grade' },
+]
+
 export const CardsList = (props: Props) => {
   const { cards } = props
 
@@ -27,15 +35,7 @@ export const CardsList = (props: Props) => {
   return (
     <div className={s.cardsListContainer}>
       <Table.Root className={s.root}>
-        <Table.TableHeader className={s.cellHead}>
-          <Table.TableRow>
-            <Table.TableCellHead>Question</Table.TableCellHead>
-            <Table.TableCellHead>Answer</Table.TableCellHead>
-            <Table.TableCellHead>Last Updated</Table.TableCellHead>
-            <Table.TableCellHead>Grade</Table.TableCellHead>
-            <Table.TableCellHead></Table.TableCellHead>
-          </Table.TableRow>
-        </Table.TableHeader>
+        <TableHeaderWithSort headers={headers} />
         <Table.TableBody>
           {cards &&
             cards.map((card, index) =>
