@@ -1,1 +1,1 @@
-export * from './DeleteCard'
+export * from './ui/DeleteCard'
