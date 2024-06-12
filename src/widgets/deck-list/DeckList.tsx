@@ -1,5 +1,5 @@
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import { Link, useLocation, useSearchParams } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { Deck } from '@/entities/decks/model/types'
 import { DeleteDeck } from '@/features/decks/delete-deck'
@@ -9,9 +9,8 @@ import { Button } from '@/shared/ui/Button'
 import { Table } from '@/shared/ui/Table'
 import { Typography } from '@/shared/ui/Typography'
 import { DeleteIcon, EditIcon, PlayIcon } from '@/shared/ui/icons'
-import { Caret } from '@/shared/ui/icons/Caret'
+import { TableHeaderWithSort } from '@/widgets/table-header/TableHeaderWithSort'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
-import { clsx } from 'clsx'
 
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -32,19 +31,7 @@ const headers = [
 
 export const DeckList = (props: Props) => {
   const { currentUser, decks, loading } = props
-  const [searchParams, setSearchParams] = useSearchParams()
   const location = useLocation()
-  const [currentKeyToSort, direction] = searchParams.get('orderBy')?.split('-') || []
-
-  const headerClickHandler = (th: { keyToSort: string; label: string }) => {
-    searchParams.set(
-      'orderBy',
-      `${th.keyToSort}-${
-        th.keyToSort === currentKeyToSort ? (direction === 'asc' ? 'desc' : 'asc') : 'desc'
-      }`
-    )
-    setSearchParams(searchParams)
-  }
 
   const saveSearchParamsHandler = () => {
     localStorage.setItem('searchUrl', location.search)
@@ -53,23 +40,7 @@ export const DeckList = (props: Props) => {
   return (
     <div className={s.deckListContainer}>
       <Table.Root className={s.table}>
-        <Table.TableHeader className={s.cellHead}>
-          <Table.TableRow>
-            {headers.map(th => (
-              <Table.TableCellHead key={th.label} onClick={() => headerClickHandler(th)}>
-                <div className={s.colName}>
-                  {th.label}
-                  {currentKeyToSort === th.keyToSort && (
-                    <Caret
-                      className={clsx(currentKeyToSort === th.keyToSort ? s[direction] : 'asc')}
-                    />
-                  )}
-                </div>
-              </Table.TableCellHead>
-            ))}
-            <Table.TableCellHead>{''}</Table.TableCellHead>
-          </Table.TableRow>
-        </Table.TableHeader>
+        <TableHeaderWithSort headers={headers} />
         <Table.TableBody>
           {decks &&
             decks.map((deck, index) =>

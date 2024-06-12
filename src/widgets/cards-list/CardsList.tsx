@@ -1,4 +1,3 @@
-import { ReactElement } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 import { Card } from '@/entities/decks/model/types'
@@ -10,6 +9,7 @@ import { Button } from '@/shared/ui/Button'
 import { Rating } from '@/shared/ui/Rating'
 import { Table } from '@/shared/ui/Table'
 import { DeleteIcon, EditIcon } from '@/shared/ui/icons'
+import { TableHeaderWithSort } from '@/widgets/table-header/TableHeaderWithSort'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 
 import s from './CardsList.module.scss'
@@ -20,6 +20,13 @@ type Props = {
   loadingCards: boolean
 }
 
+const headers = [
+  { keyToSort: 'question', label: 'Question' },
+  { keyToSort: 'answer', label: 'Answer' },
+  { keyToSort: 'updated', label: 'Last Updated' },
+  { keyToSort: 'grade', label: 'Grade' },
+]
+
 export const CardsList = (props: Props) => {
   const { cards } = props
 
@@ -28,29 +35,21 @@ export const CardsList = (props: Props) => {
   return (
     <div className={s.cardsListContainer}>
       <Table.Root className={s.root}>
-        <Table.TableHeader className={s.cellHead}>
-          <Table.TableRow>
-            <Table.TableCellHead>Question</Table.TableCellHead>
-            <Table.TableCellHead>Answer</Table.TableCellHead>
-            <Table.TableCellHead>Last Updated</Table.TableCellHead>
-            <Table.TableCellHead>Grade</Table.TableCellHead>
-            <Table.TableCellHead></Table.TableCellHead>
-          </Table.TableRow>
-        </Table.TableHeader>
+        <TableHeaderWithSort headers={headers} />
         <Table.TableBody>
           {cards &&
             cards.map((card, index) =>
               props.loadingCards ? (
-                <CardsSkeleton count={cards.length} key={index} />
+                <CardsSkeleton key={index} />
               ) : (
-                <Table.TableRow className={s.row} key={card.id}>
+                <Table.TableRow key={card.id}>
                   <Table.TableCell className={s.cell}>
                     <div className={s.qa}>
                       {card.questionImg && (
                         <div className={s.ratioContainer}>
                           <AspectRatio ratio={21 / 9}>
                             <img
-                              alt={''}
+                              alt={'questionImg'}
                               className={s.image}
                               loading={'lazy'}
                               src={card?.questionImg}
@@ -108,34 +107,26 @@ export const CardsList = (props: Props) => {
   )
 }
 
-export const CardsSkeleton = ({ count }: { count: number }): ReactElement => {
-  console.log('skeleton')
-
+export const CardsSkeleton = () => {
   return (
-    <>
-      {Array(count)
-        .fill(null)
-        .map((_, index) => (
-          <SkeletonTheme baseColor={'#202020'} highlightColor={'#444'} key={index}>
-            <Table.TableRow>
-              <Table.TableCell>
-                <Skeleton />
-              </Table.TableCell>
-              <Table.TableCell>
-                <Skeleton />
-              </Table.TableCell>
-              <Table.TableCell>
-                <Skeleton />
-              </Table.TableCell>
-              <Table.TableCell>
-                <Skeleton />
-              </Table.TableCell>
-              <Table.TableCell>
-                <Skeleton />
-              </Table.TableCell>
-            </Table.TableRow>
-          </SkeletonTheme>
-        ))}
-    </>
+    <SkeletonTheme baseColor={'#333'} highlightColor={'#382766'}>
+      <Table.TableRow>
+        <Table.TableCell>
+          <Skeleton width={220} />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton width={20} />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton width={50} />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton />
+        </Table.TableCell>
+        <Table.TableCell>
+          <Skeleton circle className={s.actionSkeleton} />
+        </Table.TableCell>
+      </Table.TableRow>
+    </SkeletonTheme>
   )
 }

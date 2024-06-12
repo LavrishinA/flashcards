@@ -11,7 +11,7 @@ import { Close } from '@/shared/ui/icons/close'
 import { DeckIcon } from '@/shared/ui/icons/image-outline'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import s from '../../create-card/ui/CreateCardForm.module.scss'
+import s from './CardForm.module.scss'
 
 export const CardForm = ({ card, onSubmit }: Props) => {
   const [questionUrl, handleQuestionImageChange, resetQuestionImage] = useUploadedImage(

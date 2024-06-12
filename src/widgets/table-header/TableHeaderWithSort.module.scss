@@ -1,0 +1,24 @@
+.cellHead {
+  cursor: pointer;
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
+
+.noneArrow {
+  cursor: none;
+}
+
+.colName {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.asc {
+  transform: rotate(0deg);
+}
+
+.desc {
+  transform: rotate(180deg);
+}
