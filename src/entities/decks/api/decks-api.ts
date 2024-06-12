@@ -45,7 +45,7 @@ export const decksApi = baseApi.injectEndpoints({
     }),
     getDecks: build.query<DecksResponse, DecksPayload | void>({
       providesTags: result =>
-        result
+        result?.items.length
           ? [...result.items.map(deck => ({ id: deck.id, type: 'Decks' as const }))]
           : ['Decks'],
       query: params => ({ method: 'GET', params: params ?? {}, url: '/v2/decks' }),
